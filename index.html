@@ -182,16 +182,33 @@
       pointer-events: none; /* zatiaľ nech klikáš cez karty; keď chceš klik na bodky, zmeň na auto */
       display: none;
     }
-    .dot{
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      background: #fff;
-      box-shadow: 0 0 0 6px rgba(255,255,255,.18), 0 8px 24px rgba(0,0,0,.35);
-      transform: translate(-50%, -50%);
-      display: none;
-    }
+.dot{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+/* iba pre klasickú bodku */
+.dot.isDot{
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.18), 0 8px 24px rgba(0,0,0,.35);
+}
+
+/* pre ikonky */
+.dot.isIcon svg{
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  stroke: #fff;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,.35));
+}
+
     .iconDot{
       width: 18px;
       height: 18px;
@@ -607,8 +624,16 @@
     // CARD
     const card = document.createElement("div");
     card.className = "card";
-    card.style.top = `${topStart + i*step}%`;
-    card.style.right = `${right}px`;
+    if (c.cardPos) {
+  if (c.cardPos.top) card.style.top = c.cardPos.top;
+  if (c.cardPos.right) card.style.right = c.cardPos.right;
+  if (c.cardPos.left) card.style.left = c.cardPos.left;
+  if (c.cardPos.bottom) card.style.bottom = c.cardPos.bottom;
+} else {
+  // fallback – pôvodné automatické skladanie
+  card.style.top = `${topStart + i*step}%`;
+  card.style.right = `${right}px`;
+}
 
     card.innerHTML = `
       <div class="title">${c.title || "Info"}</div>
@@ -646,12 +671,16 @@
     cardNodes.push(card);
 
     // DOT
+    
     const dot = document.createElement("div");
     dot.className = "dot";
     dot.dataset.calloutId = c.id || `c${i}`;
 
     const iconKey = c.icon || "dot";
+    dot.className = "dot " + (iconKey === "dot" ? "isDot" : "isIcon");
+
     dot.innerHTML = `<div class="iconDot">${ICONS[iconKey] || ICONS.dot}</div>`;
+
     dotsEl.appendChild(dot);
     dotNodes.push(dot);
   });

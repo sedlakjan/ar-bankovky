@@ -90,7 +90,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      pointer-events: none;
+      pointer-events: auto;
       gap: 14px;
     }
     .scanBox{
@@ -101,6 +101,7 @@
       background: rgba(0,0,0,.10);
       backdrop-filter: blur(2px);
       box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      pointer-events: auto;
       overflow: hidden;
     }
     .scanLine{
@@ -350,7 +351,8 @@
         {
           id: "wmark",
           icon: "dot",
-          pos: { x: 0.08, y: 0.18, z: 0.01 },
+          pos: { x: -0.35, y: -10, z: 0.01 },
+          cardPos: { top: "42%", right: "12px" },
           title: "Vodoznak",
           text: "Na tomto mieste vidíš pod svetlom Bohyňu Európa a hodnotu bankovky. Je to „vrytý“ obraz v papieri, nie potlač.",
           imgTitle: "Vodoznak – miesto na obrázok",
@@ -359,7 +361,7 @@
         {
           id: "tactile",
           icon: "finger",
-          pos: { x: -0.48, y: -0.30, z: 0.01 },
+          pos: { x: -0.43, y: -0.28, z: 0.01 },
           title: "Hmatové čiary",
           text: "Na okraji bankovky sú reliéfne čiary. Slabozraký človek vie hmatom zistiť, akú hodnotu drží."
           // bez obrázka = modal sa neotvorí (alebo si môžeš doplniť)
@@ -388,7 +390,7 @@
         {
           id: "micro",
           icon: "loupe",
-          pos: { x: -0.30, y: 0.18, z: 0.01 },
+          pos: { x: -0.30, y: -0.10, z: 0.01 },
           title: "Mikrotlač",
           text: "Mikrotlač sú extrémne drobné nápisy a línie. Na kopírke alebo lacnej tlačiarni sa často rozmažú – pod lupou to hneď vidno.",
           imgTitle: "Mikrotlač pod lupou – miesto na obrázok",
@@ -412,14 +414,14 @@
         {
           id: "serial1",
           icon: "dot",
-          pos: { x: -0.40, y: 0.22, z: 0.01 },
+          pos: { x: 0.37, y: 0.22, z: 0.01 },
           title: "Sériové číslo (1/2)",
           text: "Sériové číslo je jedinečný „ID kód“ bankovky. Písmeno a čísla slúžia na kontrolu a evidenciu. Poškodenú bankovku vieš vymeniť, ak je zachovaná aspoň približne polovica (cca 50%)."
         },
         {
           id: "serial2",
           icon: "dot",
-          pos: { x: 0.38, y: -0.22, z: 0.01 },
+          pos: { x: -0.15, y: -0.22, z: 0.01 },
           title: "Sériové číslo (2/2)",
           text: "Je na viacerých miestach – aby sa ťažšie falšovalo a aby sa dalo overovať aj pri čiastočnom poškodení."
         },
@@ -441,14 +443,16 @@
         {
           id: "sig",
           icon: "dot",
-          pos: { x: -0.45, y: 0.20, z: 0.01 },
+          pos: { x: -0.35, y: 0.18, z: 0.01 },
           title: "Podpis prezidentky ECB",
-          text: "Podpis je symbol zodpovednosti: Európska centrálna banka ručí za stabilitu meny a dohliada na eurozónu."
+         mode: "toggle",
+         q: "Tu je niekto podpísaný. Uhádneš kto?",
+          a: "Podpísaná je Christine Lagarde, prezidentka Európskej centrálnej banky."
         },
         {
           id: "gothic",
           icon: "dot",
-          pos: { x: 0.32, y: 0.18, z: 0.01 },
+          pos: { x: 0.28, y: 0.16, z: 0.01 },
           title: "Gotická architektúra",
           text: "Motívy na bankovkách sú „štýly“ európskej architektúry. 20€ predstavuje gotiku – bankovky sú tak trochu galéria umenia.",
           imgTitle: "Architektúra na bankovkách – miesto na obrázok",
@@ -457,7 +461,7 @@
         {
           id: "langs",
           icon: "dot",
-          pos: { x: -0.50, y: -0.02, z: 0.01 },
+          pos: { x: -0.43, y: -0.02, z: 0.01 },
           title: "ECB a EURO v rôznych jazykoch",
           text: "Názvy sú v rôznych jazykoch, aby sa v mene odrážala integrácia krajín. Je to malý detail s veľkým symbolom."
         }
@@ -580,67 +584,84 @@
       closeModal();
     }
 
-    function openModalFor(callout){
-      if (!callout.imgSrc) return; // nič neotváraj, keď nemáš src
-
-      modalTitle.textContent = callout.imgTitle || callout.title || "Obrázok";
-      modalText.textContent = callout.text || "";
-      modalImg.src = callout.imgSrc;
-
-      modal.style.display = "flex";
-    }
-
     function buildUIFor(targetId){
-      const t = TARGETS[targetId];
-      if (!t) return;
+  const t = TARGETS[targetId];
+  if (!t) return;
 
-      hintEl.textContent = t.hint || "Namier kameru na bankovku…";
+  hintEl.textContent = t.hint || "Namier kameru na bankovku…";
 
-      // karty zoraď tak, aby sa pekne skladali (zhora nadol)
-      const topStart = 42;     // % od vrchu
-      const step = 18;         // % odstup
-      const right = 12;        // px
+  const topStart = 42;  // % od vrchu
+  const step = 18;      // % odstup
+  const right = 12;     // px
 
-      uiEl.innerHTML = "";
-      dotsEl.innerHTML = "";
-      dotNodes = [];
-      cardNodes = [];
+  uiEl.innerHTML = "";
+  dotsEl.innerHTML = "";
+  dotNodes = [];
+  cardNodes = [];
 
-      activeCallouts = t.callouts || [];
+  activeCallouts = t.callouts || [];
 
-      activeCallouts.forEach((c, i) => {
-        // CARD
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.top = `${topStart + i*step}%`;
-        card.style.right = `${right}px`;
+  activeCallouts.forEach((c, i) => {
+    const isToggle = c.mode === "toggle";
 
-        card.innerHTML = `
-          <div class="title">${c.title || "Info"}</div>
-          <div>${c.text || ""}</div>
-          ${c.imgSrc ? `<div class="small">Klikni pre obrázok</div>` : ``}
-        `;
+    // CARD
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.top = `${topStart + i*step}%`;
+    card.style.right = `${right}px`;
 
-        card.addEventListener("click", () => openModalFor(c));
-        uiEl.appendChild(card);
-        cardNodes.push(card);
+    card.innerHTML = `
+      <div class="title">${c.title || "Info"}</div>
+      <div class="body">
+        ${isToggle ? (c.q || "") : (c.text || "")}
+      </div>
+      ${
+        isToggle
+          ? `<div class="small">Klikni pre odpoveď</div>`
+          : (c.imgSrc ? `<div class="small">Klikni pre obrázok</div>` : ``)
+      }
+    `;
 
-        // DOT
-        const dot = document.createElement("div");
-        dot.className = "dot";
-        dot.dataset.calloutId = c.id || `c${i}`;
+    card.addEventListener("click", () => {
+      // 1) toggle režim (Q <-> A)
+      if (isToggle) {
+        const body = card.querySelector(".body");
+        const pill = card.querySelector(".small");
 
-        const iconKey = c.icon || "dot";
-        dot.innerHTML = `<div class="iconDot">${ICONS[iconKey] || ICONS.dot}</div>`;
-        dotsEl.appendChild(dot);
-        dotNodes.push(dot);
-      });
+        const q = (c.q || "").trim();
+        const a = (c.a || "").trim();
 
-      uiEl.style.display = "block";
-      dotsEl.style.display = "block";
-      scanEl.style.display = "none";
-      running = true;
-    }
+        const showingQ = body.textContent.trim() === q;
+        body.textContent = showingQ ? a : q;
+
+        if (pill) pill.textContent = showingQ ? "Klikni pre otázku" : "Klikni pre odpoveď";
+        return;
+      }
+
+      // 2) modal režim (ak je imgSrc)
+      openModalFor(c);
+    });
+
+    uiEl.appendChild(card);
+    cardNodes.push(card);
+
+    // DOT
+    const dot = document.createElement("div");
+    dot.className = "dot";
+    dot.dataset.calloutId = c.id || `c${i}`;
+
+    const iconKey = c.icon || "dot";
+    dot.innerHTML = `<div class="iconDot">${ICONS[iconKey] || ICONS.dot}</div>`;
+    dotsEl.appendChild(dot);
+    dotNodes.push(dot);
+  });
+
+  uiEl.style.display = "block";
+  dotsEl.style.display = "block";
+  scanEl.style.display = "none";
+  running = true;
+}
+
 
     // targetFound/targetLost pre každý anchor
     anchors.forEach((anchorEl) => {

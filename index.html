@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>AR Bankovky – callouty</title>
+
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+  <style>
+    html, body{
+      margin:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      background:#000;
+    }
+    body{ min-height:100vh; height:100dvh; }
+
+    /* MindAR video */
+    video{
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center center !important;
+      z-index: 0 !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background: black !important;
+    }
+
+    a-scene{
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1 !important;
+    }
+
+    canvas.a-canvas{
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1 !important;
+      background: transparent !important;
+      pointer-events: none !important;
+    }
+
+    .mindar-ui-overlay{
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: -1 !important;
+      background: transparent !important;
+      pointer-events: none !important;
+    }
+
+    /* Hint hore */
+    .hint{
+      position: fixed;
+      left:0; right:0;
+      top: 0;
+      padding-top: calc(10px + env(safe-area-inset-top));
+      padding-bottom: 10px;
+      padding-left: max(12px, env(safe-area-inset-left));
+      padding-right: max(12px, env(safe-area-inset-right));
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#fff;
+      background: rgba(0,0,0,.55);
+      z-index: 50;
+      font-size: 14px;
+      display:flex;
+      justify-content:center;
+      text-align:center;
+      pointer-events:none;
+    }
+
+    /* Scan overlay */
+    #scan{
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      gap: 14px;
+    }
+    .scanBox{
+      width: min(72vw, 340px);
+      aspect-ratio: 4/2.3;
+      position: relative;
+      border-radius: 18px;
+      background: rgba(0,0,0,.10);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+    .scanLine{
+      position:absolute;
+      left: 10px; right: 10px;
+      height: 2px;
+      top: 12px;
+      background: rgba(255,255,255,.85);
+      box-shadow: 0 0 18px rgba(255,255,255,.65);
+      animation: scanMove 1.6s ease-in-out infinite;
+    }
+    @keyframes scanMove{
+      0%   { transform: translateY(0); opacity: .35; }
+      50%  { transform: translateY(calc(100% - 28px)); opacity: 1; }
+      100% { transform: translateY(0); opacity: .35; }
+    }
+    .scanCorners{
+      position:absolute;
+      inset: 0;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .scanText{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color: rgba(255,255,255,.9);
+      font-size: 14px;
+      background: rgba(0,0,0,.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    /* UI karty */
+    #ui{
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      pointer-events: auto;
+      padding-top: calc(48px + env(safe-area-inset-top));
+    }
+    .card{
+      position:absolute;
+      right: 12px;
+      max-width: min(340px, 88vw);
+      padding: 12px 14px;
+      border-radius: 16px;
+      color: #fff;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 16px;
+      line-height: 1.25;
+      background: rgba(0,0,0,.32);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(8px);
+      text-shadow: 0 2px 12px rgba(0,0,0,.65);
+      user-select: none;
+      cursor: pointer;
+    }
+    .card .title{
+      font-weight: 800;
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+    .card .small{
+      margin-top: 8px;
+      font-size: 13px;
+      opacity: .9;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.22);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    /* DOM dots + icons (default biele) */
+    #dots{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none; /* zatiaľ nech klikáš cez karty; keď chceš klik na bodky, zmeň na auto */
+      display: none;
+    }
+    .dot{
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 0 0 6px rgba(255,255,255,.18), 0 8px 24px rgba(0,0,0,.35);
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+    .iconDot{
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+    }
+    .dot svg{
+      width: 18px;
+      height: 18px;
+      fill: #fff;       /* biele */
+      stroke: #fff;     /* biele */
+    }
+
+    /* Modal (obrázky) */
+    #modal{
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(6px);
+      pointer-events: auto;
+    }
+    #modalCard{
+      width: min(92vw, 560px);
+      max-height: min(86vh, 720px);
+      overflow: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.45);
+      padding: 14px;
+      color: #fff;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      box-shadow: 0 20px 70px rgba(0,0,0,.45);
+    }
+    #modalHead{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    #modalTitle{
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+    #modalClose{
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      border-radius: 12px;
+      padding: 6px 10px;
+      cursor: pointer;
+      user-select: none;
+      flex: 0 0 auto;
+    }
+    #modalImg{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25);
+      display: block;
+    }
+    #modalText{
+      margin-top: 10px;
+      font-size: 15px;
+      line-height: 1.35;
+      opacity: .95;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="hint" class="hint">Namier kameru na bankovku…</div>
+
+  <div id="scan">
+    <div class="scanBox">
+      <div class="scanLine"></div>
+      <div class="scanCorners"></div>
+    </div>
+    <div class="scanText">Hľadám bankovku…</div>
+  </div>
+
+  <!-- UI karty (dynamicky generované) -->
+  <div id="ui"></div>
+
+  <!-- DOM bodky (dynamicky generované) -->
+  <div id="dots"></div>
+
+  <!-- Modal pre obrázky -->
+  <div id="modal">
+    <div id="modalCard">
+      <div id="modalHead">
+        <div id="modalTitle">Nadpis</div>
+        <div id="modalClose">Zavrieť</div>
+      </div>
+      <img id="modalImg" alt="Ilustrácia" src="" />
+      <div id="modalText"></div>
+    </div>
+  </div>
+
+  <!-- A-Frame + MindAR -->
+  <a-scene
+    mindar-image="imageTargetSrc: targets_all.mind; autoStart: true; filterMinCF: 0.001; filterBeta: 0.001;"
+    vr-mode-ui="enabled:false"
+    device-orientation-permission-ui="enabled:false"
+    renderer="alpha:true; antialias:true"
+    background="transparent: true"
+    embedded
+  >
+    <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
+
+    <!-- 6 anchorov (0..5) -->
+    <a-entity mindar-image-target="targetIndex: 0" id="a0"></a-entity>
+    <a-entity mindar-image-target="targetIndex: 1" id="a1"></a-entity>
+    <a-entity mindar-image-target="targetIndex: 2" id="a2"></a-entity>
+    <a-entity mindar-image-target="targetIndex: 3" id="a3"></a-entity>
+    <a-entity mindar-image-target="targetIndex: 4" id="a4"></a-entity>
+    <a-entity mindar-image-target="targetIndex: 5" id="a5"></a-entity>
+  </a-scene>
+
+<script>
+  /* =========================
+     IKONKY (inline SVG) – biele
+     ========================= */
+  const ICONS = {
+    dot: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="white"></circle>
+      </svg>
+    `,
+    finger: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10 4a2 2 0 0 1 2 2v6h.6V8.2a1.6 1.6 0 1 1 3.2 0V13h.6V9.6a1.4 1.4 0 1 1 2.8 0V16c0 3.3-2.7 6-6 6H10c-2.2 0-4-1.8-4-4v-5.2a1.8 1.8 0 1 1 3.6 0V14H10V6a2 2 0 0 1 2-2z" fill="white"></path>
+      </svg>
+    `,
+    loupe: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10.5 3a7.5 7.5 0 1 1 4.7 13.3l3.5 3.5a1 1 0 0 1-1.4 1.4l-3.5-3.5A7.5 7.5 0 0 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11z" fill="white"></path>
+      </svg>
+    `
+  };
+
+  /* =========================
+     DATA: 6 targetov
+     - dots: body na targete (lokálne XY), ikona, text, (voliteľne) imgSrc
+     - Pozície sú orientačné — doladíš ako pri 20€.
+     ========================= */
+  const TARGETS = {
+    a0: { // 5€ FRONT
+      hint: "Namier kameru na prednú stranu 5€ – Ako spoznať pravú",
+      callouts: [
+        {
+          id: "wmark",
+          icon: "dot",
+          pos: { x: 0.08, y: 0.18, z: 0.01 },
+          title: "Vodoznak",
+          text: "Na tomto mieste vidíš pod svetlom Bohyňu Európa a hodnotu bankovky. Je to „vrytý“ obraz v papieri, nie potlač.",
+          imgTitle: "Vodoznak – miesto na obrázok",
+          imgSrc: "" // TODO: napr. "img/5-watermark.jpg"
+        },
+        {
+          id: "tactile",
+          icon: "finger",
+          pos: { x: -0.48, y: -0.30, z: 0.01 },
+          title: "Hmatové čiary",
+          text: "Na okraji bankovky sú reliéfne čiary. Slabozraký človek vie hmatom zistiť, akú hodnotu drží."
+          // bez obrázka = modal sa neotvorí (alebo si môžeš doplniť)
+        }
+      ]
+    },
+
+    a1: { // 5€ BACK
+      hint: "Namier kameru na zadnú stranu 5€ – Materiál bankovky",
+      callouts: [
+        {
+          id: "material",
+          icon: "dot",
+          pos: { x: -0.10, y: 0.05, z: 0.01 },
+          title: "Materiál: bavlna vs. kancelársky papier",
+          text: "Eurobankovky nie sú z bežného papiera – sú z bavlny. Preto sú odolnejšie, lepšie držia farbu a vydržia tisíce ohybov v obehu.",
+          imgTitle: "Bavlna / výroba – miesto na obrázok",
+          imgSrc: "" // TODO: napr. "img/cotton.jpg"
+        }
+      ]
+    },
+
+    a2: { // 10€ FRONT
+      hint: "Namier kameru na prednú stranu 10€ – Detaily, ktoré bránia falšovaniu",
+      callouts: [
+        {
+          id: "micro",
+          icon: "loupe",
+          pos: { x: -0.30, y: 0.18, z: 0.01 },
+          title: "Mikrotlač",
+          text: "Mikrotlač sú extrémne drobné nápisy a línie. Na kopírke alebo lacnej tlačiarni sa často rozmažú – pod lupou to hneď vidno.",
+          imgTitle: "Mikrotlač pod lupou – miesto na obrázok",
+          imgSrc: "" // TODO: napr. "img/microprint.jpg"
+        },
+        {
+          id: "shine",
+          icon: "dot",
+          pos: { x: 0.30, y: -0.02, z: 0.01 },
+          title: "Optická žiara pri naklonení",
+          text: "Pri naklonení bankovky sa optický prvok „hýbe“ alebo mení jas. Je to efekt, ktorý je lacné napodobniť… ale drahé spraviť dobre.",
+          imgTitle: "Žiara / naklonenie – miesto na obrázok",
+          imgSrc: "" // TODO: napr. "img/tilt-shine.gif" alebo jpg
+        }
+      ]
+    },
+
+    a3: { // 10€ BACK
+      hint: "Namier kameru na zadnú stranu 10€ – Sériové číslo & UV",
+      callouts: [
+        {
+          id: "serial1",
+          icon: "dot",
+          pos: { x: -0.40, y: 0.22, z: 0.01 },
+          title: "Sériové číslo (1/2)",
+          text: "Sériové číslo je jedinečný „ID kód“ bankovky. Písmeno a čísla slúžia na kontrolu a evidenciu. Poškodenú bankovku vieš vymeniť, ak je zachovaná aspoň približne polovica (cca 50%)."
+        },
+        {
+          id: "serial2",
+          icon: "dot",
+          pos: { x: 0.38, y: -0.22, z: 0.01 },
+          title: "Sériové číslo (2/2)",
+          text: "Je na viacerých miestach – aby sa ťažšie falšovalo a aby sa dalo overovať aj pri čiastočnom poškodení."
+        },
+        {
+          id: "uv",
+          icon: "dot",
+          pos: { x: 0.10, y: 0.05, z: 0.01 },
+          title: "Vlákna v papieri (UV svetlo)",
+          text: "Pod UV svetlom sa v bankovke objavia farebné vlákna alebo prvky. Bežný papier sa pod UV často správa inak.",
+          imgTitle: "UV vlákna – miesto na obrázok",
+          imgSrc: "" // TODO: napr. "img/uv-fibers.jpg"
+        }
+      ]
+    },
+
+    a4: { // 20€ FRONT
+      hint: "Namier kameru na prednú stranu 20€ – Príbeh Európy",
+      callouts: [
+        {
+          id: "sig",
+          icon: "dot",
+          pos: { x: -0.45, y: 0.20, z: 0.01 },
+          title: "Podpis prezidentky ECB",
+          text: "Podpis je symbol zodpovednosti: Európska centrálna banka ručí za stabilitu meny a dohliada na eurozónu."
+        },
+        {
+          id: "gothic",
+          icon: "dot",
+          pos: { x: 0.32, y: 0.18, z: 0.01 },
+          title: "Gotická architektúra",
+          text: "Motívy na bankovkách sú „štýly“ európskej architektúry. 20€ predstavuje gotiku – bankovky sú tak trochu galéria umenia.",
+          imgTitle: "Architektúra na bankovkách – miesto na obrázok",
+          imgSrc: "" // TODO: napr. "img/architecture-styles.jpg"
+        },
+        {
+          id: "langs",
+          icon: "dot",
+          pos: { x: -0.50, y: -0.02, z: 0.01 },
+          title: "ECB a EURO v rôznych jazykoch",
+          text: "Názvy sú v rôznych jazykoch, aby sa v mene odrážala integrácia krajín. Je to malý detail s veľkým symbolom."
+        }
+      ]
+    },
+
+    a5: { // 20€ BACK
+      hint: "Namier kameru na zadnú stranu 20€ – Životný cyklus bankovky",
+      callouts: [
+        {
+          id: "life",
+          icon: "dot",
+          pos: { x: 0.00, y: 0.08, z: 0.01 },
+          title: "Životný cyklus bankovky",
+          text: "Bankovka sa narodí v tlačiarni, roky koluje medzi ľuďmi a firmami, a keď je poškodená, kontroluje sa a nakoniec sa skartuje. Potom sa nahradí novou.",
+          imgTitle: "Cyklus: tlač → obeh → skartácia",
+          imgSrc: "" // TODO: napr. "img/lifecycle.jpg"
+        }
+      ]
+    }
+  };
+
+  /* =========================
+     Projekcia 3D bodu -> 2D pixely
+     ========================= */
+  function placeDotProjected(dotEl, anchorEl, local){
+    const sceneEl = anchorEl.sceneEl;
+    const cam = sceneEl && sceneEl.camera;
+    if (!cam || !anchorEl.object3D) return;
+
+    anchorEl.object3D.updateMatrixWorld(true);
+
+    const v = new THREE.Vector3(local.x, local.y, local.z ?? 0.01);
+    v.applyMatrix4(anchorEl.object3D.matrixWorld);
+    v.project(cam);
+
+    if (v.z < -1 || v.z > 1) {
+      dotEl.style.display = "none";
+      return;
+    }
+    dotEl.style.display = "block";
+
+    const x = (v.x * 0.5 + 0.5) * window.innerWidth;
+    const y = (-v.y * 0.5 + 0.5) * window.innerHeight;
+
+    dotEl.style.left = `${x}px`;
+    dotEl.style.top  = `${y}px`;
+  }
+
+  function styleMindarVideoOnce() {
+    const vids = [...document.querySelectorAll('video')];
+    const v = vids.find(x =>
+      x.autoplay || x.getAttribute('autoplay') !== null ||
+      x.playsInline || x.getAttribute('playsinline') !== null
+    );
+    if (!v) return false;
+
+    Object.assign(v.style, {
+      position: "fixed",
+      inset: "0",
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center center",
+      zIndex: "0",
+      display: "block",
+      visibility: "visible",
+      opacity: "1",
+      background: "black"
+    });
+
+    setTimeout(() => window.dispatchEvent(new Event("resize")), 50);
+    return true;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const hintEl = document.getElementById("hint");
+    const scanEl = document.getElementById("scan");
+    const uiEl   = document.getElementById("ui");
+    const dotsEl = document.getElementById("dots");
+
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImg = document.getElementById("modalImg");
+    const modalText = document.getElementById("modalText");
+    const modalClose = document.getElementById("modalClose");
+
+    const anchors = ["a0","a1","a2","a3","a4","a5"].map(id => document.getElementById(id));
+
+    let activeAnchorId = null;
+    let activeCallouts = [];
+    let dotNodes = [];   // DOM elements for dots
+    let cardNodes = [];  // DOM elements for cards
+    let running = false;
+
+    function closeModal(){
+      modal.style.display = "none";
+      modalImg.src = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    function resetUI(){
+      uiEl.style.display = "none";
+      dotsEl.style.display = "none";
+      scanEl.style.display = "flex";
+      running = false;
+      activeAnchorId = null;
+      activeCallouts = [];
+
+      // clear dynamic nodes
+      uiEl.innerHTML = "";
+      dotsEl.innerHTML = "";
+      dotNodes = [];
+      cardNodes = [];
+
+      closeModal();
+    }
+
+    function openModalFor(callout){
+      if (!callout.imgSrc) return; // nič neotváraj, keď nemáš src
+
+      modalTitle.textContent = callout.imgTitle || callout.title || "Obrázok";
+      modalText.textContent = callout.text || "";
+      modalImg.src = callout.imgSrc;
+
+      modal.style.display = "flex";
+    }
+
+    function buildUIFor(targetId){
+      const t = TARGETS[targetId];
+      if (!t) return;
+
+      hintEl.textContent = t.hint || "Namier kameru na bankovku…";
+
+      // karty zoraď tak, aby sa pekne skladali (zhora nadol)
+      const topStart = 42;     // % od vrchu
+      const step = 18;         // % odstup
+      const right = 12;        // px
+
+      uiEl.innerHTML = "";
+      dotsEl.innerHTML = "";
+      dotNodes = [];
+      cardNodes = [];
+
+      activeCallouts = t.callouts || [];
+
+      activeCallouts.forEach((c, i) => {
+        // CARD
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.top = `${topStart + i*step}%`;
+        card.style.right = `${right}px`;
+
+        card.innerHTML = `
+          <div class="title">${c.title || "Info"}</div>
+          <div>${c.text || ""}</div>
+          ${c.imgSrc ? `<div class="small">Klikni pre obrázok</div>` : ``}
+        `;
+
+        card.addEventListener("click", () => openModalFor(c));
+        uiEl.appendChild(card);
+        cardNodes.push(card);
+
+        // DOT
+        const dot = document.createElement("div");
+        dot.className = "dot";
+        dot.dataset.calloutId = c.id || `c${i}`;
+
+        const iconKey = c.icon || "dot";
+        dot.innerHTML = `<div class="iconDot">${ICONS[iconKey] || ICONS.dot}</div>`;
+        dotsEl.appendChild(dot);
+        dotNodes.push(dot);
+      });
+
+      uiEl.style.display = "block";
+      dotsEl.style.display = "block";
+      scanEl.style.display = "none";
+      running = true;
+    }
+
+    // targetFound/targetLost pre každý anchor
+    anchors.forEach((anchorEl) => {
+      const id = anchorEl.id;
+
+      anchorEl.addEventListener("targetFound", () => {
+        activeAnchorId = id;
+        buildUIFor(id);
+      });
+
+      anchorEl.addEventListener("targetLost", () => {
+        // resetuj len ak si práve stratil aktívny
+        if (activeAnchorId === id) {
+          resetUI();
+          hintEl.textContent = "Namier kameru na bankovku…";
+        }
+      });
+    });
+
+    // Tick: projekcia bodiek podľa aktívneho anchoru
+    function tick(){
+      if (running && activeAnchorId){
+        const anchorEl = document.getElementById(activeAnchorId);
+        const t = TARGETS[activeAnchorId];
+
+        if (anchorEl && t && t.callouts){
+          for (let i = 0; i < t.callouts.length; i++){
+            const c = t.callouts[i];
+            const dot = dotNodes[i];
+            if (!dot) continue;
+            placeDotProjected(dot, anchorEl, c.pos);
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    // video fix
+    if (!styleMindarVideoOnce()) {
+      const mo = new MutationObserver(() => {
+        if (styleMindarVideoOnce()) mo.disconnect();
+      });
+      mo.observe(document.documentElement, { childList: true, subtree: true });
+    }
+
+    window.addEventListener("orientationchange", () => setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 200));
+
+    // default state
+    resetUI();
+    hintEl.textContent = "Namier kameru na bankovku…";
+  });
+</script>
+
+</body>
+</html>

@@ -32,6 +32,14 @@
       opacity: 1 !important;
       background: black !important;
     }
+    .dot{ color: #fff; }              /* default */
+    .dot.isDot{ background: currentColor; }
+
+    .dot svg{
+     fill: currentColor;
+      stroke: currentColor;
+}
+
 
     a-scene{
       position: fixed !important;
@@ -144,6 +152,8 @@
     }
     .card{
       position:absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      border-left: 6px solid currentColor;
       right: 12px;
       max-width: min(340px, 88vw);
       padding: 12px 14px;
@@ -173,6 +183,25 @@
       padding: 6px 10px;
       border-radius: 999px;
     }
+    .card .badge{
+  display:inline-grid;
+  place-items:center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  margin-right: 8px;
+  font-weight: 900;
+  color: currentColor;            /* ACCENT */
+  flex: 0 0 auto;
+}
+.card .headRow{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
 
     /* DOM dots + icons (default biele) */
     #dots{
@@ -282,6 +311,36 @@
       line-height: 1.35;
       opacity: .95;
     }
+    /* default farba accentu (keď nie je zadaná) */
+.dot, .card { --accent: #ffffff; }
+
+/* DOT */
+.dot.isDot{
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(255,255,255,.18), 0 8px 24px rgba(0,0,0,.35);
+}
+.dot.isIcon svg{
+  width: 24px;
+  height: 24px;
+  fill: var(--accent);
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 10px rgba(255,255,255,.35));
+}
+.dot svg{
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+/* CARD – text nech je biely, accent len na bordery/badge */
+.card{
+  color: #fff; /* <- toto je pointa */
+  border-left: 6px solid var(--accent);
+}
+.card .badge{
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, rgba(255,255,255,.18));
+}
+
   </style>
 </head>
 
@@ -368,19 +427,20 @@
         {
           id: "wmark",
           icon: "dot",
-          pos: { x: -0.35, y: -10, z: 0.01 },
-          cardPos: { top: "42%", right: "12px" },
+          pos: { x: -0.35, y: -0.10, z: 0.01 },
+          cardPos: { top: "55%", left: "12px" },
           title: "Vodoznak",
           text: "Na tomto mieste vidíš pod svetlom Bohyňu Európa a hodnotu bankovky. Je to „vrytý“ obraz v papieri, nie potlač.",
           imgTitle: "Vodoznak – miesto na obrázok",
-          imgSrc: "" // TODO: napr. "img/5-watermark.jpg"
+          imgSrc: "img/europa.jpg"
         },
         {
           id: "tactile",
           icon: "finger",
           pos: { x: -0.43, y: -0.28, z: 0.01 },
+          cardPos: { top: "20%", right: "12px" },
           title: "Hmatové čiary",
-          text: "Na okraji bankovky sú reliéfne čiary. Slabozraký človek vie hmatom zistiť, akú hodnotu drží."
+          text: "Na okraji bankovky sú reliéfne čiary. Slabozraký človek vie hmatom zistiť, akú hodnotu drží. Vyskúšaj sám"
           // bez obrázka = modal sa neotvorí (alebo si môžeš doplniť)
         }
       ]
@@ -396,7 +456,7 @@
           title: "Materiál: bavlna vs. kancelársky papier",
           text: "Eurobankovky nie sú z bežného papiera – sú z bavlny. Preto sú odolnejšie, lepšie držia farbu a vydržia tisíce ohybov v obehu.",
           imgTitle: "Bavlna / výroba – miesto na obrázok",
-          imgSrc: "" // TODO: napr. "img/cotton.jpg"
+          imgSrc: "img/bavlna.jpg"
         }
       ]
     },
@@ -409,18 +469,18 @@
           icon: "loupe",
           pos: { x: -0.30, y: -0.10, z: 0.01 },
           title: "Mikrotlač",
-          text: "Mikrotlač sú extrémne drobné nápisy a línie. Na kopírke alebo lacnej tlačiarni sa často rozmažú – pod lupou to hneď vidno.",
+          text: "Mikrotlač sú extrémne drobné nápisy a línie. Na kopírke alebo lacnej tlačiarni sa často rozmažú – preto pod lupou musíš vidieť všetko ostro.",
           imgTitle: "Mikrotlač pod lupou – miesto na obrázok",
-          imgSrc: "" // TODO: napr. "img/microprint.jpg"
+          imgSrc: "img/microprint.webp"
         },
         {
           id: "shine",
           icon: "dot",
           pos: { x: 0.30, y: -0.02, z: 0.01 },
           title: "Optická žiara pri naklonení",
-          text: "Pri naklonení bankovky sa optický prvok „hýbe“ alebo mení jas. Je to efekt, ktorý je lacné napodobniť… ale drahé spraviť dobre.",
+          text: "Pri naklonení bankovky sa smaragdový ľúč „hýbe“ resp. mení jas. Je to efekt, ktorý je lacné napodobniť… ale drahé spraviť dobre.",
           imgTitle: "Žiara / naklonenie – miesto na obrázok",
-          imgSrc: "" // TODO: napr. "img/tilt-shine.gif" alebo jpg
+          imgSrc: "img/tilt-shine.jpg"
         }
       ]
     },
@@ -432,6 +492,8 @@
           id: "serial1",
           icon: "dot",
           pos: { x: 0.37, y: 0.22, z: 0.01 },
+          accent: "#00E1FF",
+          tag: "①",
           title: "Sériové číslo (1/2)",
           text: "Sériové číslo je jedinečný „ID kód“ bankovky. Písmeno a čísla slúžia na kontrolu a evidenciu. Poškodenú bankovku vieš vymeniť, ak je zachovaná aspoň približne polovica (cca 50%)."
         },
@@ -439,17 +501,21 @@
           id: "serial2",
           icon: "dot",
           pos: { x: -0.15, y: -0.22, z: 0.01 },
+          accent: "#FFD84D",
+          tag: "②",
           title: "Sériové číslo (2/2)",
-          text: "Je na viacerých miestach – aby sa ťažšie falšovalo a aby sa dalo overovať aj pri čiastočnom poškodení."
+          text: "Preto je seriové číslo na dvoch miestach – aby sa ťažšie falšovalo a aby sa dalo overovať aj pri čiastočnom poškodení."
         },
         {
           id: "uv",
           icon: "dot",
           pos: { x: 0.10, y: 0.05, z: 0.01 },
+          accent: "#B7FF6A",
+          tag: "③",
           title: "Vlákna v papieri (UV svetlo)",
-          text: "Pod UV svetlom sa v bankovke objavia farebné vlákna alebo prvky. Bežný papier sa pod UV často správa inak.",
+          text: "Pod UV svetlom sa v bankovke objavia farebné vlákna alebo prvky. Je to daľší ochranný prvok.",
           imgTitle: "UV vlákna – miesto na obrázok",
-          imgSrc: "" // TODO: napr. "img/uv-fibers.jpg"
+          imgSrc: "img/uv-fibers.jpg"
         }
       ]
     },
@@ -462,22 +528,28 @@
           icon: "dot",
           pos: { x: -0.35, y: 0.18, z: 0.01 },
           title: "Podpis prezidentky ECB",
+          accent: "#00E1FF",
+          tag: "①",
          mode: "toggle",
-         q: "Tu je niekto podpísaný. Uhádneš kto?",
-          a: "Podpísaná je Christine Lagarde, prezidentka Európskej centrálnej banky."
+         q: "Pod EÚ vlajkou nájdeš vždy podpis. Uhádneš kto?",
+          a: "Podpísaná je Christine Lagarde, aktuálna prezidentka Európskej centrálnej banky. (platí iba pre bankovky od r. 2019)"
         },
         {
           id: "gothic",
           icon: "dot",
           pos: { x: 0.28, y: 0.16, z: 0.01 },
           title: "Gotická architektúra",
-          text: "Motívy na bankovkách sú „štýly“ európskej architektúry. 20€ predstavuje gotiku – bankovky sú tak trochu galéria umenia.",
+          accent: "#FFD84D",
+          tag: "②",
+          text: "Motívy na bankovkách sú „štýly“ európskej architektúry. 20€ predstavuje gotiku – bankovky sú tak trochu galéria umenia. Každá bankovka má svoje obdobie v architektúre",
           imgTitle: "Architektúra na bankovkách – miesto na obrázok",
-          imgSrc: "" // TODO: napr. "img/architecture-styles.jpg"
+          imgSrc: "img/architecture-styles.jpg"
         },
         {
           id: "langs",
           icon: "dot",
+          accent: "#B7FF6A",
+  tag: "③",
           pos: { x: -0.43, y: -0.02, z: 0.01 },
           title: "ECB a EURO v rôznych jazykoch",
           text: "Názvy sú v rôznych jazykoch, aby sa v mene odrážala integrácia krajín. Je to malý detail s veľkým symbolom."
@@ -495,7 +567,7 @@
           title: "Životný cyklus bankovky",
           text: "Bankovka sa narodí v tlačiarni, roky koluje medzi ľuďmi a firmami, a keď je poškodená, kontroluje sa a nakoniec sa skartuje. Potom sa nahradí novou.",
           imgTitle: "Cyklus: tlač → obeh → skartácia",
-          imgSrc: "" // TODO: napr. "img/lifecycle.jpg"
+          imgSrc: "img/lifecycle.jpg"
         }
       ]
     }
@@ -600,7 +672,23 @@
 
       closeModal();
     }
+function openModalFor(callout){
+  if (!callout.imgSrc) return;
 
+  modalTitle.textContent = callout.imgTitle || callout.title || "Obrázok";
+  modalText.textContent = callout.text || "";
+
+  // ukáž modal hneď (aj keby sa obrázok ešte načítaval)
+  modal.style.display = "flex";
+
+  // debug-friendly: ak obrázok neexistuje, uvidíš to
+  modalImg.onerror = () => {
+    modalText.textContent = `Obrázok sa nenašiel: ${callout.imgSrc}`;
+    modalImg.removeAttribute("src");
+  };
+
+  modalImg.src = callout.imgSrc;
+}
     function buildUIFor(targetId){
   const t = TARGETS[targetId];
   if (!t) return;
@@ -624,6 +712,10 @@
     // CARD
     const card = document.createElement("div");
     card.className = "card";
+if (c.accent) {
+  card.style.setProperty("--accent", c.accent);
+}
+
     if (c.cardPos) {
   if (c.cardPos.top) card.style.top = c.cardPos.top;
   if (c.cardPos.right) card.style.right = c.cardPos.right;
@@ -636,16 +728,19 @@
 }
 
     card.innerHTML = `
-      <div class="title">${c.title || "Info"}</div>
-      <div class="body">
-        ${isToggle ? (c.q || "") : (c.text || "")}
-      </div>
-      ${
-        isToggle
-          ? `<div class="small">Klikni pre odpoveď</div>`
-          : (c.imgSrc ? `<div class="small">Klikni pre obrázok</div>` : ``)
-      }
-    `;
+  <div class="headRow">
+    <div class="badge">${c.tag || (i+1)}</div>
+    <div class="title">${c.title || "Info"}</div>
+  </div>
+  <div class="body">
+    ${isToggle ? (c.q || "") : (c.text || "")}
+  </div>
+  ${
+    isToggle
+      ? `<div class="small">Klikni pre odpoveď</div>`
+      : (c.imgSrc ? `<div class="small">Klikni pre obrázok</div>` : ``)
+  }
+`;
 
     card.addEventListener("click", () => {
       // 1) toggle režim (Q <-> A)
@@ -680,9 +775,13 @@
     dot.className = "dot " + (iconKey === "dot" ? "isDot" : "isIcon");
 
     dot.innerHTML = `<div class="iconDot">${ICONS[iconKey] || ICONS.dot}</div>`;
+    if (c.accent) {
+  dot.style.setProperty("--accent", c.accent);
+}
 
     dotsEl.appendChild(dot);
     dotNodes.push(dot);
+
   });
 
   uiEl.style.display = "block";
@@ -749,3 +848,4 @@
 
 </body>
 </html>
+

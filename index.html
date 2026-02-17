@@ -375,7 +375,7 @@
 
   <!-- A-Frame + MindAR -->
   <a-scene
-    mindar-image="imageTargetSrc: targets_all.mind; autoStart: true; filterMinCF: 0.001; filterBeta: 0.001;"
+    mindar-image="imageTargetSrc: targets_all.mind; autoStart: true; filterMinCF: 0.004; filterBeta: 0.02;"
     vr-mode-ui="enabled:false"
     device-orientation-permission-ui="enabled:false"
     renderer="alpha:true; antialias:true"
@@ -422,135 +422,151 @@
      ========================= */
   const TARGETS = {
     a0: { // 5€ FRONT
-      hint: "Namier kameru na prednú stranu 5€ – Ako spoznať pravú",
+      hint: "Predná strana 5€ – Ako spoznať pravú",
       callouts: [
+          {
+          id: "tactile",
+          icon: "finger",
+          pos: { x: -0.44, y: -0.15, z: 0.03 },
+          cardPos: { top: "20%", right: "0px" },
+          title: "Hmatové čiary",
+          text: "Na okrajoch bankovky sú reliéfne čiary. Slabozraký človek vie hmatom zistiť, akú hodnotu drží. Vyskúšaj sám"
+          // bez obrázka = modal sa neotvorí 
+        },
         {
           id: "wmark",
           icon: "dot",
-          pos: { x: -0.35, y: -0.10, z: 0.01 },
-          cardPos: { top: "55%", left: "12px" },
+          pos: { x: -0.33, y: -0.01, z: 0.03 },
+          cardPos: { top: "65%", left: "0px" },
           title: "Vodoznak",
-          text: "Na tomto mieste vidíš pod svetlom Bohyňu Európa a hodnotu bankovky. Je to „vrytý“ obraz v papieri, nie potlač.",
-          imgTitle: "Vodoznak – miesto na obrázok",
-          imgSrc: "img/europa.jpg"
+          text: "Na mieste s guličkou uvidíš Bohyňu Európa ak si dáš bankovku oproti svetlu. Je to „vrytý“ obraz v papieri, nie potlač.",
+          imgTitle: "Vodoznak – bohyňa Európa",
+          imgSrc: "img/europa.jpg",
+          imgText: "Táto mytická postava je pôvodom kresba na gréckej váze, ktorá je uložená v louvre múzeu"
         },
-        {
-          id: "tactile",
-          icon: "finger",
-          pos: { x: -0.43, y: -0.28, z: 0.01 },
-          cardPos: { top: "20%", right: "12px" },
-          title: "Hmatové čiary",
-          text: "Na okraji bankovky sú reliéfne čiary. Slabozraký človek vie hmatom zistiť, akú hodnotu drží. Vyskúšaj sám"
-          // bez obrázka = modal sa neotvorí (alebo si môžeš doplniť)
-        }
+
       ]
     },
 
     a1: { // 5€ BACK
-      hint: "Namier kameru na zadnú stranu 5€ – Materiál bankovky",
+      hint: "Zadná strana 5€ – Materiál bankovky",
       callouts: [
         {
           id: "material",
           icon: "dot",
-          pos: { x: -0.10, y: 0.05, z: 0.01 },
-          title: "Materiál: bavlna vs. kancelársky papier",
-          text: "Eurobankovky nie sú z bežného papiera – sú z bavlny. Preto sú odolnejšie, lepšie držia farbu a vydržia tisíce ohybov v obehu.",
-          imgTitle: "Bavlna / výroba – miesto na obrázok",
-          imgSrc: "img/bavlna.jpg"
+          pos: { x: -0.10, y: 0.05, z: 0.03 },
+          cardPos: { top: "60%", right: "0px" },
+          title: "Materiál: bavlna vs. kancelársky papier", 
+          text: "Vieš z čoho sú vyrobené Eurobankovky?",
+          imgTitle: "Takto vyzerá materiál na bankovky",
+          imgSrc: "img/bavlna.jpg",
+          imgText: "Eurobankovky nie sú z bežného papiera – sú z bavlny. Preto sú odolnejšie, lepšie držia farbu a vydržia tisíce ohybov v obehu."
         }
       ]
     },
 
     a2: { // 10€ FRONT
-      hint: "Namier kameru na prednú stranu 10€ – Detaily, ktoré bránia falšovaniu",
+      hint: "Predná strana 10€ – Detaily, ktoré bránia falšovaniu",
       callouts: [
         {
           id: "micro",
           icon: "loupe",
-          pos: { x: -0.30, y: -0.10, z: 0.01 },
+          pos: { x: 0.25, y: -0.00, z: 0.03 },
+          cardPos: { top: "15%", right: "0px" },
           title: "Mikrotlač",
-          text: "Mikrotlač sú extrémne drobné nápisy a línie. Na kopírke alebo lacnej tlačiarni sa často rozmažú – preto pod lupou musíš vidieť všetko ostro.",
-          imgTitle: "Mikrotlač pod lupou – miesto na obrázok",
-          imgSrc: "img/microprint.webp"
+          text: "Každá bankovka je tlačená tzv. mikrotlačou, pozri si detail mikrotlače",
+          imgTitle: "Mikrotlač pod lupou",
+          imgSrc: "img/microprint.webp",
+          imgText: "Mikrotlač sú extrémne drobné nápisy a línie. Na kopírke alebo lacnej tlačiarni sa často rozmažú – preto pod lupou musíš vidieť všetko ostro.",
         },
         {
           id: "shine",
           icon: "dot",
-          pos: { x: 0.30, y: -0.02, z: 0.01 },
+          pos: { x: -0.30, y: -0.13, z: 0.03 },
+          cardPos: { top: "65%", left: "0px" },
           title: "Optická žiara pri naklonení",
-          text: "Pri naklonení bankovky sa smaragdový ľúč „hýbe“ resp. mení jas. Je to efekt, ktorý je lacné napodobniť… ale drahé spraviť dobre.",
+          text: "Na bodke vidíš dôležitý ochranný prvok, nakláňaj bankovku a určite si ho všimneš",
           imgTitle: "Žiara / naklonenie – miesto na obrázok",
-          imgSrc: "img/tilt-shine.jpg"
+          imgSrc: "img/tilt-shine.jpg",
+          imgText: "Pri naklonení bankovky sa smaragdový ľúč „hýbe“ resp. mení jas. Je to efekt, ktorý je lacné napodobniť… ale drahé spraviť dobre."
         }
       ]
     },
 
     a3: { // 10€ BACK
-      hint: "Namier kameru na zadnú stranu 10€ – Sériové číslo & UV",
+      hint: "Zadná strana 10€ – Sériové číslo & UV",
       callouts: [
         {
           id: "serial1",
           icon: "dot",
-          pos: { x: 0.37, y: 0.22, z: 0.01 },
+          pos: { x: 0.37, y: 0.22, z: 0.03 },
           accent: "#00E1FF",
           tag: "①",
+          cardPos: { top: "12%", right: "0px" },
           title: "Sériové číslo (1/2)",
           text: "Sériové číslo je jedinečný „ID kód“ bankovky. Písmeno a čísla slúžia na kontrolu a evidenciu. Poškodenú bankovku vieš vymeniť, ak je zachovaná aspoň približne polovica (cca 50%)."
         },
         {
           id: "serial2",
           icon: "dot",
-          pos: { x: -0.15, y: -0.22, z: 0.01 },
+          pos: { x: -0.12, y: -0.22, z: 0.03 },
           accent: "#FFD84D",
           tag: "②",
+          cardPos: { top: "62%", left: "0px" },
           title: "Sériové číslo (2/2)",
           text: "Preto je seriové číslo na dvoch miestach – aby sa ťažšie falšovalo a aby sa dalo overovať aj pri čiastočnom poškodení."
         },
         {
           id: "uv",
           icon: "dot",
-          pos: { x: 0.10, y: 0.05, z: 0.01 },
+          pos: { x: -0.2, y: 0.05, z: 0.03 },
           accent: "#B7FF6A",
           tag: "③",
+          cardPos: { top: "80%", right: "0px" },
           title: "Vlákna v papieri (UV svetlo)",
-          text: "Pod UV svetlom sa v bankovke objavia farebné vlákna alebo prvky. Je to daľší ochranný prvok.",
+          text: "Každá bankovka pod UV svetlom 'svieti'",
           imgTitle: "UV vlákna – miesto na obrázok",
-          imgSrc: "img/uv-fibers.jpg"
+          imgSrc: "img/uv-fibers.jpg",
+          imgText: "Pod UV svetlom sa v bankovke objavia farebné vlákna alebo prvky. Je to daľší ochranný prvok.",
         }
       ]
     },
 
     a4: { // 20€ FRONT
-      hint: "Namier kameru na prednú stranu 20€ – Príbeh Európy",
+      hint: "Predná strana 20€ – Príbeh Európy",
       callouts: [
         {
           id: "sig",
           icon: "dot",
-          pos: { x: -0.35, y: 0.18, z: 0.01 },
+          pos: { x: -0.35, y: 0.18, z: 0.03 },
+          cardPos: { top: "12%", left: "0px" },
           title: "Podpis prezidentky ECB",
           accent: "#00E1FF",
           tag: "①",
          mode: "toggle",
-         q: "Pod EÚ vlajkou nájdeš vždy podpis. Uhádneš kto?",
+         q: "Pod EÚ vlajkou nájdeš vždy podpis. Uhádneš komu patrí?",
           a: "Podpísaná je Christine Lagarde, aktuálna prezidentka Európskej centrálnej banky. (platí iba pre bankovky od r. 2019)"
         },
         {
           id: "gothic",
           icon: "dot",
-          pos: { x: 0.28, y: 0.16, z: 0.01 },
+          pos: { x: 0.28, y: 0.16, z: 0.03 },
+          cardPos: { top: "60%", right: "0px" },
           title: "Gotická architektúra",
           accent: "#FFD84D",
           tag: "②",
-          text: "Motívy na bankovkách sú „štýly“ európskej architektúry. 20€ predstavuje gotiku – bankovky sú tak trochu galéria umenia. Každá bankovka má svoje obdobie v architektúre",
+          text: "Každá bankovka má svoj architektonický štýl",
           imgTitle: "Architektúra na bankovkách – miesto na obrázok",
-          imgSrc: "img/architecture-styles.jpg"
+          imgSrc: "img/architecture-styles.jpg",
+          imgText: "Motívy na bankovkách sú „štýly“ európskej architektúry. 20€ predstavuje gotiku – bankovky sú tak trochu galéria umenia. Každá bankovka má svoje obdobie v architektúre",
         },
         {
           id: "langs",
           icon: "dot",
           accent: "#B7FF6A",
-  tag: "③",
-          pos: { x: -0.43, y: -0.02, z: 0.01 },
+          tag: "③",
+          pos: { x: -0.43, y: -0.02, z: 0.03 },
+          cardPos: { top: "84%", left: "0px" },
           title: "ECB a EURO v rôznych jazykoch",
           text: "Názvy sú v rôznych jazykoch, aby sa v mene odrážala integrácia krajín. Je to malý detail s veľkým symbolom."
         }
@@ -558,16 +574,17 @@
     },
 
     a5: { // 20€ BACK
-      hint: "Namier kameru na zadnú stranu 20€ – Životný cyklus bankovky",
+      hint: "Zadná strana 20€ – Životný cyklus bankovky",
       callouts: [
         {
           id: "life",
           icon: "dot",
-          pos: { x: 0.00, y: 0.08, z: 0.01 },
+          pos: { x: 0.00, y: 0.08, z: 0.03 },
           title: "Životný cyklus bankovky",
           text: "Bankovka sa narodí v tlačiarni, roky koluje medzi ľuďmi a firmami, a keď je poškodená, kontroluje sa a nakoniec sa skartuje. Potom sa nahradí novou.",
           imgTitle: "Cyklus: tlač → obeh → skartácia",
-          imgSrc: "img/lifecycle.jpg"
+          imgSrc: "img/lifecycle.jpg",
+          imgText: "",
         }
       ]
     }
@@ -576,29 +593,43 @@
   /* =========================
      Projekcia 3D bodu -> 2D pixely
      ========================= */
-  function placeDotProjected(dotEl, anchorEl, local){
-    const sceneEl = anchorEl.sceneEl;
-    const cam = sceneEl && sceneEl.camera;
-    if (!cam || !anchorEl.object3D) return;
+     const dotState = new WeakMap();
+const SMOOTH = 0.35;
 
-    anchorEl.object3D.updateMatrixWorld(true);
+function placeDotProjected(dotEl, anchorEl, local){
+  const sceneEl = anchorEl.sceneEl;
+  const cam = sceneEl && sceneEl.camera;
+  if (!cam || !anchorEl.object3D) return;
 
-    const v = new THREE.Vector3(local.x, local.y, local.z ?? 0.01);
-    v.applyMatrix4(anchorEl.object3D.matrixWorld);
-    v.project(cam);
+  anchorEl.object3D.updateMatrixWorld(true);
 
-    if (v.z < -1 || v.z > 1) {
-      dotEl.style.display = "none";
-      return;
-    }
-    dotEl.style.display = "block";
+  const v = new THREE.Vector3(local.x, local.y, local.z ?? 0.01);
+  v.applyMatrix4(anchorEl.object3D.matrixWorld);
+  v.project(cam);
 
-    const x = (v.x * 0.5 + 0.5) * window.innerWidth;
-    const y = (-v.y * 0.5 + 0.5) * window.innerHeight;
-
-    dotEl.style.left = `${x}px`;
-    dotEl.style.top  = `${y}px`;
+  if (v.z < -1 || v.z > 1) {
+    dotEl.style.display = "none";
+    return;
   }
+
+  dotEl.style.display = "block";
+
+  const targetX = (v.x * 0.5 + 0.5) * window.innerWidth;
+  const targetY = (-v.y * 0.5 + 0.5) * window.innerHeight;
+
+  let s = dotState.get(dotEl);
+  if (!s) {
+    s = { x: targetX, y: targetY };
+    dotState.set(dotEl, s);
+  }
+
+  s.x = s.x + (targetX - s.x) * SMOOTH;
+  s.y = s.y + (targetY - s.y) * SMOOTH;
+
+  dotEl.style.left = `${s.x}px`;
+  dotEl.style.top  = `${s.y}px`;
+}
+
 
   function styleMindarVideoOnce() {
     const vids = [...document.querySelectorAll('video')];
@@ -675,13 +706,16 @@
 function openModalFor(callout){
   if (!callout.imgSrc) return;
 
-  modalTitle.textContent = callout.imgTitle || callout.title || "Obrázok";
-  modalText.textContent = callout.text || "";
+  modalTitle.textContent = callout.imgTitle || callout.title || "Detail";
 
-  // ukáž modal hneď (aj keby sa obrázok ešte načítaval)
+  //  nová logika
+  modalText.textContent =
+    callout.imgText !== undefined
+      ? callout.imgText
+      : (callout.text || "");
+
   modal.style.display = "flex";
 
-  // debug-friendly: ak obrázok neexistuje, uvidíš to
   modalImg.onerror = () => {
     modalText.textContent = `Obrázok sa nenašiel: ${callout.imgSrc}`;
     modalImg.removeAttribute("src");
@@ -738,7 +772,7 @@ if (c.accent) {
   ${
     isToggle
       ? `<div class="small">Klikni pre odpoveď</div>`
-      : (c.imgSrc ? `<div class="small">Klikni pre obrázok</div>` : ``)
+      : (c.imgSrc ? `<div class="small">Pre viac klikni na bublinku</div>` : ``)
   }
 `;
 
@@ -848,4 +882,3 @@ if (c.accent) {
 
 </body>
 </html>
-

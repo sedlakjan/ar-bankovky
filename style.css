@@ -3,9 +3,11 @@
 *::after {
   box-sizing: border-box;
 }
+
 :root {
   --vh: 1vh;
 }
+
 html,
 body {
   margin: 0;
@@ -17,13 +19,18 @@ body {
   background: #000;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
+
 body,
 #app,
 a-scene,
 canvas.a-canvas,
-video {
+video,
+#calloutsLayer,
+#modalOverlay,
+#modal {
   height: calc(var(--vh) * 100) !important;
 }
+
 body {
   position: fixed;
   inset: 0;
@@ -34,7 +41,7 @@ video {
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
-  height: 100vh !important;
+  height: calc(var(--vh) * 100) !important;
   object-fit: cover !important;
   object-position: center center !important;
   z-index: 0 !important;
@@ -49,7 +56,7 @@ a-scene {
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
-  height: 100vh !important;
+  height: calc(var(--vh) * 100) !important;
   z-index: 1 !important;
 }
 
@@ -57,7 +64,7 @@ canvas.a-canvas {
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
-  height: 100vh !important;
+  height: calc(var(--vh) * 100) !important;
   z-index: 1 !important;
   background: transparent !important;
   pointer-events: none !important;
@@ -75,11 +82,75 @@ canvas.a-canvas {
   position: fixed;
   inset: 0;
   z-index: 20;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
+.loadingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(5, 10, 20, 0.72);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.loadingCard {
+  width: min(92vw, 340px);
+  padding: 22px 18px 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(5, 8, 16, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  color: #fff;
+  text-align: center;
+}
+
+.loadingSpinner {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 14px;
+  border-radius: 999px;
+  border: 3px solid rgba(255, 255, 255, 0.14);
+  border-top-color: #fff;
+  animation: loadingSpin 0.85s linear infinite;
+}
+
+.loadingTitle {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.loadingText {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.42;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+body.is-transitioning-banknote .loadingOverlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.is-transitioning-banknote .introScreen {
+  display: none !important;
+}
+
+@keyframes loadingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .hint {
+  display: none;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -104,7 +175,8 @@ canvas.a-canvas {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(14px + env(safe-area-inset-bottom));
+  top: calc(14px + env(safe-area-inset-top));
+  bottom: auto;
   z-index: 60;
   max-width: min(92%, 820px);
   padding: 10px 14px;
@@ -121,6 +193,25 @@ canvas.a-canvas {
   white-space: nowrap;
 }
 
+.changeBanknoteBtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  z-index: 90;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(10, 18, 32, 0.42);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
 #scan {
   position: absolute;
   inset: 0;
@@ -133,10 +224,141 @@ canvas.a-canvas {
   pointer-events: none;
 }
 
+.resumeOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(5, 10, 20, 0.52);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.resumeOverlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.banknoteSheet {
+  position: fixed;
+  inset: 0;
+  z-index: 92;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(5, 10, 20, 0.42);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.banknoteSheet.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.banknoteSheetCard {
+  width: min(100%, 420px);
+  padding: 18px 16px 16px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(5, 8, 16, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  color: #fff;
+}
+
+.banknoteSheetTitle {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.banknoteSheetText {
+  margin-top: 8px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.banknoteSheetActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.resumeCard {
+  width: min(92vw, 360px);
+  padding: 20px 18px 18px;
+  border-radius: 22px;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(5, 8, 16, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  text-align: center;
+}
+
+.resumeTitle {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.resumeText {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.resumeBtn {
+  margin-top: 16px;
+  min-width: 164px;
+  min-height: 48px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #04111f;
+  background: linear-gradient(135deg, #ded38f, #ffffff);
+  box-shadow: 0 14px 32px rgba(222, 211, 143, 0.3);
+  cursor: pointer;
+}
+
+.resumeActions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.resumeBtnSecondary {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+
+body.resume-paused .hint,
+body.resume-paused .bottomHint,
+body.resume-paused #scan,
+body.resume-paused .changeBanknoteBtn {
+  display: none !important;
+}
+
 .reticleWrap {
   display: grid;
   place-items: center;
-  width: min(100%, 800px);
+  width: min(78vw, 420px);
   aspect-ratio: 1.9 / 1;
 }
 
@@ -148,8 +370,8 @@ canvas.a-canvas {
 
 .reticleCorner {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 42px;
+  height: 42px;
   border-color: rgba(255, 255, 255, 0.92);
   border-style: solid;
   filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.14));
@@ -203,8 +425,7 @@ canvas.a-canvas {
 }
 
 @keyframes pulseAim {
-  0%,
-  100% {
+  0%, 100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.72;
   }
@@ -224,30 +445,14 @@ canvas.a-canvas {
   border-radius: 999px;
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
 }
 
-
-
-
-@keyframes pulseDot {
-  0% {
-    transform: scale(0.7);
-    opacity: 0.65;
-  }
-  70% {
-    transform: scale(1.35);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1.35);
-    opacity: 0;
-  }
-}
 #calloutsLayer {
   position: fixed;
   inset: 0;
   z-index: 80;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .callout {
@@ -263,8 +468,8 @@ canvas.a-canvas {
 
 .calloutDot {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   left: 0;
   top: 0;
   transform: translate(-50%, -50%);
@@ -275,6 +480,37 @@ canvas.a-canvas {
     0 8px 24px rgba(0, 0, 0, 0.35);
   pointer-events: none;
   opacity: 1;
+  animation: dotAppear 0.35s ease;
+}
+
+.calloutDot.is-watermark {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background: rgba(230, 220, 198, 0.22);
+  box-shadow: none;
+  opacity: 0.46;
+  overflow: hidden;
+  isolation: isolate;
+  mix-blend-mode: multiply;
+  filter: blur(1.4px) saturate(0.88);
+}
+
+.calloutStem {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 3px;
+  transform-origin: 0 50%;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 92%, white 8%), color-mix(in srgb, var(--accent) 46%, transparent));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
 }
 
 .calloutDot::after {
@@ -287,13 +523,86 @@ canvas.a-canvas {
   animation: pulseDot 1.8s ease-out infinite;
 }
 
+.calloutDot.is-watermark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(230, 220, 198, 0.26), rgba(230, 220, 198, 0.2)),
+    var(--marker-image);
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, contain;
+  background-blend-mode: multiply, normal;
+  opacity: 0.96;
+  animation: watermarkFloat 5.8s ease-in-out infinite, watermarkOpacity 3.8s ease-in-out infinite;
+}
+
+.calloutDot.is-watermark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.14) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 70% 35%, rgba(20, 26, 34, 0.12) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 35% 70%, rgba(255, 255, 255, 0.12) 0 0.7px, transparent 1px);
+  background-size: 4px 4px, 5px 5px, 6px 6px;
+  mix-blend-mode: overlay;
+  opacity: 0.24;
+  animation: none;
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.65;
+  }
+  70%,
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes dotAppear {
+  from {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes watermarkFloat {
+  0%, 100% {
+    transform: translate3d(0, -1px, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 1.5px, 0) scale(1.02);
+  }
+}
+
+@keyframes watermarkOpacity {
+  0%, 100% {
+    opacity: 0.38;
+  }
+  50% {
+    opacity: 0.58;
+  }
+}
+
 .calloutCard {
   position: fixed;
   z-index: 81;
-  width: min(250px, calc(100vw - 24px));
+  width: min(236px, calc(100vw - 24px));
+  min-height: 70px;
   border: 0;
   border-radius: 18px;
-  padding: 12px 12px 34px;
+  padding: 14px 42px 14px 14px;
   text-align: left;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(5, 8, 16, 0.88));
   border-left: 4px solid var(--accent);
@@ -302,21 +611,38 @@ canvas.a-canvas {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.34);
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  appearance: none;
+  touch-action: manipulation;
   overflow: hidden;
   pointer-events: auto;
   color: #fff;
   opacity: 1;
   visibility: visible;
-  transform: none;
+  transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.14s ease;
 }
 
-.calloutCard:hover {
-  transform: translateY(-1px);
+.callout.callout-inactive .calloutDot {
+  opacity: 0.54;
+  box-shadow:
+    0 0 0 8px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.callout.callout-inactive .calloutDot.is-watermark {
+  opacity: 0.32;
+  box-shadow: none;
 }
 
 .calloutCard:active {
-  transform: translateY(1px);
+  opacity: 0.94;
+}
+
+.calloutCard.is-pressed {
+  opacity: 0.9;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
 }
 
 .calloutCard:focus-visible {
@@ -324,13 +650,15 @@ canvas.a-canvas {
   outline-offset: 2px;
 }
 
-
+.calloutCard[aria-hidden="true"] {
+  pointer-events: none !important;
+}
 
 .calloutHead {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 6px;
+  min-height: 40px;
 }
 
 .calloutBadge {
@@ -352,31 +680,28 @@ canvas.a-canvas {
   font-size: 15px;
   line-height: 1.18;
   color: #fff;
-}
-
-.calloutText {
-  font-size: 13px;
-  line-height: 1.34;
-  color: rgba(255, 255, 255, 0.95);
+  max-width: 136px;
 }
 
 .calloutTapIcon {
   position: absolute;
   right: 10px;
-  bottom: 10px;
-  width: 22px;
-  height: 22px;
+  top: 50%;
+  bottom: auto;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   opacity: 0.92;
   pointer-events: none;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  transform: translateY(-50%);
 }
 
 #modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 10, 20, 0.66);
-  backdrop-filter: blur(6px);
+  background: rgba(5, 10, 20, 0.8);
+  backdrop-filter: blur(10px);
   z-index: 110;
   opacity: 0;
   pointer-events: none;
@@ -456,6 +781,7 @@ canvas.a-canvas {
   font-size: 15px;
   line-height: 1.48;
   color: rgba(255, 255, 255, 0.96);
+  white-space: pre-line;
 }
 
 body.modal-open #modalOverlay {
@@ -539,15 +865,8 @@ body.modal-open #calloutsLayer {
   background: #fff;
 }
 
-@media (max-width: 720px) {
-  .hint,
-  .bottomHint {
-    white-space: normal;
-    text-align: center;
-  }
+/* Intro */
 
-
-}
 .introScreen {
   position: fixed;
   inset: 0;
@@ -558,12 +877,25 @@ body.modal-open #calloutsLayer {
   padding: 22px;
   background: #4479FF;
   overflow: hidden;
+  animation: introFadeIn 0.6s ease forwards;
 }
 
 .introScreen.is-hidden {
   opacity: 0;
+  transform: scale(1.02);
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .introBgGlow {
@@ -645,6 +977,41 @@ body.modal-open #calloutsLayer {
   margin-bottom: 22px;
 }
 
+.introSelect {
+  margin-bottom: 18px;
+}
+
+.introSelectTitle {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.banknotePicker {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.banknoteOption {
+  min-height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.banknoteOption.is-active {
+  background: #fff;
+  color: #4479FF;
+  border-color: rgba(255,255,255,0.92);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+}
+
 .introHowToTitle {
   margin-bottom: 12px;
   font-size: 16px;
@@ -688,9 +1055,22 @@ body.modal-open #calloutsLayer {
   transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
 }
 
+.introStartBtn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.25);
+}
+
 .introStartBtn:active {
-  transform: translateY(1px) scale(0.99);
+  transform: translateY(1px) scale(0.97);
   opacity: 0.96;
+}
+
+@media (max-width: 720px) {
+  .hint,
+  .bottomHint {
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 @media (max-width: 640px) {
@@ -707,49 +1087,16 @@ body.modal-open #calloutsLayer {
     font-size: 14px;
   }
 
+  .banknotePicker {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .banknoteOption {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
   .introLogo {
     width: 76px;
   }
-}
-.introScreen {
-  animation: introFadeIn 0.6s ease forwards;
-}
-
-@keyframes introFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(1.03);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.introScreen.is-hidden {
-  opacity: 0;
-  transform: scale(1.02);
-  pointer-events: none;
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-}
-
-
-@keyframes dotAppear {
-  from {
-    transform: translate(-50%, -50%) scale(0.4);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-}
-.introStartBtn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 22px 44px rgba(0,0,0,0.25);
-}
-
-.introStartBtn:active {
-  transform: translateY(1px) scale(0.97);
 }

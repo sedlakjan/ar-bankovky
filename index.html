@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>AR Bankovky – callouty</title>
+  <title>AR Bankovky - Euro</title>
 
   <link rel="stylesheet" href="style.css" />
 
@@ -11,57 +11,79 @@
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 </head>
 <body>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const skipIntro = params.get("skipIntro") === "1" || localStorage.getItem("ar-skip-intro-once") === "1";
+      if (skipIntro) {
+        document.body.classList.add("is-transitioning-banknote");
+      }
+    })();
+  </script>
+
+  <div id="loadingOverlay" class="loadingOverlay" aria-hidden="true">
+    <div class="loadingCard">
+      <div class="loadingSpinner"></div>
+      <div class="loadingTitle">Nacitavam bankovku</div>
+      <div class="loadingText">Chvilku strpenia, prepina sa AR rezim.</div>
+    </div>
+  </div>
 
   <div id="introScreen" class="introScreen">
-  <div class="introBgGlow introBgGlow1"></div>
-  <div class="introBgGlow introBgGlow2"></div>
+    <div class="introBgGlow introBgGlow1"></div>
+    <div class="introBgGlow introBgGlow2"></div>
 
-  <img src="img/logo.png" alt="Logo" class="introLogo" />
+    <img src="img/logo.png" alt="Logo" class="introLogo" />
 
-  <div class="introCard">
-    <div class="introEyebrow">AR OBJAVOVANIE</div>
-    <h1 class="introTitle">Ahoj! 👋</h1>
-    <p class="introLead">
-      Poď si pozrieť zaujímavé fakty o euro bankovkách.
-    </p>
+    <div class="introCard">
+      <div class="introEyebrow">OBJAVOVANIE POMOCOU ROZŠÍRENEJ REALITY</div>
+      <h1 class="introTitle">VITAJ!</h1>
+      <p class="introLead">
+        Pozri si zaujimave fakty o eurobankovkach pomocou tvojho mobilu.
+      </p>
 
-    <div class="introHowTo">
-      <div class="introHowToTitle">Ako na to?</div>
+      <div class="introHowTo">
+        <div class="introHowToTitle">Ako na to?</div>
 
-      <div class="introStep">
-        <span class="introStepNum">1</span>
-        <span>Drž mobil ideálne na výšku</span>
+        <div class="introStep">
+          <span class="introStepNum">1</span>
+          <span>Drž mobil ideálne na výšku.</span>
+        </div>
+
+        <div class="introStep">
+          <span class="introStepNum">2</span>
+          <span>Vyber bankovku, ktorú budeš používať. Každá bankovka obsahuje rovnaké informácie</span>
+        </div>
+
+        <div class="introStep">
+          <span class="introStepNum">3</span>
+          <span>Daj bankovku do obdĺžnika na obrazovke. Potom sa môžeš mobilom približovať</span>
+        </div>
+
+        <div class="introStep">
+          <span class="introStepNum">4</span>
+          <span>Objavia sa info body, na ktore môzeš kliknúť.</span>
+        </div>
+
+        <div class="introStep">
+          <span class="introStepNum">5</span>
+          <span>Ak sa informacie stratia, nevadi, načitaj bankovku znova.</span>
+        </div>
       </div>
 
-      <div class="introStep">
-        <span class="introStepNum">2</span>
-        <span>Dostaň bankovku do požadovaného obdĺžnika</span>
+      <div class="introSelect">
+        <div class="introSelectTitle">Vyber bankovku, ktorú budeš použivať</div>
+        <div id="banknotePicker" class="banknotePicker js-banknote-picker"></div>
       </div>
 
-      <div class="introStep">
-        <span class="introStepNum">3</span>
-        <span>Po chvíli sa ti objavia info bubliny, na ktoré môžeš klikať</span>
-      </div>
-
-      <div class="introStep">
-        <span class="introStepNum">4</span>
-        <span>S mobilom sa kľudne približuj alebo vzďaľuj</span>
-      </div>
-
-      <div class="introStep">
-        <span class="introStepNum">5</span>
-        <span>Ak sa informácie stratia, nevadí — načítaj znova</span>
-      </div>
+      <button id="introStartBtn" class="introStartBtn" type="button">ŠTART</button>
     </div>
-
-    <button id="introStartBtn" class="introStartBtn" type="button">
-      Štart
-    </button>
   </div>
-</div>
+
   <div id="app">
-    <div id="hint" class="hint">Namier kameru na bankovku…</div>
+    <div id="hint" class="hint">Namier kameru na bankovku...</div>
     <div id="bottomHint" class="bottomHint">Tip: drž bankovku rovno a v dobrom svetle</div>
+
     <div id="scan">
       <div class="reticleWrap">
         <div class="reticle">
@@ -72,8 +94,32 @@
           <span class="reticleCenter"></span>
         </div>
       </div>
-      <div class="scanText">NAMIER KAMEROU NA BANKOVKU</div>
+      <div id="scanText" class="scanText">NAMIER KAMEROU NA BANKOVKU</div>
     </div>
+
+    <div id="resumeOverlay" class="resumeOverlay" aria-hidden="true">
+      <div class="resumeCard">
+        <div class="resumeTitle">Pokračovat v snímaní</div>
+        <div class="resumeText">Keď sa vrátiš do aplikácie, simulácia sa obnoví až po kliknuti. Šetrí to bateriu a zniži riziko seknutia.</div>
+        <div class="resumeActions">
+          <button id="resetArBtn" class="resumeBtn resumeBtnSecondary" type="button">Reset AR</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="banknoteSheet" class="banknoteSheet" aria-hidden="true">
+      <div class="banknoteSheetCard">
+        <div class="banknoteSheetTitle">Zmeniť bankovku</div>
+        <div class="banknoteSheetText">Vyber, ktorú bankovku chceš skenovat.</div>
+        <div id="banknotePickerSheet" class="banknotePicker js-banknote-picker"></div>
+        <div class="banknoteSheetActions">
+          <button id="banknoteSheetClose" class="resumeBtn resumeBtnSecondary" type="button">Zrušiť</button>
+          <button id="banknoteSheetApply" class="resumeBtn" type="button">Pouziť bankovku</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="changeBanknoteBtn" class="changeBanknoteBtn" type="button">Zmeniť bankovku</button>
 
     <div id="calloutsLayer"></div>
 
@@ -82,7 +128,7 @@
       <div id="modalCard">
         <div id="modalHead">
           <div id="modalTitle">Nadpis</div>
-          <button id="modalClose" type="button">Zavrieť ✕</button>
+          <button id="modalClose" type="button">Zavriet x</button>
         </div>
         <div id="modalMedia"></div>
         <div id="modalText"></div>
@@ -90,11 +136,27 @@
     </div>
   </div>
 
+  <script>
+    (function () {
+      const BANKNOTE_STORAGE_KEY = "ar-selected-banknote";
+      const params = new URLSearchParams(window.location.search);
+      const selected = params.get("banknote") || localStorage.getItem(BANKNOTE_STORAGE_KEY) || "20";
+      const normalized = ["5", "10", "20", "50", "100"].includes(selected) ? selected : "20";
+      const mindSrcMap = {
+        "5": "targets5.mind",
+        "10": "targets10.mind",
+        "20": "targets20.mind",
+        "50": "targets50.mind",
+        "100": "targets100.mind"
+      };
 
+      window.__INITIAL_BANKNOTE_ID = normalized;
+      window.__INITIAL_MIND_SRC = mindSrcMap[normalized];
 
+      document.write(`
   <a-scene
     id="scene"
-   mindar-image="imageTargetSrc: targets_all.mind; autoStart: true; filterMinCF: 0.004; filterBeta: 0.02;"
+    mindar-image="imageTargetSrc: ${window.__INITIAL_MIND_SRC}; autoStart: true; filterMinCF: 0.004; filterBeta: 0.02;"
     vr-mode-ui="enabled:false"
     device-orientation-permission-ui="enabled:false"
     renderer="alpha:true; antialias:true; colorManagement:true"
@@ -103,14 +165,20 @@
   >
     <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-    <a-entity mindar-image-target="targetIndex: 0" id="a0"></a-entity>
-    <a-entity mindar-image-target="targetIndex: 1" id="a1"></a-entity>
-    <a-entity mindar-image-target="targetIndex: 2" id="a2"></a-entity>
-    <a-entity mindar-image-target="targetIndex: 3" id="a3"></a-entity>
-    <a-entity mindar-image-target="targetIndex: 4" id="a4"></a-entity>
-    <a-entity mindar-image-target="targetIndex: 5" id="a5"></a-entity>
-  </a-scene>
+    <a-entity mindar-image-target="targetIndex: 0" id="front"></a-entity>
+    <a-entity mindar-image-target="targetIndex: 1" id="back"></a-entity>
+  </a-scene>`);
+    })();
+  </script>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20test3"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+

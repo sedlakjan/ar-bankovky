@@ -28,7 +28,7 @@ const TARGETS = {
         cardOffset: { x: 22, y: -95 },
         title: "Hmatové čiary",
         short: "Reliéfne čiary pomáhajú rozpoznať bankovku dotykom.",
-        text: "Na okrajoch eurobankoviek sú reliéfne prvky, ktoré sa dajú cítiť prstami. Pomáhajú najmä slabozrakým a nevidiacim. \n\n Prejdi prstami po okrajoch bankovky a budeš cítiť výstupujúce čiary."
+        text: "Na okrajoch eurobankoviek sú reliéfne prvky, ktoré sa dajú cítiť prstami. Pomáhajú najmä slabozrakým a nevidiacim. \n\n Akcia: Prejdi prstami po okrajoch bankovky a budeš cítiť výstupujúce čiary."
       },
       {
         id: "watermark",
@@ -42,11 +42,11 @@ const TARGETS = {
         text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu.",
         imgTitle: "Vodoznak na eurobankovke",
         imgSrc: "img/europa.jpg",
-        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. \n\n Daj bankovku oproti svetlu a uvidíš obraz a hodnotu bankovky. Uhádneš kto je zobrazený na bankovke?"
+        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. \n\n Akcia: Daj bankovku oproti svetlu a uvidíš obraz a hodnotu bankovky. Uhádneš kto je zobrazený na bankovke?"
       },
       {
         id: "shine",
-        accent: "#092B50",
+        accent: "#01FF76",
         tag: "④",
         pos: { x: -0.22, y: -0.22, z: 0.03 },
         cardOffset: { x: 26, y: -95 },
@@ -55,7 +55,7 @@ const TARGETS = {
         text: "Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu.",
         imgTitle: "Smaragdová žiara",
         imgSrc: "img/tilt-shine.jpg",
-        imgText: "Niektoré ochranné prvky menia vzhľad pri pohybe alebo svetle. Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu. \n\n Skús naklánať bankovku a uvidíš ako prechádza žiara cez číselnú hodnotu bankovky"
+        imgText: "Niektoré ochranné prvky menia vzhľad pri pohybe alebo svetle. Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu. \n\n Akcia: Skús naklánať bankovku a uvidíš ako prechádza žiara cez číselnú hodnotu bankovky"
       },
       {
         id: "arch",
@@ -72,13 +72,13 @@ const TARGETS = {
       },
       {
         id: "langs",
-        accent: "#01FF76",
+        accent: "#092B50",
         tag: "⑥",
         pos: { x: -0.44, y: 0.00, z: 0.03 },
         cardOffset: { x: 24, y: -78 },
         title: "EURO v jazykoch",
         short: "Názvy a skratky pripomínajú rozmanitosť Európy.",
-        text: "Na bankovkách nájdeš názvy a skratky súvisiace s eurom a ECB v rôznych jazykoch. Je to symbol európskej spolupráce, viac krajín, jeden spoločný systém. \n\nUvidíš napríklad ECB v rôznych jazykových verziách a aj slovo EURO napísané tromi spôsobmi (latinka, gréčtina a cyrilika). \n\n Fun fact: Počet jazykov na bankovkách sa časom zvyšuje, pribúdajú spolu s novými krajinami v EÚ."
+        text: "Na bankovkách nájdeš názvy a skratky súvisiace s eurom a ECB v rôznych jazykoch. Je to symbol európskej spolupráce, viac krajín, jeden spoločný systém. \n\n Uvidíš napríklad ECB v rôznych jazykových verziách a aj slovo EURO napísané tromi spôsobmi (latinka, gréčtina a cyrilika). \n\n Fun fact: Počet jazykov na bankovkách sa časom zvyšuje, pribúdajú spolu s novými krajinami v EÚ."
       }
     ]
   },
@@ -89,7 +89,7 @@ const TARGETS = {
     callouts: [
       {
         id: "serial",
-        accent: "#00E1FF",
+        accent: "#4479FF",
         tag: "①",
         pos: { x: 0.36, y: 0.21, z: 0.03 },
         cardOffset: { x: -270, y: -115 },
@@ -111,11 +111,15 @@ const TARGETS = {
         gallery: [
           {
             src: "img/bavlna.jpg",
-            text: "Eurobankovky sa vyrabaju z bavlny, nie z obycajneho kancelarskeho papiera. Vdaka tomu maju pevny, pruzny a typicky hmatovy povrch."
+            text: "Eurobankovky sa vyrábajú z bavlny, nie z obyčajného kancelárskeho papiera. Vďaka tomu majú pevný, pružný a typický hmatový povrch."
+          },
+          {
+            src: "img/odolnost.jpg",
+            text: "Materiál musí vydržať veľa ohybov, dotykov aj presunov medzi ľuďmi. Preto sa pri bankovkách používa odolný bankovkový papier s dlhšou životnosťou."
           },
           {
             src: "img/lifecycle.jpg",
-            text: "Material musi vydrzat vela ohybov, dotykov aj presunov medzi ludmi. Preto sa pri bankovkach pouziva odolny bankovkovy papier s dlhsou zivotnostou."
+            text: "Po skončení životnosti sa bankovky zničia a tlačia sa nové."
           }
         ],
         imgText: "Bankovkový papier je pevnejší a odolnejší než bežný papier."
@@ -182,10 +186,10 @@ const SHARED_CALLOUT_CONTENT = {
 
 const BANKNOTE_LAYOUTS = {
   "5-front": {
-    sig: { pos: { x: -0.36, y: 0.18, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.30, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.35, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.22, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
+    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
   },
@@ -195,10 +199,10 @@ const BANKNOTE_LAYOUTS = {
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
   },
   "10-front": {
-    sig: { pos: { x: -0.36, y: 0.18, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.30, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.35, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.22, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
+    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
   },
@@ -208,10 +212,10 @@ const BANKNOTE_LAYOUTS = {
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
   },
   "20-front": {
-    sig: { pos: { x: -0.36, y: 0.18, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.30, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.35, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.22, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
+    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
   },
@@ -221,10 +225,10 @@ const BANKNOTE_LAYOUTS = {
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
   },
   "50-front": {
-    sig: { pos: { x: -0.36, y: 0.18, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.30, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.35, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.22, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
+    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
   },
@@ -234,10 +238,10 @@ const BANKNOTE_LAYOUTS = {
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
   },
   "100-front": {
-    sig: { pos: { x: -0.36, y: 0.18, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.30, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.35, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.22, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
+    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
   },
@@ -259,11 +263,11 @@ function createTargetForBanknote(banknoteId, side) {
 
   return {
     hint: side === "front"
-      ? `${banknoteId} EUR - Objav bezpecnostne a vizualne prvky`
-      : `${banknoteId} EUR - Technicke detaily a zivot bankovky`,
+      ? `${banknoteId} EUR - Objav bezpečnostné a vizuálne prvky`
+      : `${banknoteId} EUR - Technické detaily a život bankovky`,
     bottomHint: side === "front"
-      ? `Tip: pozeraj na ${banknoteId} EUR bankovku a pokojne sa priblizuj`
-      : `Tip: otoc ${banknoteId} EUR bankovku na zadnu stranu`,
+      ? `Tip: pozeraj na ${banknoteId} EUR bankovku a pokojne sa približuj`
+      : `Tip: otoč ${banknoteId} EUR bankovku na zadnú stranu`,
     callouts: buildCalloutsFromLayout(
       SHARED_CALLOUT_CONTENT[contentKey],
       BANKNOTE_LAYOUTS[layoutKey]
@@ -302,6 +306,8 @@ const dotState = new WeakMap();
 const cardState = new WeakMap();
 const BANKNOTE_STORAGE_KEY = "ar-selected-banknote";
 const SKIP_INTRO_STORAGE_KEY = "ar-skip-intro-once";
+const LOADING_STARTED_AT_KEY = "ar-loading-started-at";
+const MIN_LOADING_OVERLAY_MS = 3000;
 const pageParams = new URLSearchParams(window.location.search);
 const initialBanknoteId = window.__INITIAL_BANKNOTE_ID || pageParams.get("banknote") || localStorage.getItem(BANKNOTE_STORAGE_KEY) || "20";
 const activeMindBanknoteId = window.__INITIAL_BANKNOTE_ID || initialBanknoteId;
@@ -325,6 +331,7 @@ let modalOpenedAt = 0;
 let selectedBanknoteId = initialBanknoteId;
 let banknoteButtons = [];
 let pendingBanknoteId = selectedBanknoteId;
+let loadingHideTimer = null;
 
 const hintEl = document.getElementById("hint");
 const bottomHintEl = document.getElementById("bottomHint");
@@ -358,7 +365,25 @@ function hideIntroScreen() {
 }
 
 function hideLoadingOverlay() {
-  document.body.classList.remove("is-transitioning-banknote");
+  if (loadingHideTimer) {
+    clearTimeout(loadingHideTimer);
+    loadingHideTimer = null;
+  }
+
+  const startedAt = Number(sessionStorage.getItem(LOADING_STARTED_AT_KEY) || "0");
+  const elapsed = startedAt ? Date.now() - startedAt : MIN_LOADING_OVERLAY_MS;
+  const waitMs = Math.max(0, MIN_LOADING_OVERLAY_MS - elapsed);
+
+  loadingHideTimer = window.setTimeout(() => {
+    document.body.classList.remove("is-transitioning-banknote");
+    sessionStorage.removeItem(LOADING_STARTED_AT_KEY);
+    loadingHideTimer = null;
+  }, waitMs);
+}
+
+function beginLoadingTransition() {
+  sessionStorage.setItem(LOADING_STARTED_AT_KEY, String(Date.now()));
+  document.body.classList.add("is-transitioning-banknote");
 }
 
 function getSelectedBanknote() {
@@ -392,7 +417,7 @@ function updateScanCopy() {
   }
 
   if (!activeAnchorId) {
-    bottomHintEl.textContent = `Tip: priprav si ${banknote.label} bankovku a drz ju rovno`;
+    bottomHintEl.textContent = `Tip: priprav si ${banknote.label} bankovku a drž ju rovno`;
   }
 }
 
@@ -471,7 +496,10 @@ function renderBanknotePicker() {
 if (introStartBtn) {
   introStartBtn.addEventListener("click", () => {
     persistSelectedBanknote();
-    reloadForBanknoteChange(true);
+    beginLoadingTransition();
+    setTimeout(() => {
+      reloadForBanknoteChange(true);
+    }, 60);
   });
 }
 
@@ -579,7 +607,7 @@ function showScanState() {
   const banknote = getSelectedBanknote();
   bottomHintEl.textContent = lastVisibleTargetId
     ? "Bankovka sa stratila z dohladu."
-    : `Tip: priprav si ${banknote.label} bankovku a drz ju rovno`;
+    : `Tip: priprav si ${banknote.label} bankovku a drž ju rovno`;
 }
 
 function clamp(value, min, max) {
@@ -948,7 +976,7 @@ function setCardActiveState(item, isActive) {
 function makeCalloutNode(callout) {
   const wrap = document.createElement("div");
   wrap.className = "callout";
-  wrap.style.setProperty("--accent", callout.accent || "#ffffff");
+  wrap.style.setProperty("--accent", callout.accent || "#DED38F");
 
   wrap.innerHTML = `
     <div class="calloutDot${callout.markerSrc ? " is-watermark" : ""}"${callout.markerSrc ? ` style="--marker-image:url('${callout.markerSrc}')"` : ""}></div>
@@ -1467,8 +1495,8 @@ async function pauseARExperience() {
   arPaused = true;
   closeModal(true);
   showScanState();
-  hintEl.textContent = "AR je pozastavene";
-  bottomHintEl.textContent = `Po navrate klikni na Pokracovat a znovu namier na ${banknote.label} bankovku.`;
+  hintEl.textContent = "AR je pozastavené";
+  bottomHintEl.textContent = `Po návrate klikni na Reset AR a znovu namier na ${banknote.label} bankovku.`;
   showResumeOverlay();
 
   try {
@@ -1483,7 +1511,7 @@ async function resumeARExperience() {
   const banknote = getSelectedBanknote();
   hideResumeOverlay();
   hintEl.textContent = `Namier kameru na ${banknote.label} bankovku...`;
-  bottomHintEl.textContent = `Tip: priprav si ${banknote.label} bankovku a drz ju rovno`;
+  bottomHintEl.textContent = `Tip: priprav si ${banknote.label} bankovku a drž ju rovno`;
 
   try {
     sceneEl?.play?.();
@@ -1523,7 +1551,10 @@ banknoteSheetCloseBtn?.addEventListener("click", () => {
 });
 banknoteSheetApplyBtn?.addEventListener("click", () => {
   persistSelectedBanknote();
-  reloadForBanknoteChange(true);
+  beginLoadingTransition();
+  setTimeout(() => {
+    reloadForBanknoteChange(true);
+  }, 60);
 });
 resumeBtn?.addEventListener("click", () => {
   resetARExperience();

@@ -885,14 +885,17 @@ body.modal-open #calloutsLayer {
   inset: 0;
   z-index: 300;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 22px;
+  height: calc(var(--vh) * 100);
+  padding: max(14px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom));
   background:
     radial-gradient(circle at 18% 18%, rgba(1, 255, 118, 0.18), transparent 28%),
     radial-gradient(circle at 82% 82%, rgba(255, 98, 1, 0.2), transparent 30%),
     linear-gradient(135deg, var(--brand-primary), var(--brand-violet) 52%, var(--brand-navy));
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   animation: introFadeIn 0.6s ease forwards;
 }
 
@@ -952,6 +955,7 @@ body.modal-open #calloutsLayer {
   position: relative;
   z-index: 2;
   width: min(100%, 560px);
+  margin: auto 0;
   color: var(--brand-white);
   text-align: left;
   background: rgba(9, 43, 80, 0.9);
@@ -1090,17 +1094,28 @@ body.modal-open #calloutsLayer {
 }
 
 @media (max-width: 640px) {
+  .introScreen {
+    padding: 12px 12px 24px;
+  }
+
   .introCard {
-    padding: 22px 16px 18px;
-    border-radius: 24px;
+    margin: 0;
+    padding: 18px 14px 16px;
+    border-radius: 20px;
   }
 
   .introLead {
-    font-size: 16px;
+    margin-bottom: 14px;
+    font-size: 15px;
   }
 
   .introStep {
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .introHowTo {
+    margin-bottom: 16px;
   }
 
   .banknotePicker {
@@ -1108,11 +1123,38 @@ body.modal-open #calloutsLayer {
   }
 
   .banknoteOption {
-    min-height: 48px;
-    font-size: 16px;
+    min-height: 44px;
+    font-size: 15px;
   }
 
   .introLogo {
     width: 76px;
+  }
+
+  .introStartBtn {
+    min-height: 48px;
+    padding: 12px 16px;
+    font-size: 17px;
+  }
+}
+
+@media (max-height: 740px) and (max-width: 640px) {
+  .introEyebrow,
+  .introLogo {
+    display: none;
+  }
+
+  .introTitle {
+    font-size: 34px;
+  }
+
+  .introStep {
+    grid-template-columns: 30px 1fr;
+    gap: 8px;
+  }
+
+  .introStepNum {
+    width: 28px;
+    height: 28px;
   }
 }

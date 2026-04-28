@@ -28,7 +28,8 @@ const TARGETS = {
         cardOffset: { x: 22, y: -95 },
         title: "Hmatové čiary",
         short: "Reliéfne čiary pomáhajú rozpoznať bankovku dotykom.",
-        text: "Na okrajoch eurobankoviek sú reliéfne prvky, ktoré sa dajú cítiť prstami. Pomáhajú najmä slabozrakým a nevidiacim. \n\n Akcia: Prejdi prstami po okrajoch bankovky a budeš cítiť výstupujúce čiary."
+        imgSrc: "img/nevidiaci.png",
+        imgText: "Na okrajoch eurobankoviek sú reliéfne prvky, ktoré sa dajú cítiť prstami. Pomáhajú najmä slabozrakým a nevidiacim. \n\n Akcia: Prejdi prstami po okrajoch bankovky a budeš cítiť výstupujúce čiary."
       },
       {
         id: "watermark",
@@ -54,7 +55,7 @@ const TARGETS = {
         short: "Pri naklonení sa mení jas alebo pohyb prvku.",
         text: "Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu.",
         imgTitle: "Smaragdová žiara",
-        imgSrc: "img/tilt-shine.jpg",
+        imgSrc: "img/tilt-shine.png",
         imgText: "Niektoré ochranné prvky menia vzhľad pri pohybe alebo svetle. Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu. \n\n Akcia: Skús naklánať bankovku a uvidíš ako prechádza žiara cez číselnú hodnotu bankovky"
       },
       {
@@ -76,9 +77,11 @@ const TARGETS = {
         tag: "⑥",
         pos: { x: -0.44, y: 0.00, z: 0.03 },
         cardOffset: { x: 24, y: -78 },
-        title: "EURO v jazykoch",
+        title: "Multijazyčnosť",
+        imgTitle: "EURO v jazykoch",
         short: "Názvy a skratky pripomínajú rozmanitosť Európy.",
-        text: "Na bankovkách nájdeš názvy a skratky súvisiace s eurom a ECB v rôznych jazykoch. Je to symbol európskej spolupráce, viac krajín, jeden spoločný systém. \n\n Uvidíš napríklad ECB v rôznych jazykových verziách a aj slovo EURO napísané tromi spôsobmi (latinka, gréčtina a cyrilika). \n\n Fun fact: Počet jazykov na bankovkách sa časom zvyšuje, pribúdajú spolu s novými krajinami v EÚ."
+        imgSrc: "img/jazyky.png",
+        imgText: "Na bankovkách nájdeš názvy a skratky súvisiace s eurom a ECB v rôznych jazykoch. Je to symbol európskej spolupráce, viac krajín, jeden spoločný systém. \n\n Uvidíš napríklad ECB v rôznych jazykových verziách a aj slovo EURO napísané tromi spôsobmi (latinka, gréčtina a cyrilika). \n\n Fun fact: Počet jazykov na bankovkách sa časom zvyšuje, pribúdajú spolu s novými krajinami v EÚ."
       }
     ]
   },
@@ -93,9 +96,11 @@ const TARGETS = {
         tag: "①",
         pos: { x: 0.36, y: 0.21, z: 0.03 },
         cardOffset: { x: -270, y: -115 },
-        title: "Sériové číslo",
+        title: "Sériové čísla",
+        imgTitle: "Sériové číslo",
         short: "Každá bankovka má vlastnú identitu.",
-        text: "Sériové číslo je jedinečný identifikátor bankovky. Pomáha pri kontrole, evidencii a sledovaní pravosti. Na bankovke ho nájdeš dvakrát, pre lepšiu čitateľnosť a kontrolu. \n\n Fun fact: Dve umiestnenia čísla sú tam preto, aby si z roztrhnutej bankovky nespravil v banke dve :)"
+        imgSrc: "img/seriovecislo.jpg",
+        imgText: "Sériové číslo je jedinečný identifikátor bankovky. Pomáha pri kontrole, evidencii a sledovaní pravosti. Na bankovke ho nájdeš dvakrát, pre lepšiu čitateľnosť a kontrolu. \n\n Fun fact: Dve umiestnenia čísla sú tam preto, aby si z roztrhnutej bankovky nespravil v banke dve :)"
       },
       {
         id: "material",
@@ -107,10 +112,10 @@ const TARGETS = {
         short: "Eurobankovky nie sú z bežného kancelárskeho papiera.",
         text: "Eurobankovky sú vyrobené z bavlny. Vďaka tomu sú odolnejšie, lepšie držia tlač a vydržia veľa ohybov.",
         imgTitle: "Materiál eurobankoviek",
-        imgSrc: "img/bavlna.jpg",
+        imgSrc: "img/bavlna.webp",
         gallery: [
           {
-            src: "img/bavlna.jpg",
+            src: "img/bavlna.webp",
             text: "Eurobankovky sa vyrábajú z bavlny, nie z obyčajného kancelárskeho papiera. Vďaka tomu majú pevný, pružný a typický hmatový povrch."
           },
           {
@@ -134,7 +139,7 @@ const TARGETS = {
         short: "Pod UV svetlom sa objavia skryté ochranné prvky.",
         text: "Pod ultrafialovým svetlom sa na bankovke zvýraznia farebné vlákna a ďalšie ochranné prvky.",
         imgTitle: "UV ochranné prvky",
-        imgSrc: "img/uv-fibers.jpg",
+        imgSrc: "img/uv-fibers.webp",
         imgText: "UV ochrana patrí medzi dôležité technické prvky eurobankoviek. \n\n Fun fact: Bežný papier pod UV svetlom svieti celý, ale bankovka nie, rozsvietia sa len vybrané vlákna a detaily. To je jeden z dôvodov, prečo sa falzifikáty ľahko odhalia."
       }
     ]

@@ -333,6 +333,7 @@ let layoutFreezeUntil = 0;
 let arPaused = false;
 let suppressSyntheticClickUntil = 0;
 let modalOpenedAt = 0;
+let depthHintTimer = null;
 let selectedBanknoteId = initialBanknoteId;
 let banknoteButtons = [];
 let pendingBanknoteId = selectedBanknoteId;
@@ -340,6 +341,7 @@ let loadingHideTimer = null;
 
 const hintEl = document.getElementById("hint");
 const bottomHintEl = document.getElementById("bottomHint");
+const depthHintEl = document.getElementById("depthHint");
 const scanEl = document.getElementById("scan");
 const scanTextEl = document.getElementById("scanText");
 const calloutsLayer = document.getElementById("calloutsLayer");
@@ -604,10 +606,30 @@ function showARState() {
   scanEl.style.display = "none";
 }
 
+function showDepthHint(duration = 5200) {
+  if (!depthHintEl) return;
+
+  if (depthHintTimer) clearTimeout(depthHintTimer);
+  depthHintEl.classList.add("is-visible");
+  depthHintEl.setAttribute("aria-hidden", "false");
+
+  depthHintTimer = setTimeout(() => {
+    depthHintEl.classList.remove("is-visible");
+    depthHintEl.setAttribute("aria-hidden", "true");
+    depthHintTimer = null;
+  }, duration);
+}
+
 function showScanState() {
   running = false;
   scanEl.style.display = "flex";
   clearCallouts();
+  depthHintEl?.classList.remove("is-visible");
+  depthHintEl?.setAttribute("aria-hidden", "true");
+  if (depthHintTimer) {
+    clearTimeout(depthHintTimer);
+    depthHintTimer = null;
+  }
 
   const banknote = getSelectedBanknote();
   bottomHintEl.textContent = lastVisibleTargetId
@@ -999,13 +1021,17 @@ function makeCalloutNode(callout) {
     </button>
   `;
 
+  const dot = wrap.querySelector(".calloutDot");
   const card = wrap.querySelector(".calloutCard");
   wrap.setAttribute("aria-hidden", "true");
   card.setAttribute("aria-hidden", "true");
   card.tabIndex = -1;
   let activePointerId = null;
+  let activeDotPointerId = null;
   let startX = 0;
   let startY = 0;
+  let dotStartX = 0;
+  let dotStartY = 0;
 
   const activateCallout = event => {
     event?.preventDefault?.();
@@ -1029,6 +1055,63 @@ function makeCalloutNode(callout) {
 
     openModal(callout);
   };
+
+  const activateDotOnly = event => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+
+    lockedCalloutId = callout.id;
+    lockedCalloutUntil = performance.now() + 1400;
+    lastActiveCalloutIds = new Set([callout.id, ...lastActiveCalloutIds]);
+    layoutFreezeUntil = 0;
+
+    requestAnimationFrame(layoutActiveCallouts);
+    setTimeout(layoutActiveCallouts, 70);
+  };
+
+  dot?.addEventListener("pointerdown", event => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    activeDotPointerId = event.pointerId;
+    dotStartX = event.clientX ?? 0;
+    dotStartY = event.clientY ?? 0;
+    dot.classList.add("is-pressed");
+    dot.setPointerCapture?.(event.pointerId);
+  });
+
+  dot?.addEventListener("pointermove", event => {
+    if (event.pointerId !== activeDotPointerId) return;
+    const moved = Math.hypot((event.clientX ?? 0) - dotStartX, (event.clientY ?? 0) - dotStartY);
+    if (moved > 14) {
+      dot.classList.remove("is-pressed");
+    }
+  });
+
+  dot?.addEventListener("pointerup", event => {
+    if (event.pointerId !== activeDotPointerId) return;
+    const moved = Math.hypot((event.clientX ?? 0) - dotStartX, (event.clientY ?? 0) - dotStartY);
+    activeDotPointerId = null;
+    dot.classList.remove("is-pressed");
+
+    if (moved <= 14) {
+      suppressSyntheticClickUntil = performance.now() + 700;
+      activateDotOnly(event);
+    }
+  });
+
+  dot?.addEventListener("pointercancel", () => {
+    activeDotPointerId = null;
+    dot.classList.remove("is-pressed");
+  });
+
+  dot?.addEventListener("click", event => {
+    if (performance.now() < suppressSyntheticClickUntil) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    activateDotOnly(event);
+  });
 
   card.addEventListener("pointerdown", event => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
@@ -1121,6 +1204,7 @@ function buildUIFor(targetId) {
   });
 
   showARState();
+  showDepthHint();
   requestAnimationFrame(layoutActiveCallouts);
 }
 function distanceToScreenCenter(x, y) {
@@ -1189,6 +1273,22 @@ function layoutActiveCallouts() {
   const activeIds = new Set(
     scoredCandidates.slice(0, MAX_VISIBLE_CARDS).map(entry => entry.item.data.id)
   );
+
+  if (lockedCalloutId && candidates.some(entry => entry.item.data.id === lockedCalloutId)) {
+    activeIds.add(lockedCalloutId);
+
+    if (activeIds.size > MAX_VISIBLE_CARDS) {
+      [...scoredCandidates]
+        .reverse()
+        .some(entry => {
+          const id = entry.item.data.id;
+          if (id === lockedCalloutId || !activeIds.has(id)) return false;
+          activeIds.delete(id);
+          return true;
+        });
+    }
+  }
+
   lastActiveCalloutIds = activeIds;
   const activeCandidates = candidates.filter(entry => activeIds.has(entry.item.data.id));
   const clusterCenter =

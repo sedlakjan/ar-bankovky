@@ -105,15 +105,97 @@ canvas.a-canvas {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  height: calc(var(--vh) * 100);
   padding: 22px;
   background: rgba(9, 43, 80, 0.72);
   backdrop-filter: blur(14px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  touch-action: none;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.22s ease;
 }
 
+.loadingAccents {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.loadingAccent {
+  --accent-rotate: 0deg;
+  position: absolute;
+  width: clamp(118px, 22vw, 230px);
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.16));
+  animation: loadingAccentFloat 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.loadingAccent1 {
+  top: 14%;
+  left: 8%;
+  --accent-rotate: -9deg;
+  animation-delay: -0.2s;
+}
+
+.loadingAccent2 {
+  top: 18%;
+  right: 9%;
+  width: clamp(128px, 24vw, 250px);
+  --accent-rotate: 11deg;
+  animation-delay: -1.1s;
+}
+
+.loadingAccent3 {
+  left: 11%;
+  bottom: 14%;
+  width: clamp(126px, 23vw, 245px);
+  --accent-rotate: 8deg;
+  animation-delay: -2s;
+}
+
+.loadingAccent4 {
+  right: 12%;
+  bottom: 12%;
+  --accent-rotate: -7deg;
+  animation-delay: -2.8s;
+}
+
+@media (max-width: 640px) {
+  .loadingAccent {
+    width: clamp(96px, 34vw, 150px);
+  }
+
+  .loadingAccent1 {
+    top: 17%;
+    left: 6%;
+  }
+
+  .loadingAccent2 {
+    top: 24%;
+    right: 5%;
+    width: clamp(106px, 36vw, 160px);
+  }
+
+  .loadingAccent3 {
+    left: 7%;
+    bottom: 19%;
+  }
+
+  .loadingAccent4 {
+    right: 7%;
+    bottom: 18%;
+  }
+}
+
 .loadingCard {
+  position: relative;
+  z-index: 1;
   width: min(92vw, 340px);
   padding: 22px 18px 18px;
   border-radius: 24px;
@@ -162,6 +244,15 @@ body.is-transitioning-banknote .introScreen {
   }
 }
 
+@keyframes loadingAccentFloat {
+  0%, 100% {
+    transform: rotate(var(--accent-rotate)) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(var(--accent-rotate)) translate3d(0, -12px, 0);
+  }
+}
+
 .hint {
   display: none;
   position: absolute;
@@ -204,6 +295,58 @@ body.is-transitioning-banknote .introScreen {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
   pointer-events: none;
   white-space: nowrap;
+}
+
+.depthHint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(72px + env(safe-area-inset-bottom));
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.96);
+  background: rgba(9, 43, 80, 0.62);
+  border: 1px solid rgba(222, 211, 143, 0.24);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.depthHint.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.depthHintIcon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  background: var(--brand-gold);
+  -webkit-mask: url("img/zoom-depth.svg") center / contain no-repeat;
+  mask: url("img/zoom-depth.svg") center / contain no-repeat;
+  filter: drop-shadow(0 0 10px rgba(222, 211, 143, 0.2));
+  animation: depthZoomPulse 1.45s ease-in-out infinite;
+}
+
+.depthHintText {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes depthZoomPulse {
+  0%, 100% { transform: scale(0.94); opacity: 0.76; }
+  50% { transform: scale(1.08); opacity: 1; }
 }
 
 .changeBanknoteBtn {
@@ -279,6 +422,9 @@ body.is-transitioning-banknote .introScreen {
 
 .banknoteSheetCard {
   width: min(100%, 420px);
+  max-height: min(86vh, calc((var(--vh) * 100) - 28px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 18px 16px 16px;
   border-radius: 24px;
   background: linear-gradient(180deg, var(--brand-surface), var(--brand-surface-deep));
@@ -302,10 +448,24 @@ body.is-transitioning-banknote .introScreen {
 }
 
 .banknoteSheetActions {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 10px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.banknoteSheetActions .resumeBtn {
+  width: 100%;
+  min-width: 0;
+  margin-top: 0;
+}
+
+#banknoteSheetApply {
+  order: 1;
+}
+
+#banknoteSheetClose {
+  order: 2;
 }
 
 .resumeCard {
@@ -363,6 +523,7 @@ body.is-transitioning-banknote .introScreen {
 
 body.resume-paused .hint,
 body.resume-paused .bottomHint,
+body.resume-paused .depthHint,
 body.resume-paused #scan,
 body.resume-paused .changeBanknoteBtn {
   display: none !important;
@@ -481,19 +642,23 @@ body.resume-paused .changeBanknoteBtn {
 
 .calloutDot {
   position: absolute;
-  width: 17px;
-  height: 17px;
+  width: 48px;
+  height: 48px;
   left: 0;
   top: 0;
   transform: translate(-50%, -50%);
   border-radius: 999px;
-  background: var(--accent);
+  background: radial-gradient(circle at center, var(--accent) 0 8px, transparent 9px);
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--accent) 0%, transparent),
     0 8px 24px rgba(0, 0, 0, 0.35);
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 1;
   animation: dotAppear 0.35s ease;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 0;
 }
 
 .calloutDot.is-watermark {
@@ -507,6 +672,10 @@ body.resume-paused .changeBanknoteBtn {
   isolation: isolate;
   mix-blend-mode: multiply;
   filter: blur(1.4px) saturate(0.88);
+}
+
+.calloutDot.is-pressed {
+  filter: brightness(1.08);
 }
 
 .calloutStem {
@@ -524,12 +693,13 @@ body.resume-paused .changeBanknoteBtn {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.18s ease;
+  z-index: 1;
 }
 
 .calloutDot::after {
   content: "";
   position: absolute;
-  inset: -8px;
+  inset: 10px;
   border-radius: inherit;
   border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
   opacity: 0.8;
@@ -884,18 +1054,16 @@ body.modal-open #calloutsLayer {
   position: fixed;
   inset: 0;
   z-index: 300;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   height: calc(var(--vh) * 100);
-  padding: max(14px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom));
+  padding: 0 16px;
   background:
-    radial-gradient(circle at 18% 18%, rgba(1, 255, 118, 0.18), transparent 28%),
-    radial-gradient(circle at 82% 82%, rgba(255, 98, 1, 0.2), transparent 30%),
-    linear-gradient(135deg, var(--brand-primary), var(--brand-violet) 52%, var(--brand-navy));
+    radial-gradient(circle at 50% 0%, rgba(28, 58, 96, 0.82), transparent 44%),
+    linear-gradient(180deg, #001c3a 0%, #00132c 48%, #000e23 100%);
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
   animation: introFadeIn 0.6s ease forwards;
 }
 
@@ -920,91 +1088,121 @@ body.modal-open #calloutsLayer {
 .introBgGlow {
   position: absolute;
   border-radius: 999px;
-  filter: blur(60px);
-  opacity: 0.28;
+  filter: blur(76px);
+  opacity: 0.24;
   pointer-events: none;
 }
 
 .introBgGlow1 {
-  width: 280px;
-  height: 280px;
-  left: -60px;
-  top: -30px;
-  background: rgba(222, 211, 143, 0.28);
+  width: 300px;
+  height: 300px;
+  left: -90px;
+  top: 10%;
+  background: rgba(68, 121, 255, 0.38);
 }
 
 .introBgGlow2 {
-  width: 360px;
-  height: 360px;
-  right: -100px;
-  bottom: -80px;
-  background: rgba(1, 255, 118, 0.18);
+  width: 280px;
+  height: 280px;
+  right: -90px;
+  bottom: 10%;
+  background: rgba(222, 211, 143, 0.26);
 }
 
 .introLogo {
-  position: absolute;
-  top: max(30px, env(safe-area-inset-top));
-  right: max(30px, env(safe-area-inset-right));
-  width: 150px;
+  display: block;
+  width: clamp(112px, 18vw, 158px);
   height: auto;
   object-fit: contain;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.introShell {
+  position: relative;
   z-index: 2;
+  width: min(100%, 420px);
+  min-height: calc(var(--vh) * 100);
+  margin: 0 auto;
+  padding: max(22px, env(safe-area-inset-top)) 0 max(28px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.introHeader {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
 .introCard {
   position: relative;
   z-index: 2;
-  width: min(100%, 560px);
-  margin: auto 0;
+  width: 100%;
+  margin: 0;
   color: var(--brand-white);
   text-align: left;
-  background: rgba(9, 43, 80, 0.9);
-  border: 1px solid rgba(222, 211, 143, 0.28);
-  border-radius: 28px;
-  padding: 24px 20px 20px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 24px 70px rgba(0,0,0,0.20);
+  background: rgba(0, 32, 65, 0.58);
+  border: 1px solid rgba(222, 211, 143, 0.22);
+  border-radius: 24px;
+  padding: 32px 22px 22px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.34);
 }
 
 .introEyebrow {
-  display: inline-block;
   margin-bottom: 10px;
-  padding: 7px 10px;
-  border-radius: 999px;
-  background: rgba(222, 211, 143, 0.16);
-  border: 1px solid rgba(222, 211, 143, 0.24);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  padding: 0;
+  color: var(--brand-gold);
+  background: transparent;
+  border: 0;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .introTitle {
-  margin: 0 0 8px;
-  font-size: clamp(30px, 6vw, 42px);
-  line-height: 1.02;
+  margin: 0 0 18px;
+  color: var(--brand-white);
+  font-size: clamp(38px, 8vw, 48px);
+  line-height: 1;
   font-weight: 900;
+  text-align: center;
+  letter-spacing: 0;
 }
 
 .introLead {
-  margin: 0 0 20px;
-  font-size: 17px;
-  line-height: 1.45;
-  color: rgba(255,255,255,0.96);
+  max-width: 320px;
+  margin: 0 auto 24px;
+  font-size: 16px;
+  line-height: 1.52;
+  color: rgba(212, 227, 255, 0.74);
+  text-align: center;
 }
 
 .introHowTo {
-  margin-top: 8px;
-  margin-bottom: 22px;
+  margin-top: 0;
+  margin-bottom: 28px;
 }
 
 .introSelect {
-  margin-bottom: 18px;
+  margin-bottom: 26px;
 }
 
 .introSelectTitle {
-  margin-bottom: 10px;
-  font-size: 15px;
+  margin-bottom: 12px;
+  color: rgba(212, 227, 255, 0.64);
+  font-size: 11px;
   font-weight: 800;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .banknotePicker {
@@ -1014,12 +1212,12 @@ body.modal-open #calloutsLayer {
 }
 
 .banknoteOption {
-  min-height: 52px;
-  border-radius: 16px;
-  border: 1px solid rgba(222, 211, 143, 0.28);
-  background: rgba(9, 43, 80, 0.34);
+  min-height: 46px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--brand-white);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 900;
   cursor: pointer;
   transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
@@ -1027,51 +1225,60 @@ body.modal-open #calloutsLayer {
 
 .banknoteOption.is-active {
   background: var(--brand-gold);
-  color: var(--brand-navy);
+  color: #00132c;
   border-color: rgba(222, 211, 143, 0.92);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  transform: scale(1.04);
+  box-shadow: 0 12px 24px rgba(222, 211, 143, 0.22);
 }
 
 .introHowToTitle {
-  margin-bottom: 12px;
-  font-size: 16px;
+  margin-bottom: 14px;
+  color: var(--brand-white);
+  font-size: 14px;
   font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .introStep {
   display: grid;
-  grid-template-columns: 34px 1fr;
-  gap: 10px;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
   align-items: start;
-  margin-bottom: 12px;
-  font-size: 15px;
-  line-height: 1.4;
+  margin-bottom: 13px;
+  color: rgba(212, 227, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.42;
 }
 
 .introStepNum {
   display: inline-grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
-  background: rgba(1, 255, 118, 0.16);
-  border: 1px solid rgba(1, 255, 118, 0.26);
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  color: #00132c;
+  background: var(--brand-gold);
+  border: 1px solid rgba(222, 211, 143, 0.3);
   font-weight: 900;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .introStartBtn {
   width: 100%;
   appearance: none;
   border: 0;
-  border-radius: 18px;
+  min-height: 56px;
+  border-radius: 14px;
   padding: 16px 18px;
   background: var(--brand-gold);
-  color: var(--brand-navy);
-  font-size: 18px;
+  color: #00132c;
+  font-size: 16px;
   font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+  box-shadow: 0 18px 32px rgba(222, 211, 143, 0.18);
   transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
 }
 
@@ -1095,17 +1302,26 @@ body.modal-open #calloutsLayer {
 
 @media (max-width: 640px) {
   .introScreen {
-    padding: 12px 12px 24px;
+    padding: 0 12px;
+  }
+
+  .introShell {
+    padding-top: max(14px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
   }
 
   .introCard {
     margin: 0;
-    padding: 18px 14px 16px;
+    padding: 22px 14px 16px;
     border-radius: 20px;
   }
 
+  .introLogo {
+    width: 82px;
+  }
+
   .introLead {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     font-size: 15px;
   }
 
@@ -1127,10 +1343,6 @@ body.modal-open #calloutsLayer {
     font-size: 15px;
   }
 
-  .introLogo {
-    width: 76px;
-  }
-
   .introStartBtn {
     min-height: 48px;
     padding: 12px 16px;
@@ -1139,9 +1351,16 @@ body.modal-open #calloutsLayer {
 }
 
 @media (max-height: 740px) and (max-width: 640px) {
-  .introEyebrow,
+  .introShell {
+    justify-content: flex-start;
+  }
+
+  .introHeader {
+    margin-bottom: 8px;
+  }
+
   .introLogo {
-    display: none;
+    width: 68px;
   }
 
   .introTitle {

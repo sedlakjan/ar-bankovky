@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>AR Bankovky - Euro</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -22,6 +25,12 @@
   </script>
 
   <div id="loadingOverlay" class="loadingOverlay" aria-hidden="true">
+    <div class="loadingAccents" aria-hidden="true">
+      <img class="loadingAccent loadingAccent1" src="img/loading-accent-1.png" alt="" />
+      <img class="loadingAccent loadingAccent2" src="img/loading-accent-3.png" alt="" />
+      <img class="loadingAccent loadingAccent3" src="img/loading-accent-2.png" alt="" />
+      <img class="loadingAccent loadingAccent4" src="img/loading-accent-4.png" alt="" />
+    </div>
     <div class="loadingCard">
       <div class="loadingSpinner"></div>
       <div class="loadingTitle">Načítavam rozšírenú realitu</div>
@@ -33,56 +42,64 @@
     <div class="introBgGlow introBgGlow1"></div>
     <div class="introBgGlow introBgGlow2"></div>
 
-    <img src="img/logo.png" alt="Logo" class="introLogo" />
+    <div class="introShell">
+      <header class="introHeader" aria-label="AR Bankovky">
+        <img src="img/logo.png" alt="Logo" class="introLogo" />
+      </header>
 
-    <div class="introCard">
-      <div class="introEyebrow">OBJAVOVANIE POMOCOU ROZŠÍRENEJ REALITY</div>
-      <h1 class="introTitle">VITAJ!</h1>
-      <p class="introLead">
-        Pozri si zaujímavé fakty o eurobankovkách pomocou tvojho mobilu.
-      </p>
+      <div class="introCard">
+        <div class="introEyebrow">OBJAVOVANIE POMOCOU ROZŠÍRENEJ REALITY</div>
+        <h1 class="introTitle">VITAJ!</h1>
+        <p class="introLead">
+          Pozri si zaujímavé fakty o eurobankovkách pomocou tvojho mobilu.
+        </p>
 
-      <div class="introHowTo">
-        <div class="introHowToTitle">Ako na to?</div>
+        <div class="introHowTo">
+          <div class="introHowToTitle">Ako na to?</div>
 
-        <div class="introStep">
-          <span class="introStepNum">1</span>
-          <span>Drž mobil ideálne na výšku, zároveň odporúčame použiť Chrome prehliadač</span>
+          <div class="introStep">
+            <span class="introStepNum">1</span>
+            <span>Drž mobil ideálne na výšku, zároveň odporúčame použiť Chrome prehliadač</span>
+          </div>
+
+          <div class="introStep">
+            <span class="introStepNum">2</span>
+            <span>Vyber bankovku, ktorú budeš používať. Každá bankovka obsahuje rovnaké informácie.</span>
+          </div>
+
+          <div class="introStep">
+            <span class="introStepNum">3</span>
+            <span>Daj bankovku do obdĺžnika na obrazovke. Potom sa môžeš mobilom približovať.</span>
+          </div>
+
+          <div class="introStep">
+            <span class="introStepNum">4</span>
+            <span>Objavia sa info body, na ktoré môžeš kliknúť. Predná strana obsahuje šesť bodov, zadná tri body.</span>
+          </div>
+
+          <div class="introStep">
+            <span class="introStepNum">5</span>
+            <span>Ak sa informácie stratia, nevadí, načítaj bankovku znova.</span>
+          </div>
         </div>
 
-        <div class="introStep">
-          <span class="introStepNum">2</span>
-          <span>Vyber bankovku, ktorú budeš používať. Každá bankovka obsahuje rovnaké informácie.</span>
+        <div class="introSelect">
+          <div class="introSelectTitle">Vyber bankovku, ktorú budeš používať</div>
+          <div id="banknotePicker" class="banknotePicker js-banknote-picker"></div>
         </div>
 
-        <div class="introStep">
-          <span class="introStepNum">3</span>
-          <span>Daj bankovku do obdĺžnika na obrazovke. Potom sa môžeš mobilom približovať.</span>
-        </div>
-
-        <div class="introStep">
-          <span class="introStepNum">4</span>
-          <span>Objavia sa info body, na ktoré môžeš kliknúť. Predná strana obsahuje šesť bodov, zadná tri body.</span>
-        </div>
-
-        <div class="introStep">
-          <span class="introStepNum">5</span>
-          <span>Ak sa informácie stratia, nevadí, načítaj bankovku znova.</span>
-        </div>
+        <button id="introStartBtn" class="introStartBtn" type="button">ŠTART</button>
       </div>
-
-      <div class="introSelect">
-        <div class="introSelectTitle">Vyber bankovku, ktorú budeš používať</div>
-        <div id="banknotePicker" class="banknotePicker js-banknote-picker"></div>
-      </div>
-
-      <button id="introStartBtn" class="introStartBtn" type="button">ŠTART</button>
     </div>
   </div>
 
   <div id="app">
     <div id="hint" class="hint">Namier kameru na bankovku...</div>
     <div id="bottomHint" class="bottomHint">Tip: drž bankovku rovno a v dobrom svetle</div>
+    <div id="depthHint" class="depthHint" aria-hidden="true">
+      <span class="depthHintIcon" aria-hidden="true"></span>
+      <span class="depthHintText">Priblíž sa / oddiaľ</span>
+    </div>
 
     <div id="scan">
       <div class="reticleWrap">

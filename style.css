@@ -128,7 +128,7 @@ canvas.a-canvas {
 .loadingAccent {
   --accent-rotate: 0deg;
   position: absolute;
-  width: clamp(118px, 22vw, 230px);
+  width: clamp(155px, 24vw, 250px);
   height: auto;
   opacity: 0.9;
   filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.16));

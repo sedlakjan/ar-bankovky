@@ -185,8 +185,11 @@ function buildCalloutsFromLayout(contentCallouts, layoutMap) {
 }
 
 const SHARED_CALLOUT_CONTENT = {
-  front: extractCalloutContent(TARGETS.a4.callouts),
-  back: extractCalloutContent(TARGETS.a5.callouts)
+  front: extractCalloutContent(TARGETS.a4.callouts).filter(callout => callout.id !== "langs"),
+  back: [
+    ...extractCalloutContent(TARGETS.a5.callouts),
+    ...extractCalloutContent(TARGETS.a4.callouts).filter(callout => callout.id === "langs")
+  ]
 };
 
 const BANKNOTE_LAYOUTS = {
@@ -195,65 +198,65 @@ const BANKNOTE_LAYOUTS = {
     tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
   },
   "5-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
+    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "10-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
   },
   "10-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
+    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "20-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
   },
   "20-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
+    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "50-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
   },
   "50-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
+    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "100-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
     tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    langs: { pos: { x: -0.44, y: 0.00, z: 0.03 }, cardOffset: { x: 24, y: -78 } }
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
   },
   "100-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } }
+    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   }
 };
 

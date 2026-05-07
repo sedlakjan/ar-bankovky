@@ -74,14 +74,44 @@ const TARGETS = {
       {
         id: "langs",
         accent: "#092B50",
-        tag: "⑥",
+        tag: "④",
         pos: { x: -0.44, y: 0.00, z: 0.03 },
         cardOffset: { x: 24, y: -78 },
-        title: "Multijazyčnosť",
-        imgTitle: "EURO v jazykoch",
-        short: "Názvy a skratky pripomínajú rozmanitosť Európy.",
-        imgSrc: "img/jazyky.png",
-        imgText: "Na bankovkách nájdeš názvy a skratky súvisiace s eurom a ECB v rôznych jazykoch. Je to symbol európskej spolupráce, viac krajín, jeden spoločný systém. \n\n Uvidíš napríklad ECB v rôznych jazykových verziách a aj slovo EURO napísané tromi spôsobmi (latinka, gréčtina a cyrilika). \n\n Fun fact: Počet jazykov na bankovkách sa časom zvyšuje, pribúdajú spolu s novými krajinami v EÚ."
+        title: "Príbeh Eura",
+        imgTitle: "Príbeh Eura",
+        short: "Spoločná mena je aj príbeh spolupráce v Európe.",
+        gallery: [
+          {
+            title: "Európa po vojne",
+            src: "img/euro-story-europa-vojna.png",
+            text: "Po druhej svetovej vojne bola Európa rozdelená, zničená a plná nedôvery. Milióny ľudí prišli o domovy aj životy. Preto európske krajiny začali hľadať spôsob, ako zabrániť ďalším veľkým konfliktom."
+          },
+          {
+            title: "Spolupráca namiesto konfliktu",
+            src: "img/euro-story-esuo.webp",
+            text: "Spolupráca po rokoch vojen sa nevytvára ľahko. Preto jedným z prvých krokov bolo prepojenie priemyslu, najmä uhlia a ocele. Myšlienka bola jednoduchá: krajiny, ktoré spolu obchodujú a spolupracujú, majú menšiu šancu bojovať proti sebe."
+          },
+          {
+            title: "Zrod spoločnej Európy",
+            src: "img/euro-story-eu-map.gif",
+            text: "Spolupráca sa postupne rozširovala. Po prvých dohodách vzniklo Európske hospodárske spoločenstvo (EHS), ktoré malo podporiť obchod, ekonomiku a užšie prepojenie medzi krajinami.\n\nPostupne pribúdali ďalšie štáty, spoločné pravidlá aj otvorenejšie hranice. Z týchto krokov sa časom vyvinula dnešná Európska únia."
+          },
+          {
+            title: "Jedna mena pre milióny ľudí",
+            src: "img/euro-story-berlin-euro.png",
+            text: "Euro vzniklo ako spoločná mena európskych krajín. Uľahčilo cestovanie, obchod aj porovnávanie cien. Dnes eurom platia stovky miliónov ľudí v rôznych častiach Európy."
+          },
+          {
+            title: "Rozdielne krajiny, spoločné symboly",
+            text: "Na eurobankovkách nájdeš prvky, ktoré symbolizujú spoluprácu a rozmanitosť Európy. Rôzne jazyky, architektúra či mapy pripomínajú, že Európa pozostáva z mnohých kultúr, ktoré sú navzájom prepojené."
+          },
+          {
+            title: "Euro ako spojenie",
+            src: "img/euro-story-spojenie.png",
+            text: "Euro nie je len spôsob platenia.\nJe aj jedným z výsledkov snahy európskych krajín viac spolupracovať po období vojen a rozdelenia.\n\nPo tragédiách 20. storočia začali štáty hľadať spôsoby, ako byť navzájom viac prepojené ekonomicky, politicky aj spoločensky.\n\nEuro sa časom stalo jedným zo symbolov tejto spolupráce. Bankovka, ktorú dnes držíš v ruke, tak nie je len platidlo, ale aj pripomienka spoločného európskeho príbehu. Euro ako naša spoločná mena."
+          }
+        ],
+        imgText: "Euro nie je len spôsob platenia. Je aj jedným zo symbolov spolupráce európskych krajín."
       }
     ]
   },
@@ -204,7 +234,7 @@ const BANKNOTE_LAYOUTS = {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "10-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
@@ -217,7 +247,7 @@ const BANKNOTE_LAYOUTS = {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "20-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
@@ -230,7 +260,7 @@ const BANKNOTE_LAYOUTS = {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "50-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
@@ -243,7 +273,7 @@ const BANKNOTE_LAYOUTS = {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "100-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
@@ -256,7 +286,7 @@ const BANKNOTE_LAYOUTS = {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
     uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   }
 };
 
@@ -1430,11 +1460,19 @@ function renderSlider(callout) {
     const slide = document.createElement("div");
     slide.className = "slide";
 
-    const img = document.createElement("img");
-    img.src = item.src;
-    img.alt = callout.title || "";
+    if (item.src) {
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = item.title || callout.title || "";
+      img.addEventListener("load", () => updateStageHeight(), { once: true });
+      slide.appendChild(img);
+    } else {
+      const placeholder = document.createElement("div");
+      placeholder.className = "slidePlaceholder";
+      placeholder.textContent = item.title || callout.title || "";
+      slide.appendChild(placeholder);
+    }
 
-    slide.appendChild(img);
     track.appendChild(slide);
   });
 
@@ -1474,12 +1512,25 @@ function renderSlider(callout) {
   modalMedia.appendChild(sliderEl);
 
   let current = 0;
+  const slides = [...track.querySelectorAll(".slide")];
+
+  function updateStageHeight() {
+    const activeSlide = slides[current];
+    if (!activeSlide) return;
+
+    const nextHeight = Math.ceil(activeSlide.getBoundingClientRect().height);
+    if (nextHeight > 0) {
+      stage.style.height = `${nextHeight}px`;
+    }
+  }
 
   function goTo(index) {
     current = (index + gallery.length) % gallery.length;
     track.style.transform = `translateX(-${current * 100}%)`;
+    modalTitle.textContent = gallery[current]?.title || callout.imgTitle || callout.title || "Detail";
     modalText.textContent = gallery[current]?.text || "";
     dotBtns.forEach((btn, i) => btn.classList.toggle("active", i === current));
+    requestAnimationFrame(updateStageHeight);
   }
 
   prevBtn.addEventListener("click", () => goTo(current - 1));
@@ -1487,6 +1538,7 @@ function renderSlider(callout) {
   dotBtns.forEach((btn, i) => btn.addEventListener("click", () => goTo(i)));
 
   goTo(0);
+  window.setTimeout(updateStageHeight, 80);
 }
 
 function openModal(callout) {

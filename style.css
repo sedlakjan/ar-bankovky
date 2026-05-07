@@ -128,7 +128,7 @@ canvas.a-canvas {
 .loadingAccent {
   --accent-rotate: 0deg;
   position: absolute;
-  width: clamp(155px, 24vw, 250px);
+  width: clamp(164px, 25vw, 265px);
   height: auto;
   opacity: 0.9;
   filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.16));
@@ -146,7 +146,7 @@ canvas.a-canvas {
 .loadingAccent2 {
   top: 18%;
   right: 9%;
-  width: clamp(128px, 24vw, 250px);
+  width: clamp(138px, 25vw, 265px);
   --accent-rotate: 11deg;
   animation-delay: -1.1s;
 }
@@ -168,7 +168,7 @@ canvas.a-canvas {
 
 @media (max-width: 640px) {
   .loadingAccent {
-    width: clamp(96px, 34vw, 150px);
+    width: clamp(104px, 36vw, 160px);
   }
 
   .loadingAccent1 {
@@ -179,12 +179,13 @@ canvas.a-canvas {
   .loadingAccent2 {
     top: 24%;
     right: 5%;
-    width: clamp(106px, 36vw, 160px);
+    width: clamp(112px, 38vw, 168px);
   }
 
   .loadingAccent3 {
     left: 7%;
     bottom: 19%;
+    width: clamp(96px, 34vw, 150px);
   }
 
   .loadingAccent4 {
@@ -937,6 +938,10 @@ body.resume-paused .changeBanknoteBtn {
 
 #modalClose,
 .sliderBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background: rgba(68, 121, 255, 0.16);
   border: 1px solid rgba(222, 211, 143, 0.22);
   color: var(--brand-white);
@@ -997,10 +1002,12 @@ body.modal-open #calloutsLayer {
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
+  transition: height 0.24s ease;
 }
 
 .sliderTrack {
   display: flex;
+  align-items: flex-start;
   transition: transform 0.35s ease;
   will-change: transform;
 }
@@ -1016,6 +1023,21 @@ body.modal-open #calloutsLayer {
   height: auto;
   max-height: 38vh;
   object-fit: contain;
+}
+
+.slidePlaceholder {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 24px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.15;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(222, 211, 143, 0.16), transparent 42%),
+    rgba(255, 255, 255, 0.04);
 }
 
 .sliderNav {

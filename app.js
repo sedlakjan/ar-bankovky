@@ -233,7 +233,7 @@ const BANKNOTE_LAYOUTS = {
   "5-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
     langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "10-front": {
@@ -246,7 +246,7 @@ const BANKNOTE_LAYOUTS = {
   "10-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
     langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "20-front": {
@@ -259,7 +259,7 @@ const BANKNOTE_LAYOUTS = {
   "20-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
     langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "50-front": {
@@ -272,7 +272,7 @@ const BANKNOTE_LAYOUTS = {
   "50-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
     langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   },
   "100-front": {
@@ -285,7 +285,7 @@ const BANKNOTE_LAYOUTS = {
   "100-back": {
     serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
     material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: 0.02, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
+    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
     langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
   }
 };
@@ -667,6 +667,7 @@ function showDepthHint(duration = 5200) {
 function hideProgressHint() {
   progressHintEl?.classList.remove("is-visible", "is-success");
   progressHintEl?.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("progress-hint-open");
 
   if (progressHintTimer) {
     clearTimeout(progressHintTimer);
@@ -684,18 +685,23 @@ function showProgressHint(message, { success = false, icon = "✓", duration = 5
   progressHintEl.classList.toggle("is-success", success);
   progressHintEl.classList.add("is-visible");
   progressHintEl.setAttribute("aria-hidden", "false");
+  document.body.classList.add("progress-hint-open");
 
   progressHintTimer = setTimeout(() => {
     progressHintEl.classList.remove("is-visible", "is-success");
     progressHintEl.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("progress-hint-open");
     progressHintTimer = null;
+    requestAnimationFrame(() => {
+      if (activeAnchorId && !modalOpen) layoutActiveCallouts();
+    });
   }, duration);
 }
 
 function launchConfetti({ count = 28, cleanupMs = 1700, durationMs = 1350 } = {}) {
   if (!confettiLayerEl) return;
 
-  confettiLayerEl.innerHTML = "";
+  confettiLayerEl.innerHTML = `<span class="confettiBurst"></span>`;
   const colors = ["#DED38F", "#4479FF", "#01FF76", "#FF6201", "#FFFFFF"];
 
   for (let i = 0; i < count; i += 1) {
@@ -724,7 +730,7 @@ function runCompletionFeedback(feedback) {
   });
 
   if (feedback.confetti) {
-    launchConfetti({ count: 42, cleanupMs: 2800, durationMs: 2200 });
+    launchConfetti({ count: 52, cleanupMs: 3600, durationMs: 3000 });
   }
 }
 
@@ -758,7 +764,7 @@ function trackCalloutDiscovered(callout) {
       message: "Všetky body nájdené",
       success: true,
       icon: "✓",
-      duration: 9000,
+      duration: 3600,
       confetti: true
     };
     return;

@@ -420,6 +420,20 @@ body.is-transitioning-banknote .introScreen {
   animation: confettiPop var(--duration, 1350ms) cubic-bezier(0.18, 0.74, 0.22, 1) var(--delay, 0s) forwards;
 }
 
+.confettiBurst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 92px;
+  height: 92px;
+  border-radius: 999px;
+  border: 2px solid rgba(222, 211, 143, 0.55);
+  background: radial-gradient(circle, rgba(222, 211, 143, 0.24), transparent 66%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+  animation: confettiBurst 2.4s ease-out forwards;
+}
+
 @keyframes confettiPop {
   0% {
     opacity: 0;
@@ -431,6 +445,20 @@ body.is-transitioning-banknote .introScreen {
   100% {
     opacity: 0;
     transform: translate3d(calc(-50% + var(--x, 0px)), calc(-50% - 180px), 0) rotate(var(--r, 180deg)) scale(1);
+  }
+}
+
+@keyframes confettiBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3.2);
   }
 }
 
@@ -1080,6 +1108,13 @@ body.modal-open #modalCard {
 
 body.modal-open #calloutsLayer {
   pointer-events: none;
+}
+
+body.progress-hint-open .calloutCard,
+body.progress-hint-open .calloutStem {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .slider {

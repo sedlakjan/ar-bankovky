@@ -764,7 +764,7 @@ function trackCalloutDiscovered(callout) {
       message: "Všetky body nájdené",
       success: true,
       icon: "✓",
-      duration: 3600,
+      duration: 5600,
       confetti: true
     };
     return;

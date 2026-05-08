@@ -366,7 +366,10 @@ let layoutFreezeUntil = 0;
 let arPaused = false;
 let suppressSyntheticClickUntil = 0;
 let modalOpenedAt = 0;
+let activeModalCallout = null;
 let depthHintTimer = null;
+let progressHintTimer = null;
+let pendingCompletionFeedback = null;
 let selectedBanknoteId = initialBanknoteId;
 let banknoteButtons = [];
 let pendingBanknoteId = selectedBanknoteId;
@@ -375,6 +378,10 @@ let loadingHideTimer = null;
 const hintEl = document.getElementById("hint");
 const bottomHintEl = document.getElementById("bottomHint");
 const depthHintEl = document.getElementById("depthHint");
+const progressHintEl = document.getElementById("progressHint");
+const progressHintIconEl = document.getElementById("progressHintIcon");
+const progressHintTextEl = document.getElementById("progressHintText");
+const confettiLayerEl = document.getElementById("confettiLayer");
 const scanEl = document.getElementById("scan");
 const scanTextEl = document.getElementById("scanText");
 const calloutsLayer = document.getElementById("calloutsLayer");
@@ -395,6 +402,10 @@ const modalClose = document.getElementById("modalClose");
 
 const sceneEl = document.getElementById("scene");
 const anchors = ["front", "back"].map(id => document.getElementById(id));
+const discoveredCallouts = {
+  front: new Set(),
+  back: new Set()
+};
 
 function hideIntroScreen() {
   if (!introScreenEl) return;
@@ -651,6 +662,122 @@ function showDepthHint(duration = 5200) {
     depthHintEl.setAttribute("aria-hidden", "true");
     depthHintTimer = null;
   }, duration);
+}
+
+function hideProgressHint() {
+  progressHintEl?.classList.remove("is-visible", "is-success");
+  progressHintEl?.setAttribute("aria-hidden", "true");
+
+  if (progressHintTimer) {
+    clearTimeout(progressHintTimer);
+    progressHintTimer = null;
+  }
+}
+
+function showProgressHint(message, { success = false, icon = "✓", duration = 5200 } = {}) {
+  if (!progressHintEl || !progressHintTextEl) return;
+
+  if (progressHintTimer) clearTimeout(progressHintTimer);
+  progressHintTextEl.textContent = message;
+  if (progressHintIconEl) progressHintIconEl.textContent = icon;
+
+  progressHintEl.classList.toggle("is-success", success);
+  progressHintEl.classList.add("is-visible");
+  progressHintEl.setAttribute("aria-hidden", "false");
+
+  progressHintTimer = setTimeout(() => {
+    progressHintEl.classList.remove("is-visible", "is-success");
+    progressHintEl.setAttribute("aria-hidden", "true");
+    progressHintTimer = null;
+  }, duration);
+}
+
+function launchConfetti({ count = 28, cleanupMs = 1700, durationMs = 1350 } = {}) {
+  if (!confettiLayerEl) return;
+
+  confettiLayerEl.innerHTML = "";
+  const colors = ["#DED38F", "#4479FF", "#01FF76", "#FF6201", "#FFFFFF"];
+
+  for (let i = 0; i < count; i += 1) {
+    const piece = document.createElement("span");
+    piece.className = "confettiPiece";
+    piece.style.setProperty("--x", `${Math.round((Math.random() - 0.5) * 260)}px`);
+    piece.style.setProperty("--r", `${Math.round((Math.random() - 0.5) * 520)}deg`);
+    piece.style.setProperty("--delay", `${(Math.random() * 0.18).toFixed(2)}s`);
+    piece.style.setProperty("--duration", `${durationMs}ms`);
+    piece.style.background = colors[i % colors.length];
+    confettiLayerEl.appendChild(piece);
+  }
+
+  setTimeout(() => {
+    confettiLayerEl.innerHTML = "";
+  }, cleanupMs);
+}
+
+function runCompletionFeedback(feedback) {
+  if (!feedback) return;
+
+  showProgressHint(feedback.message, {
+    success: feedback.success,
+    icon: feedback.icon,
+    duration: feedback.duration
+  });
+
+  if (feedback.confetti) {
+    launchConfetti({ count: 42, cleanupMs: 2800, durationMs: 2200 });
+  }
+}
+
+function getTargetSide(targetId = activeAnchorId) {
+  return TARGET_SIDE_BY_ID[targetId] || null;
+}
+
+function getTargetCalloutCount(side) {
+  const targetId = Object.keys(TARGET_SIDE_BY_ID).find(id => TARGET_SIDE_BY_ID[id] === side);
+  return TARGETS[targetId]?.callouts?.length || 0;
+}
+
+function trackCalloutDiscovered(callout) {
+  const side = getTargetSide();
+  if (!side || !callout?.id || !discoveredCallouts[side]) return;
+
+  const sideSet = discoveredCallouts[side];
+  const before = sideSet.size;
+  sideSet.add(callout.id);
+
+  if (sideSet.size === before) return;
+
+  const total = getTargetCalloutCount(side);
+  if (!total || sideSet.size < total) return;
+
+  const frontDone = discoveredCallouts.front.size >= getTargetCalloutCount("front");
+  const backDone = discoveredCallouts.back.size >= getTargetCalloutCount("back");
+
+  if (frontDone && backDone) {
+    pendingCompletionFeedback = {
+      message: "Všetky body nájdené",
+      success: true,
+      icon: "✓",
+      duration: 9000,
+      confetti: true
+    };
+    return;
+  }
+
+  if (side === "front") {
+    pendingCompletionFeedback = {
+      message: "Našiel si všetky body. Otoč bankovku na zadnú stranu.",
+      icon: "↻",
+      duration: 4300
+    };
+    return;
+  }
+
+  pendingCompletionFeedback = {
+    message: "Našiel si všetky body. Otoč bankovku na prednú stranu.",
+    icon: "↻",
+    duration: 4300
+  };
 }
 
 function showScanState() {
@@ -1397,6 +1524,8 @@ function layoutActiveCallouts() {
 function closeModal(force = false) {
   if (!force && performance.now() - modalOpenedAt < 260) return;
 
+  const closedCallout = activeModalCallout;
+  activeModalCallout = null;
   modalOpen = false;
   document.body.classList.remove("modal-open");
   modalTitle.textContent = "";
@@ -1406,6 +1535,16 @@ function closeModal(force = false) {
   requestAnimationFrame(() => {
     if (activeAnchorId) layoutActiveCallouts();
   });
+
+  if (closedCallout) {
+    trackCalloutDiscovered(closedCallout);
+  }
+
+  if (pendingCompletionFeedback) {
+    const feedback = pendingCompletionFeedback;
+    pendingCompletionFeedback = null;
+    setTimeout(() => runCompletionFeedback(feedback), 180);
+  }
 }
 
 function buildModalShell(callout) {
@@ -1543,6 +1682,7 @@ function renderSlider(callout) {
 
 function openModal(callout) {
   modalOpenedAt = performance.now();
+  activeModalCallout = callout;
   modalOpen = true;
   document.body.classList.add("modal-open");
 

@@ -4,6 +4,48 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Azo Sans";
+  src: url("Fonts/Azo Sans/AzoSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Azo Sans";
+  src: url("Fonts/Azo Sans/AzoSans-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Azo Sans";
+  src: url("Fonts/Azo Sans/AzoSans-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Azo Sans";
+  src: url("Fonts/Azo Sans/AzoSans-Black.otf") format("opentype");
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HW Animo";
+  src:
+    url("Fonts/HW Animo/WEB/HW Animo Normal Regular.woff2") format("woff2"),
+    url("Fonts/HW Animo/WEB/HW Animo Normal Regular.woff") format("woff");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --vh: 1vh;
   --brand-primary: #4479ff;
@@ -30,7 +72,7 @@ body {
   overflow: hidden;
   overscroll-behavior: none;
   background: var(--brand-ink);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: "Azo Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 body,
@@ -218,6 +260,7 @@ canvas.a-canvas {
 }
 
 .loadingTitle {
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-size: 22px;
   font-weight: 900;
   line-height: 1.05;
@@ -609,6 +652,7 @@ body.is-transitioning-banknote .introScreen {
 }
 
 .banknoteSheetTitle {
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-size: 22px;
   font-weight: 900;
   line-height: 1.05;
@@ -655,6 +699,7 @@ body.is-transitioning-banknote .introScreen {
 }
 
 .resumeTitle {
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-size: 22px;
   font-weight: 900;
   line-height: 1.05;
@@ -1107,6 +1152,7 @@ body.resume-paused .changeBanknoteBtn {
 }
 
 #modalTitle {
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-weight: 900;
   font-size: 20px;
   line-height: 1.15;
@@ -1375,6 +1421,7 @@ body.progress-hint-open .calloutStem {
 .introTitle {
   margin: 0 0 18px;
   color: var(--brand-white);
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-size: clamp(38px, 8vw, 48px);
   line-height: 1;
   font-weight: 900;

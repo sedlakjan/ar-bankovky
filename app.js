@@ -179,7 +179,7 @@ const TARGETS = {
           {
             title: "Odvodnenie, lisovanie a sušenie vlákien",
             src: "img/material2.png",
-            text: "Z mokrej hmoty sa postupne stáva papier.Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera. Niektoré ochranné prvky, napríklad vodoznaky, môžu vzniknúť už počas tejto fázy."
+            text: "Z mokrej hmoty sa postupne stáva papier.Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera."
           },
           {
             title: "Navíjanie hotového papiera",
@@ -278,7 +278,7 @@ const SHARED_CALLOUT_CONTENT = {
 const BANKNOTE_LAYOUTS = {
   "5-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
@@ -291,7 +291,7 @@ const BANKNOTE_LAYOUTS = {
   },
   "10-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
@@ -304,7 +304,7 @@ const BANKNOTE_LAYOUTS = {
   },
   "20-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
@@ -317,7 +317,7 @@ const BANKNOTE_LAYOUTS = {
   },
   "50-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
@@ -330,7 +330,7 @@ const BANKNOTE_LAYOUTS = {
   },
   "100-front": {
     sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.45, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
     watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
     shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
     arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
@@ -1567,9 +1567,7 @@ function layoutActiveCallouts() {
     const dotScale = item.data.markerSrc
       ? (isActive ? 1 : 0.92)
       : (isActive ? 1 : 0.9);
-    item.dotEl.style.transform = item.data.markerSrc
-      ? `translate(-10%, -86%) scale(${dotScale})`
-      : `translate(-50%, -50%) scale(${dotScale})`;
+    item.dotEl.style.transform = `translate(-50%, -50%) scale(${dotScale})`;
 
     if (!isActive) {
       setCardActiveState(item, false);

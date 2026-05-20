@@ -6,7 +6,7 @@ function syncViewportSize() {
 const TARGETS = {
   a4: {
     hint: "20€ – Predná strana: objav bezpečnostné a vizuálne prvky",
-    bottomHint: "Tip: pozeraj prednú stranu a pokojne sa približuj",
+    bottomHint: "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
     callouts: [
       {
         id: "sig",
@@ -15,10 +15,18 @@ const TARGETS = {
         pos: { x: -0.36, y: 0.18, z: 0.03 },
         cardOffset: { x: 22, y: -118 },
         title: "Podpis na Eurách",
-        short: "Pod vlajkou EÚ nájdeš podpis prezidentky ECB.",
-        text: "Na eurobankovkách nájdeš podpis prezidenta alebo prezidentky Európskej centrálnej banky.",
-        imgSrc: "img/lagarde.png",
-        imgText: "Na eurobankovkách nájdeš vždy podpis aktuálneho prezidenta alebo prezidentky Európskej centrálnej banky. V súčastnosti je prezidentkou Christine Lagarde. \n\n Ak nájdeš staršiu euro bankovku bude na nej možno aj iný podpis."
+          gallery: [
+          {
+            title: "Prezidentka ECB",
+            src: "img/lagarde.png",
+            text: "Na eurobankovkách nájdeš vždy podpis aktuálneho prezidenta alebo prezidentky Európskej centrálnej banky. V súčastnosti je prezidentkou Christine Lagarde."
+          },
+          {
+            title: "História podpisov",
+            src: "img/podpisy.jpg",
+            text: "Ak nájdeš bankovku s iným podpisom, jedná sa o staršie série kedy bol iný prezidenc ECB."
+          },
+        ],
       },
       {
         id: "tactile",
@@ -28,7 +36,7 @@ const TARGETS = {
         cardOffset: { x: 22, y: -95 },
         title: "Hmatové čiary",
         short: "Reliéfne čiary pomáhajú rozpoznať bankovku dotykom.",
-        imgSrc: "img/nevidiaci.png",
+        imgSrc: "img/hmatoveciary.jpg",
         imgText: "Na okrajoch eurobankoviek sú reliéfne prvky, ktoré sa dajú cítiť prstami. Pomáhajú najmä slabozrakým a nevidiacim. \n\n Akcia: Prejdi prstami po okrajoch bankovky a budeš cítiť výstupujúce čiary."
       },
       {
@@ -42,8 +50,10 @@ const TARGETS = {
         short: "Proti svetlu uvidíš obraz, ktorý nie je vytlačený.",
         text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu.",
         imgTitle: "Vodoznak na eurobankovke",
-        imgSrc: "img/europa.jpg",
-        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. \n\n Akcia: Daj bankovku oproti svetlu a uvidíš obraz a hodnotu bankovky. Uhádneš kto je zobrazený na bankovke?"
+        imgSrc: "img/watermark.jpg",
+        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. \n\n Akcia: Daj bankovku oproti svetlu a uvidíš obraz hodnotu bankovky a architektúru. Uhádneš kto je zobrazený na bankovke?",
+        revealPrompt: "Klikni pre odpoveď",
+        revealAnswer: "Bohyňa Európa"
       },
       {
         id: "shine",
@@ -55,7 +65,7 @@ const TARGETS = {
         short: "Pri naklonení sa mení jas alebo pohyb prvku.",
         text: "Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu.",
         imgTitle: "Smaragdová žiara",
-        imgSrc: "img/tilt-shine.png",
+        imgSrc: "img/ziara.mp4",
         imgText: "Niektoré ochranné prvky menia vzhľad pri pohybe alebo svetle. Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu. \n\n Akcia: Skús naklánať bankovku a uvidíš ako prechádza žiara cez číselnú hodnotu bankovky"
       },
       {
@@ -64,12 +74,23 @@ const TARGETS = {
         tag: "⑤",
         pos: { x: 0.27, y: 0.15, z: 0.03 },
         cardOffset: { x: 22, y: -118 },
-        title: "Architektúra",
+        title: "Architektúra a detaily",
         short: "Každá bankovka nesie iný architektonický štýl.",
         text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. Dvadsaťeurová bankovka predstavuje gotiku.",
-        imgTitle: "Architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
-        imgSrc: "img/architecture-styles.jpg",
-        imgText: "Každá bankovka ukazuje iný architektonický štýl od najstarších až po moderné. Je to taký rýchly „timeline Európy“ cez stavby, ktoré formovali jej vývoj. \n\n Fun fact: Na bankovkách nie sú reálne budovy, sú to zámerne vymyslené návrhy, aby nepatrili žiadnej konkrétnej krajine."
+
+  
+                  gallery: [ 
+        {
+            title: "Architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
+            src: "img/architecture-styles.jpg",
+            text: "Každá bankovka ukazuje iný architektonický štýl od najstarších až po moderné. Je to taký rýchly „timeline Európy“ cez stavby, ktoré formovali jej vývoj. \n\n Fun fact: Na bankovkách nie sú reálne budovy, sú to zámerne vymyslené návrhy, aby nepatrili žiadnej konkrétnej krajine."
+          },
+          {
+            title: "Mikrotlač",
+            src: "img/detaily.jpg",
+            text: "Aj tieto architektonické prvky ukrývajú drobné detaily. Niektoré línie obsahujú mikrotlač, miniatúrne texty a číslice, ktoré ostávajú čitateľné a pri zväčšení napr pod lupou. \n\n V týchto detailoch sa ukrývajú aj ochranné prvky"
+          },
+  ],
       },
       {
         id: "langs",
@@ -103,6 +124,7 @@ const TARGETS = {
           },
           {
             title: "Rozdielne krajiny, spoločné symboly",
+            src: "img/nazvy.jpg",
             text: "Na eurobankovkách nájdeš prvky, ktoré symbolizujú spoluprácu a rozmanitosť Európy. Rôzne jazyky, architektúra či mapy pripomínajú, že Európa pozostáva z mnohých kultúr, ktoré sú navzájom prepojené."
           },
           {
@@ -118,7 +140,7 @@ const TARGETS = {
 
   a5: {
     hint: "20€ – Zadná strana: technické detaily a život bankovky",
-    bottomHint: "Tip: otoč bankovku na zadnú stranu",
+    bottomHint: "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
     callouts: [
       {
         id: "serial",
@@ -145,17 +167,35 @@ const TARGETS = {
         imgSrc: "img/bavlna.webp",
         gallery: [
           {
-            src: "img/bavlna.webp",
-            text: "Eurobankovky sa vyrábajú z bavlny, nie z obyčajného kancelárskeho papiera. Vďaka tomu majú pevný, pružný a typický hmatový povrch."
+            title: "Eurobankovky začínajú ako rastlina",
+            src: "img/material.jpg",
+            text: "Bankovky sa vyrábajú z bavlny, nie z obyčajného kancelárskeho papiera. Vďaka tomu majú pevný, pružný a typický hmatový povrch."
           },
           {
-            src: "img/odolnost.jpg",
-            text: "Materiál musí vydržať veľa ohybov, dotykov aj presunov medzi ľuďmi. Preto sa pri bankovkách používa odolný bankovkový papier s dlhšou životnosťou."
+            title: "Balíky bavlny → namáčanie a rozklad vlákien",
+            src: "img/material1.png",
+            text: "Vlákna sa lisujú do balíkov a putujú do spracovania. Neskôr sa rozdrvia, premiešajú s vodou a vytvoria hmotu pre špeciálny papier."
           },
           {
-            src: "img/lifecycle.jpg",
-            text: "Po skončení životnosti sa bankovky zničia a tlačia sa nové."
-          }
+            title: "Odvodnenie, lisovanie a sušenie vlákien",
+            src: "img/material2.png",
+            text: "Z mokrej hmoty sa postupne stáva papier.Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera. Niektoré ochranné prvky, napríklad vodoznaky, môžu vzniknúť už počas tejto fázy."
+          },
+          {
+            title: "Navíjanie hotového papiera",
+            src: "img/material3.png",
+            text: "Hotový bankovkový papier sa navíja do obrovských roliek. Po vysušení sa papier navinie na veľké kotúče pripravené na ďalšie spracovanie. Jedna rolka môže obsahovať kilometre špeciálneho papiera."
+          },
+          {
+            title: "Ochranné prvky a príprava pred tlačou",
+            src: "img/material4.png",
+            text: "Niektoré ochranné prvky vznikajú ešte pred finálnou tlačou. Do papiera alebo na jeho povrch sa pridávajú prvky, ktoré pomáhajú rozpoznať pravú bankovku."
+          },
+          {
+            title: "Tlač bankoviek na veľké hárky",
+            src: "img/material5.jpg",
+            text: "Bankovky sa tlačia vo veľkých hárkoch, nie po jednej. Každý hárok obsahuje viacero bankoviek naraz. Až neskôr sa rozrežú na jednotlivé kusy. Používajú sa rôzne techniky tlače vrátane reliéfnej tlače, ktorú možno cítiť prstami."
+          },
         ],
         imgText: "Bankovkový papier je pevnejší a odolnejší než bežný papier."
       },
@@ -169,7 +209,7 @@ const TARGETS = {
         short: "Pod UV svetlom sa objavia skryté ochranné prvky.",
         text: "Pod ultrafialovým svetlom sa na bankovke zvýraznia farebné vlákna a ďalšie ochranné prvky.",
         imgTitle: "UV ochranné prvky",
-        imgSrc: "img/uv-fibers.webp",
+        imgSrc: "img/uva.jpg",
         imgText: "UV ochrana patrí medzi dôležité technické prvky eurobankoviek. \n\n Fun fact: Bežný papier pod UV svetlom svieti celý, ale bankovka nie, rozsvietia sa len vybrané vlákna a detaily. To je jeden z dôvodov, prečo sa falzifikáty ľahko odhalia."
       }
     ]
@@ -185,6 +225,17 @@ const BANKNOTE_OPTIONS = [
 ];
 
 const BANKNOTE_BY_ID = Object.fromEntries(BANKNOTE_OPTIONS.map(option => [option.id, option]));
+const CALLOUT_COLORS = {
+  security: "#092B50",
+  story: "#DED38F"
+};
+const STORY_CALLOUT_IDS = new Set(["arch", "sig", "material", "langs"]);
+const CALLOUT_LEGEND_TIP = "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu";
+const CALLOUT_LEGEND_TIP_HTML = 'Tip: <span class="bottomHintBlue">modré</span> bubliny predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
+
+function getCalloutAccent(calloutId) {
+  return STORY_CALLOUT_IDS.has(calloutId) ? CALLOUT_COLORS.story : CALLOUT_COLORS.security;
+}
 
 function cloneData(value) {
   return JSON.parse(JSON.stringify(value));
@@ -207,8 +258,10 @@ function extractCalloutLayout(callouts) {
 }
 
 function buildCalloutsFromLayout(contentCallouts, layoutMap) {
-  return contentCallouts.map(callout => ({
+  return contentCallouts.map((callout, index) => ({
     ...cloneData(callout),
+    accent: getCalloutAccent(callout.id),
+    dotNumber: index + 1,
     pos: cloneData(layoutMap[callout.id]?.pos ?? { x: 0, y: 0, z: 0.03 }),
     cardOffset: cloneData(layoutMap[callout.id]?.cardOffset ?? { x: 22, y: -110 })
   }));
@@ -303,9 +356,7 @@ function createTargetForBanknote(banknoteId, side) {
     hint: side === "front"
       ? `${banknoteId} EUR - Objav bezpečnostné a vizuálne prvky`
       : `${banknoteId} EUR - Technické detaily a život bankovky`,
-    bottomHint: side === "front"
-      ? `Tip: pozeraj na ${banknoteId} EUR bankovku a pokojne sa približuj`
-      : `Tip: otoč ${banknoteId} EUR bankovku na zadnú stranu`,
+    bottomHint: CALLOUT_LEGEND_TIP,
     callouts: buildCalloutsFromLayout(
       SHARED_CALLOUT_CONTENT[contentKey],
       BANKNOTE_LAYOUTS[layoutKey]
@@ -365,6 +416,7 @@ let lastActivatedCalloutAt = 0;
 let layoutFreezeUntil = 0;
 let arPaused = false;
 let suppressSyntheticClickUntil = 0;
+let fallbackTapStart = null;
 let modalOpenedAt = 0;
 let activeModalCallout = null;
 let depthHintTimer = null;
@@ -468,8 +520,22 @@ function updateScanCopy() {
   }
 
   if (!activeAnchorId) {
-    bottomHintEl.textContent = `Tip: priprav si ${banknote.label} bankovku a drž ju rovno`;
+    showLegendBottomHint();
   }
+}
+
+function showLegendBottomHint() {
+  if (!bottomHintEl) return;
+  bottomHintEl.innerHTML = CALLOUT_LEGEND_TIP_HTML;
+}
+
+function setBottomHint(message) {
+  if (!bottomHintEl) return;
+  if (message === CALLOUT_LEGEND_TIP) {
+    showLegendBottomHint();
+    return;
+  }
+  bottomHintEl.textContent = message;
 }
 
 function syncBanknotePickerButtons() {
@@ -594,10 +660,12 @@ if (introStartBtn) {
 function styleMindarVideo() {
   const videos = [...document.querySelectorAll("video")];
   const videoEl = videos.find(el =>
+    !el.closest("#modal") && (
     el.autoplay ||
     el.getAttribute("autoplay") !== null ||
     el.playsInline ||
     el.getAttribute("playsinline") !== null
+    )
   );
 
   if (!videoEl) return false;
@@ -744,7 +812,7 @@ function getTargetCalloutCount(side) {
 }
 
 function trackCalloutDiscovered(callout) {
-  const side = getTargetSide();
+  const side = getTargetSide(callout?.targetId);
   if (!side || !callout?.id || !discoveredCallouts[side]) return;
 
   const sideSet = discoveredCallouts[side];
@@ -772,7 +840,7 @@ function trackCalloutDiscovered(callout) {
 
   if (side === "front") {
     pendingCompletionFeedback = {
-      message: "Našiel si všetky body. Otoč bankovku na zadnú stranu.",
+      message: "Našiel si všetky body.\nOtoč bankovku na zadnú stranu.",
       icon: "↻",
       duration: 4300
     };
@@ -780,7 +848,7 @@ function trackCalloutDiscovered(callout) {
   }
 
   pendingCompletionFeedback = {
-    message: "Našiel si všetky body. Otoč bankovku na prednú stranu.",
+    message: "Našiel si všetky body.\nOtoč bankovku na prednú stranu.",
     icon: "↻",
     duration: 4300
   };
@@ -798,9 +866,7 @@ function showScanState() {
   }
 
   const banknote = getSelectedBanknote();
-  bottomHintEl.textContent = lastVisibleTargetId
-    ? "Bankovka sa stratila z dohladu."
-    : `Tip: priprav si ${banknote.label} bankovku a drž ju rovno`;
+  setBottomHint(lastVisibleTargetId ? "Bankovka sa stratila z dohladu." : CALLOUT_LEGEND_TIP);
 }
 
 function clamp(value, min, max) {
@@ -1166,17 +1232,43 @@ function setCardActiveState(item, isActive) {
   }
 }
 
-function makeCalloutNode(callout) {
+function openCalloutDetail(callout, targetId, event) {
+  event?.preventDefault?.();
+  event?.stopPropagation?.();
+
+  const now = performance.now();
+  if (now - lastActivatedCalloutAt < 320) return;
+  lastActivatedCalloutAt = now;
+
+  freezeCalloutLayout();
+  lockCalloutInteraction(callout.id, 900);
+
+  if (callout.mode === "toggle") {
+    openModal({
+      ...callout,
+      targetId,
+      text: `${(callout.q || callout.short || callout.text || "").trim()}\n\n${(callout.a || callout.text || "").trim()}`
+    });
+    return;
+  }
+
+  openModal({ ...callout, targetId });
+}
+
+function makeCalloutNode(callout, targetId) {
   const wrap = document.createElement("div");
   wrap.className = "callout";
-  wrap.style.setProperty("--accent", callout.accent || "#DED38F");
+  const calloutAccent = getCalloutAccent(callout.id);
+  const calloutTextColor = calloutAccent.toUpperCase() === CALLOUT_COLORS.story ? CALLOUT_COLORS.security : "#FFFFFF";
+  wrap.style.setProperty("--accent", calloutAccent);
+  wrap.style.setProperty("--callout-text", calloutTextColor);
 
   wrap.innerHTML = `
-    <div class="calloutDot${callout.markerSrc ? " is-watermark" : ""}"${callout.markerSrc ? ` style="--marker-image:url('${callout.markerSrc}')"` : ""}></div>
+    <div class="calloutDot${callout.markerSrc ? " is-watermark" : ""}"${callout.markerSrc ? ` style="--marker-image:url('${callout.markerSrc}')"` : ""}>${callout.markerSrc ? "" : `<span>${callout.dotNumber || callout.tag || ""}</span>`}</div>
     <div class="calloutStem"></div>
     <button type="button" class="calloutCard ${callout.mode === "toggle" ? "is-toggle" : "is-openable"}">
       <div class="calloutHead">
-        <div class="calloutBadge">${callout.tag || "•"}</div>
+        <div class="calloutBadge">${callout.dotNumber || callout.tag || ""}</div>
         <div class="calloutTitle">${callout.title || "Info"}</div>
       </div>
       ${
@@ -1200,26 +1292,8 @@ function makeCalloutNode(callout) {
   let dotStartY = 0;
 
   const activateCallout = event => {
-    event?.preventDefault?.();
-    event?.stopPropagation?.();
     card.classList.remove("is-pressed");
-
-    const now = performance.now();
-    if (now - lastActivatedCalloutAt < 320) return;
-    lastActivatedCalloutAt = now;
-
-    freezeCalloutLayout();
-    lockCalloutInteraction(callout.id, 900);
-
-    if (callout.mode === "toggle") {
-      openModal({
-        ...callout,
-        text: `${(callout.q || callout.short || callout.text || "").trim()}\n\n${(callout.a || callout.text || "").trim()}`
-      });
-      return;
-    }
-
-    openModal(callout);
+    openCalloutDetail(callout, targetId, event);
   };
 
   const activateDotOnly = event => {
@@ -1354,14 +1428,15 @@ function buildUIFor(targetId) {
   lastVisibleTargetId = targetId;
 
   hintEl.textContent = target.hint || `Namier kameru na ${getSelectedBanknote().label} bankovku...`;
-  bottomHintEl.textContent = target.bottomHint || `Tip: priprav si ${getSelectedBanknote().label} bankovku`;
+  setBottomHint(target.bottomHint || `Tip: priprav si ${getSelectedBanknote().label} bankovku`);
 
   clearCallouts();
 
   currentCalloutNodes = (target.callouts || []).map(callout => {
-    const el = makeCalloutNode(callout);
+    const el = makeCalloutNode(callout, targetId);
     return {
       data: callout,
+      targetId,
       el,
       dotEl: el.querySelector(".calloutDot"),
       stemEl: el.querySelector(".calloutStem"),
@@ -1490,9 +1565,11 @@ function layoutActiveCallouts() {
 
     item.dotEl.style.opacity = isActive ? "1" : "0.54";
     const dotScale = item.data.markerSrc
-      ? (screenPos.markerScale ?? 1.34) * (isActive ? 1 : 0.92)
+      ? (isActive ? 1 : 0.92)
       : (isActive ? 1 : 0.9);
-    item.dotEl.style.transform = `translate(-50%, -50%) scale(${dotScale})`;
+    item.dotEl.style.transform = item.data.markerSrc
+      ? `translate(-10%, -86%) scale(${dotScale})`
+      : `translate(-50%, -50%) scale(${dotScale})`;
 
     if (!isActive) {
       setCardActiveState(item, false);
@@ -1525,6 +1602,125 @@ function layoutActiveCallouts() {
     const node = currentCalloutNodes.find(item => item.data.id === data.id);
     if (node) updateCalloutStem(node, dot.x, dot.y);
   });
+}
+
+function isInteractiveTapTarget(target) {
+  if (!(target instanceof Element)) return false;
+  return Boolean(target.closest(
+    ".calloutCard, .calloutDot, #modal, #modalOverlay, .changeBanknoteBtn, .banknoteSheet, button, a, input, select, textarea"
+  ));
+}
+
+function findExpandedCardHit(x, y) {
+  const HIT_PAD = 22;
+
+  return currentCalloutNodes
+    .filter(item => item.cardEl?.getAttribute("aria-hidden") !== "true")
+    .map(item => {
+      const rect = item.cardEl.getBoundingClientRect();
+      const inside =
+        x >= rect.left - HIT_PAD &&
+        x <= rect.right + HIT_PAD &&
+        y >= rect.top - HIT_PAD &&
+        y <= rect.bottom + HIT_PAD;
+
+      if (!inside) return null;
+
+      const zIndex = Number.parseInt(item.cardEl.style.zIndex || item.el?.style.zIndex || "0", 10) || 0;
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      return {
+        item,
+        zIndex,
+        distance: Math.hypot(x - centerX, y - centerY)
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.zIndex - a.zIndex || a.distance - b.distance)[0]?.item || null;
+}
+
+function findExpandedDotHit(x, y) {
+  const DOT_HIT_PAD = 18;
+
+  return currentCalloutNodes
+    .filter(item => item.dotEl && item.el?.getAttribute("aria-hidden") !== "true")
+    .map(item => {
+      const rect = item.dotEl.getBoundingClientRect();
+      const inside =
+        x >= rect.left - DOT_HIT_PAD &&
+        x <= rect.right + DOT_HIT_PAD &&
+        y >= rect.top - DOT_HIT_PAD &&
+        y <= rect.bottom + DOT_HIT_PAD;
+
+      if (!inside) return null;
+
+      const zIndex = Number.parseInt(item.el?.style.zIndex || item.cardEl?.style.zIndex || "0", 10) || 0;
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      return {
+        item,
+        zIndex,
+        distance: Math.hypot(x - centerX, y - centerY)
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.zIndex - a.zIndex || a.distance - b.distance)[0]?.item || null;
+}
+
+function activateCalloutFromDot(item, event) {
+  event?.preventDefault?.();
+  event?.stopPropagation?.();
+
+  lockedCalloutId = item.data.id;
+  lockedCalloutUntil = performance.now() + 1400;
+  lastActiveCalloutIds = new Set([item.data.id, ...lastActiveCalloutIds]);
+  layoutFreezeUntil = 0;
+
+  requestAnimationFrame(layoutActiveCallouts);
+  setTimeout(layoutActiveCallouts, 70);
+}
+
+function handleFallbackCardTap(event) {
+  if (modalOpen || !running) return;
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+
+  if (event.type === "pointerdown") {
+    fallbackTapStart = {
+      pointerId: event.pointerId,
+      x: event.clientX ?? 0,
+      y: event.clientY ?? 0,
+      at: performance.now(),
+      blocked: isInteractiveTapTarget(event.target)
+    };
+    return;
+  }
+
+  if (event.type !== "pointerup") return;
+  if (!fallbackTapStart || fallbackTapStart.pointerId !== event.pointerId) return;
+
+  const start = fallbackTapStart;
+  fallbackTapStart = null;
+
+  if (start.blocked || isInteractiveTapTarget(event.target)) return;
+
+  const x = event.clientX ?? 0;
+  const y = event.clientY ?? 0;
+  const moved = Math.hypot(x - start.x, y - start.y);
+  const elapsed = performance.now() - start.at;
+  if (moved > 18 || elapsed > 850) return;
+
+  const dotItem = findExpandedDotHit(x, y);
+  if (dotItem) {
+    activateCalloutFromDot(dotItem, event);
+    return;
+  }
+
+  const hitItem = findExpandedCardHit(x, y);
+  if (!hitItem) return;
+
+  openCalloutDetail(hitItem.data, hitItem.targetId, event);
 }
 
 function closeModal(force = false) {
@@ -1564,23 +1760,97 @@ function renderTextModal(callout) {
   modalText.textContent = callout.text || "";
 }
 
+function renderModalText(callout, text) {
+  modalText.textContent = text || "";
+
+  if (!callout.revealPrompt || !callout.revealAnswer) return;
+
+  const revealWrap = document.createElement("span");
+  revealWrap.className = "modalReveal";
+
+  const prompt = document.createElement("span");
+  prompt.className = "modalRevealPrompt";
+  prompt.tabIndex = 0;
+  prompt.role = "button";
+  prompt.textContent = callout.revealPrompt;
+
+  const answer = document.createElement("span");
+  answer.className = "modalRevealAnswer";
+  answer.textContent = callout.revealAnswer;
+  answer.hidden = true;
+
+  const revealAnswer = () => {
+    prompt.hidden = true;
+    answer.hidden = false;
+    navigator.vibrate?.(10);
+  };
+
+  prompt.addEventListener("click", revealAnswer);
+  prompt.addEventListener("keydown", event => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    revealAnswer();
+  });
+
+  revealWrap.append(prompt, answer);
+  modalText.append(document.createTextNode("\n\n"), revealWrap);
+}
+
 function renderImageModal(callout) {
   buildModalShell(callout);
 
+  const mediaSrc = callout.imgSrc || "";
+  const isVideo = /\.(mp4|webm|mov)(?:[?#].*)?$/i.test(mediaSrc);
+
+  if (isVideo) {
+    const video = document.createElement("video");
+    video.className = "modalVideo";
+    video.src = mediaSrc;
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.controls = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("loop", "");
+    video.setAttribute("autoplay", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("controls", "");
+    video.setAttribute("aria-label", callout.imgTitle || callout.title || "Video");
+
+    video.onerror = () => {
+      modalMedia.innerHTML = `
+        <div style="padding:14px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.04);font-size:14px;line-height:1.4;">
+          Video sa nepodarilo načítať: <strong>${mediaSrc}</strong>
+        </div>
+      `;
+    };
+
+    modalMedia.appendChild(video);
+    const playPromise = video.play?.();
+    if (playPromise?.catch) {
+      playPromise.catch(() => {
+        video.controls = true;
+      });
+    }
+    renderModalText(callout, callout.imgText || callout.text || "");
+    return;
+  }
+
   const img = document.createElement("img");
   img.alt = callout.imgTitle || callout.title || "Ilustrácia";
-  img.src = callout.imgSrc;
+  img.src = mediaSrc;
 
   img.onerror = () => {
     modalMedia.innerHTML = `
       <div style="padding:14px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.04);font-size:14px;line-height:1.4;">
-        Obrázok sa nepodarilo načítať: <strong>${callout.imgSrc}</strong>
+        Obrázok sa nepodarilo načítať: <strong>${mediaSrc}</strong>
       </div>
     `;
   };
 
   modalMedia.appendChild(img);
-  modalText.textContent = callout.imgText || callout.text || "";
+  renderModalText(callout, callout.imgText || callout.text || "");
 }
 
 function renderSlider(callout) {
@@ -1658,6 +1928,15 @@ function renderSlider(callout) {
 
   let current = 0;
   const slides = [...track.querySelectorAll(".slide")];
+  let swipePointerId = null;
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let swipeDeltaX = 0;
+  let swipeLocked = false;
+
+  function vibrateSliderTick() {
+    navigator.vibrate?.(12);
+  }
 
   function updateStageHeight() {
     const activeSlide = slides[current];
@@ -1670,13 +1949,78 @@ function renderSlider(callout) {
   }
 
   function goTo(index) {
+    const previous = current;
     current = (index + gallery.length) % gallery.length;
     track.style.transform = `translateX(-${current * 100}%)`;
     modalTitle.textContent = gallery[current]?.title || callout.imgTitle || callout.title || "Detail";
     modalText.textContent = gallery[current]?.text || "";
     dotBtns.forEach((btn, i) => btn.classList.toggle("active", i === current));
+    if (current !== previous) vibrateSliderTick();
     requestAnimationFrame(updateStageHeight);
   }
+
+  function resetSwipeTransform() {
+    track.style.transition = "";
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+
+  stage.addEventListener("pointerdown", event => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    swipePointerId = event.pointerId;
+    swipeStartX = event.clientX ?? 0;
+    swipeStartY = event.clientY ?? 0;
+    swipeDeltaX = 0;
+    swipeLocked = false;
+    stage.classList.add("is-dragging");
+    stage.setPointerCapture?.(event.pointerId);
+  });
+
+  stage.addEventListener("pointermove", event => {
+    if (event.pointerId !== swipePointerId) return;
+
+    const deltaX = (event.clientX ?? 0) - swipeStartX;
+    const deltaY = (event.clientY ?? 0) - swipeStartY;
+
+    if (!swipeLocked && Math.hypot(deltaX, deltaY) > 8) {
+      swipeLocked = Math.abs(deltaX) > Math.abs(deltaY) * 1.15;
+    }
+
+    if (!swipeLocked) return;
+
+    event.preventDefault();
+    swipeDeltaX = deltaX;
+    const width = Math.max(1, stage.getBoundingClientRect().width);
+    const dragPercent = (swipeDeltaX / width) * 100;
+    track.style.transition = "none";
+    track.style.transform = `translateX(calc(-${current * 100}% + ${dragPercent}%))`;
+  });
+
+  stage.addEventListener("pointerup", event => {
+    if (event.pointerId !== swipePointerId) return;
+
+    const width = Math.max(1, stage.getBoundingClientRect().width);
+    const threshold = Math.min(58, width * 0.18);
+    const shouldChange = swipeLocked && Math.abs(swipeDeltaX) >= threshold;
+    const direction = swipeDeltaX < 0 ? 1 : -1;
+
+    swipePointerId = null;
+    stage.classList.remove("is-dragging");
+
+    if (shouldChange) {
+      track.style.transition = "";
+      goTo(current + direction);
+      return;
+    }
+
+    resetSwipeTransform();
+  });
+
+  stage.addEventListener("pointercancel", event => {
+    if (event.pointerId !== swipePointerId) return;
+    swipePointerId = null;
+    stage.classList.remove("is-dragging");
+    resetSwipeTransform();
+  });
 
   prevBtn.addEventListener("click", () => goTo(current - 1));
   nextBtn.addEventListener("click", () => goTo(current + 1));
@@ -1802,7 +2146,7 @@ async function pauseARExperience() {
   closeModal(true);
   showScanState();
   hintEl.textContent = "AR je pozastavené";
-  bottomHintEl.textContent = `Po návrate klikni na Reset AR a znovu namier na ${banknote.label} bankovku.`;
+  setBottomHint(`Po návrate klikni na Reset AR a znovu namier na ${banknote.label} bankovku.`);
   showResumeOverlay();
 
   try {
@@ -1817,7 +2161,7 @@ async function resumeARExperience() {
   const banknote = getSelectedBanknote();
   hideResumeOverlay();
   hintEl.textContent = `Namier kameru na ${banknote.label} bankovku...`;
-  bottomHintEl.textContent = `Tip: priprav si ${banknote.label} bankovku a drž ju rovno`;
+  showLegendBottomHint();
 
   try {
     sceneEl?.play?.();
@@ -1847,6 +2191,8 @@ modalOverlay.addEventListener("click", closeModal);
 modal.addEventListener("click", event => {
   if (event.target === modal) closeModal();
 });
+document.addEventListener("pointerdown", handleFallbackCardTap, true);
+document.addEventListener("pointerup", handleFallbackCardTap, true);
 changeBanknoteBtn?.addEventListener("click", () => {
   openBanknoteSheet();
 });

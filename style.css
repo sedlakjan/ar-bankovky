@@ -79,7 +79,7 @@ body,
 #app,
 a-scene,
 canvas.a-canvas,
-video,
+video:not(.modalVideo),
 #calloutsLayer,
 #modalOverlay,
 #modal {
@@ -92,7 +92,7 @@ body {
   touch-action: none;
 }
 
-video {
+video:not(.modalVideo) {
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
@@ -326,19 +326,30 @@ body.is-transitioning-banknote .introScreen {
   top: calc(14px + env(safe-area-inset-top));
   bottom: auto;
   z-index: 60;
-  max-width: min(92%, 820px);
-  padding: 10px 14px;
-  border-radius: 999px;
+  width: min(96vw, 560px);
+  max-width: min(96%, 820px);
+  padding: 12px 18px;
+  border-radius: 20px;
   color: rgba(255, 255, 255, 0.95);
   font-size: 13px;
-  line-height: 1.2;
+  line-height: 1.24;
   text-align: center;
   background: rgba(9, 43, 80, 0.52);
   border: 1px solid rgba(222, 211, 143, 0.22);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
   pointer-events: none;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+.bottomHintBlue {
+  color: #78a9ff;
+  font-weight: 900;
+}
+
+.bottomHintGold {
+  color: var(--brand-gold);
+  font-weight: 900;
 }
 
 .depthHint {
@@ -396,10 +407,10 @@ body.is-transitioning-banknote .introScreen {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 46px;
+  min-height: 58px;
   max-width: min(92vw, 470px);
-  padding: 10px 15px;
-  border-radius: 18px;
+  padding: 14px 18px;
+  border-radius: 20px;
   color: rgba(255, 255, 255, 0.98);
   background: rgba(9, 43, 80, 0.72);
   border: 1px solid rgba(222, 211, 143, 0.28);
@@ -451,10 +462,11 @@ body.is-transitioning-banknote .introScreen {
 
 .progressHintText {
   display: block;
-  font-size: 13px;
-  line-height: 1.2;
+  font-size: 15px;
+  line-height: 1.26;
   font-weight: 850;
   letter-spacing: 0.02em;
+  white-space: pre-line;
 }
 
 .progressHintBody {
@@ -576,7 +588,7 @@ body.is-transitioning-banknote .introScreen {
   min-height: 40px;
   padding: 10px 14px;
   border: 1px solid rgba(222, 211, 143, 0.24);
-  border-radius: 999px;
+  border-radius: 20px;
   background: rgba(9, 43, 80, 0.48);
   color: rgba(255, 255, 255, 0.92);
   font-size: 13px;
@@ -853,6 +865,7 @@ body.resume-paused .changeBanknoteBtn {
 
 .callout {
   --accent: var(--brand-gold);
+  --callout-text: var(--brand-white);
   position: absolute;
   left: 0;
   top: 0;
@@ -864,16 +877,23 @@ body.resume-paused .changeBanknoteBtn {
 
 .calloutDot {
   position: absolute;
-  width: 48px;
-  height: 48px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
   left: 0;
   top: 0;
   transform: translate(-50%, -50%);
   border-radius: 999px;
-  background: radial-gradient(circle at center, var(--accent) 0 8px, transparent 9px);
+  background: var(--accent);
+  color: var(--callout-text);
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 0%, transparent),
-    0 8px 24px rgba(0, 0, 0, 0.35);
+    0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.32);
   pointer-events: auto;
   opacity: 1;
   animation: dotAppear 0.35s ease;
@@ -883,17 +903,26 @@ body.resume-paused .changeBanknoteBtn {
   z-index: 0;
 }
 
+.calloutDot span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
 .calloutDot.is-watermark {
-  width: 72px;
-  height: 72px;
-  border-radius: 16px;
-  background: rgba(222, 211, 143, 0.22);
+  width: 84px;
+  height: 63px;
+  border-radius: 7px;
+  background: var(--marker-image) center / contain no-repeat;
   box-shadow: none;
-  opacity: 0.46;
-  overflow: hidden;
-  isolation: isolate;
+  opacity: 0.34;
+  overflow: visible;
+  isolation: auto;
   mix-blend-mode: multiply;
-  filter: blur(1.4px) saturate(0.88);
+  filter: blur(0.4px) saturate(0.84);
 }
 
 .calloutDot.is-pressed {
@@ -901,62 +930,28 @@ body.resume-paused .changeBanknoteBtn {
 }
 
 .calloutStem {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 3px;
-  transform-origin: 0 50%;
-  border-radius: 999px;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--accent) 92%, white 8%), color-mix(in srgb, var(--accent) 46%, transparent));
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.14),
-    0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.18s ease;
-  z-index: 1;
+  display: none;
 }
 
 .calloutDot::after {
   content: "";
   position: absolute;
-  inset: 10px;
+  inset: -5px;
   border-radius: inherit;
-  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
-  opacity: 0.8;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+  opacity: 0.7;
   animation: pulseDot 1.8s ease-out infinite;
 }
 
 .calloutDot.is-watermark::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(222, 211, 143, 0.26), rgba(222, 211, 143, 0.2)),
-    var(--marker-image);
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, contain;
-  background-blend-mode: multiply, normal;
-  opacity: 0.96;
-  animation: watermarkFloat 5.8s ease-in-out infinite, watermarkOpacity 3.8s ease-in-out infinite;
+  inset: -16px;
+  border-radius: 18px;
 }
 
 .calloutDot.is-watermark::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 0;
-  border-radius: inherit;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.14) 0 0.8px, transparent 1px),
-    radial-gradient(circle at 70% 35%, rgba(9, 43, 80, 0.18) 0 0.8px, transparent 1px),
-    radial-gradient(circle at 35% 70%, rgba(255, 255, 255, 0.12) 0 0.7px, transparent 1px);
-  background-size: 4px 4px, 5px 5px, 6px 6px;
-  mix-blend-mode: overlay;
-  opacity: 0.24;
-  animation: none;
+  content: none;
 }
 
 @keyframes pulseDot {
@@ -1003,16 +998,15 @@ body.resume-paused .changeBanknoteBtn {
 .calloutCard {
   position: fixed;
   z-index: 81;
-  width: min(236px, calc(100vw - 24px));
-  min-height: 70px;
+  width: min(220px, calc(100vw - 24px));
+  min-height: 72px;
   border: 0;
-  border-radius: 18px;
-  padding: 14px 42px 14px 14px;
+  border-radius: 20px;
+  padding: 17px 42px 17px 17px;
   text-align: left;
-  background: linear-gradient(180deg, rgba(9, 43, 80, 0.94), rgba(3, 19, 38, 0.9));
-  border-left: 4px solid var(--accent);
-  outline: 1px solid rgba(222, 211, 143, 0.22);
-  backdrop-filter: blur(14px);
+  background: var(--accent);
+  outline: 0;
+  backdrop-filter: none;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.34);
   cursor: pointer;
   user-select: none;
@@ -1021,23 +1015,35 @@ body.resume-paused .changeBanknoteBtn {
   -webkit-touch-callout: none;
   appearance: none;
   touch-action: manipulation;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: auto;
-  color: var(--brand-white);
+  color: var(--callout-text);
   opacity: 1;
   visibility: visible;
   transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.14s ease;
 }
 
+.calloutCard::after {
+  content: none;
+}
+
+.calloutCard::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 28px;
+  pointer-events: none;
+}
+
 .callout.callout-inactive .calloutDot {
   opacity: 0.54;
   box-shadow:
-    0 0 0 8px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 0 0 5px color-mix(in srgb, var(--accent) 16%, transparent),
     0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .callout.callout-inactive .calloutDot.is-watermark {
-  opacity: 0.32;
+  opacity: 0.24;
   box-shadow: none;
 }
 
@@ -1062,30 +1068,28 @@ body.resume-paused .changeBanknoteBtn {
 .calloutHead {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 40px;
+  gap: 9px;
+  min-height: 38px;
 }
 
 .calloutBadge {
-  display: inline-grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 20%, rgba(255, 255, 255, 0.08));
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, rgba(255, 255, 255, 0.14));
-  color: var(--accent);
+  display: block;
+  min-width: 16px;
+  color: var(--callout-text);
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-weight: 900;
-  font-size: 13px;
+  font-size: 18px;
+  line-height: 1;
   flex: 0 0 auto;
 }
 
 .calloutTitle {
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.18;
-  color: var(--brand-white);
-  max-width: 136px;
+  color: var(--callout-text);
+  max-width: 132px;
 }
 
 .calloutTapIcon {
@@ -1098,7 +1102,7 @@ body.resume-paused .changeBanknoteBtn {
   object-fit: contain;
   opacity: 0.92;
   pointer-events: none;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.24));
   transform: translateY(-50%);
 }
 
@@ -1176,7 +1180,8 @@ body.resume-paused .changeBanknoteBtn {
   display: none;
 }
 
-#modalMedia img {
+#modalMedia img,
+#modalMedia video {
   width: 100%;
   display: block;
   border-radius: 16px;
@@ -1186,12 +1191,52 @@ body.resume-paused .changeBanknoteBtn {
   object-fit: contain;
 }
 
+#modalMedia video {
+  height: auto;
+  background: #000;
+}
+
 #modalText {
   margin-top: 14px;
   font-size: 15px;
   line-height: 1.48;
   color: rgba(255, 255, 255, 0.96);
   white-space: pre-line;
+}
+
+.modalReveal {
+  display: block;
+}
+
+.modalRevealPrompt {
+  display: inline-block;
+  color: var(--brand-gold);
+  font-weight: 850;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modalRevealPrompt:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.modalRevealAnswer {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--brand-gold);
+  font-weight: 900;
+}
+
+.modalRevealAnswer::before {
+  content: "- ";
+}
+
+.modalRevealAnswer[hidden] {
+  display: none;
 }
 
 body.modal-open #modalOverlay {
@@ -1232,6 +1277,15 @@ body.progress-hint-open .calloutStem {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
   transition: height 0.24s ease;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sliderStage.is-dragging {
+  cursor: grabbing;
 }
 
 .sliderTrack {
@@ -1239,6 +1293,8 @@ body.progress-hint-open .calloutStem {
   align-items: flex-start;
   transition: transform 0.35s ease;
   will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .slide {
@@ -1252,6 +1308,9 @@ body.progress-hint-open .calloutStem {
   height: auto;
   max-height: 38vh;
   object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .slidePlaceholder {

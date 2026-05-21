@@ -19,12 +19,12 @@ const TARGETS = {
           {
             title: "Prezidentka ECB",
             src: "img/lagarde.png",
-            text: "Na eurobankovkách nájdeš vždy podpis aktuálneho prezidenta alebo prezidentky Európskej centrálnej banky. V súčastnosti je prezidentkou Christine Lagarde."
+            text: "Na eurobankovkách nájdeš podpis prezidenta alebo prezidentky Európskej centrálnej banky. \n\n Podpis sa môže líšiť podľa toho, kedy bola bankovka vydaná do obehu. Na novších bankovkách nájdeš podpis Christine Lagardovej."
           },
           {
             title: "História podpisov",
             src: "img/podpisy.jpg",
-            text: "Ak nájdeš bankovku s iným podpisom, jedná sa o staršie série kedy bol iný prezidenc ECB."
+            text: "Ak nájdeš bankovku s iným podpisom, nemusí ísť o problém. V obehu sú aj staršie bankovky s podpismi predchádzajúcich prezidentov ECB."
           },
         ],
       },
@@ -34,10 +34,10 @@ const TARGETS = {
         tag: "②",
         pos: { x: 0.30, y: -0.16, z: 0.03 },
         cardOffset: { x: 22, y: -95 },
-        title: "Hmatové čiary",
+        title: "Hmatové značky",
         short: "Reliéfne čiary pomáhajú rozpoznať bankovku dotykom.",
         imgSrc: "img/hmatoveciary.jpg",
-        imgText: "Na okrajoch eurobankoviek sú reliéfne prvky, ktoré sa dajú cítiť prstami. Pomáhajú najmä slabozrakým a nevidiacim. \n\n Akcia: Prejdi prstami po okrajoch bankovky a budeš cítiť výstupujúce čiary."
+        imgText: "Na lícnej strane eurobankovky sú pri okrajoch krátke vystupujúce čiary. Sú vytlačené tak, aby sa dali cítiť prstami. Pomáhajú najmä ľuďom so zrakovým znevýhodnením rozlíšiť bankovku aj dotykom.\n\nSkús dotykom: Prejdi prstami po okraji bankovky a nájdi vystupujúce čiary."
       },
       {
         id: "watermark",
@@ -51,9 +51,9 @@ const TARGETS = {
         text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu.",
         imgTitle: "Vodoznak na eurobankovke",
         imgSrc: "img/watermark.jpg",
-        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. \n\n Akcia: Daj bankovku oproti svetlu a uvidíš obraz hodnotu bankovky a architektúru. Uhádneš kto je zobrazený na bankovke?",
-        revealPrompt: "Klikni pre odpoveď",
-        revealAnswer: "Bohyňa Európa"
+        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?",
+        revealPrompt: "Kto je na portréte?",
+        revealAnswer: "Európa – postava z gréckej mytológie"
       },
       {
         id: "shine",
@@ -61,12 +61,12 @@ const TARGETS = {
         tag: "④",
         pos: { x: -0.22, y: -0.22, z: 0.03 },
         cardOffset: { x: 26, y: -95 },
-        title: "Smaragdová žiara",
-        short: "Pri naklonení sa mení jas alebo pohyb prvku.",
-        text: "Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu.",
-        imgTitle: "Smaragdová žiara",
+        title: "Smaragdové číslo",
+        short: "Pri naklonení sa cez číslo pohybuje svetelný efekt.",
+        text: "Tento ochranný prvok sa volá smaragdové číslo. Pri nakláňaní bankovky mení farbu a vytvára svetelný efekt, ktorý sa pohybuje cez číslo.",
+        imgTitle: "Smaragdové číslo",
         imgSrc: "img/ziara.mp4",
-        imgText: "Niektoré ochranné prvky menia vzhľad pri pohybe alebo svetle. Pri naklonení bankovky sa tento prvok opticky mení. Je to jeden z ochranných prvkov proti falšovaniu. \n\n Akcia: Skús naklánať bankovku a uvidíš ako prechádza žiara cez číselnú hodnotu bankovky"
+        imgText: "Smaragdové číslo je veľké číslo hodnoty bankovky. Pri naklonení sa mení zo smaragdovozelenej na tmavomodrú a svetelný efekt sa pohybuje nahor a nadol. \n\n 👀 Vyskúšaj: Pomaly nakláňaj bankovku a sleduj, ako sa cez číslo presúva žiara."
       },
       {
         id: "arch",
@@ -76,7 +76,7 @@ const TARGETS = {
         cardOffset: { x: 22, y: -118 },
         title: "Architektúra a detaily",
         short: "Každá bankovka nesie iný architektonický štýl.",
-        text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. Dvadsaťeurová bankovka predstavuje gotiku.",
+        text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. 20-eurová bankovka bankovka predstavuje gotiku.",
 
   
                   gallery: [ 
@@ -152,7 +152,7 @@ const TARGETS = {
         imgTitle: "Sériové číslo",
         short: "Každá bankovka má vlastnú identitu.",
         imgSrc: "img/seriovecislo.jpg",
-        imgText: "Sériové číslo je jedinečný identifikátor bankovky. Pomáha pri kontrole, evidencii a sledovaní pravosti. Na bankovke ho nájdeš dvakrát, pre lepšiu čitateľnosť a kontrolu. \n\n Fun fact: Dve umiestnenia čísla sú tam preto, aby si z roztrhnutej bankovky nespravil v banke dve :)"
+        imgText: "Sériové číslo je jedinečný identifikátor bankovky. Na bankovkách série Európa nájdeš jedno celé sériové číslo vodorovne a kratšie číslo zvislo. Zvislé číslo tvorí posledných šesť číslic hlavného sériového čísla.\n\nMimochodom: Prvé písmeno v sériovom čísle označuje tlačiareň, v ktorej bola bankovka vytlačená."
       },
       {
         id: "material",
@@ -179,7 +179,7 @@ const TARGETS = {
           {
             title: "Odvodnenie, lisovanie a sušenie vlákien",
             src: "img/material2.png",
-            text: "Z mokrej hmoty sa postupne stáva papier.Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera."
+            text: "Z mokrej hmoty sa postupne stáva papier. Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera."
           },
           {
             title: "Navíjanie hotového papiera",
@@ -210,7 +210,7 @@ const TARGETS = {
         text: "Pod ultrafialovým svetlom sa na bankovke zvýraznia farebné vlákna a ďalšie ochranné prvky.",
         imgTitle: "UV ochranné prvky",
         imgSrc: "img/uva.jpg",
-        imgText: "UV ochrana patrí medzi dôležité technické prvky eurobankoviek. \n\n Fun fact: Bežný papier pod UV svetlom svieti celý, ale bankovka nie, rozsvietia sa len vybrané vlákna a detaily. To je jeden z dôvodov, prečo sa falzifikáty ľahko odhalia."
+        imgText: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
       }
     ]
   }

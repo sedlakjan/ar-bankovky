@@ -1162,8 +1162,7 @@ body.resume-paused .changeBanknoteBtn {
   line-height: 1.15;
 }
 
-#modalClose,
-.sliderBtn {
+#modalClose {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1329,11 +1328,46 @@ body.progress-hint-open .calloutStem {
 }
 
 .sliderNav {
-  margin-top: 10px;
-  display: flex;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 56px minmax(48px, 1fr) 56px;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+}
+
+.sliderBtn {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  color: var(--brand-gold);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.sliderBtn::before {
+  content: "";
+  position: absolute;
+  inset: -8px -10px;
+  border-radius: 22px;
+}
+
+.sliderBtn:active {
+  transform: scale(0.94);
+}
+
+.sliderBtn:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 2px;
 }
 
 .sliderDots {
@@ -1341,7 +1375,7 @@ body.progress-hint-open .calloutStem {
   gap: 6px;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  min-width: 0;
 }
 
 .sliderDots button {

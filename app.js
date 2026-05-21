@@ -1898,7 +1898,8 @@ function renderSlider(callout) {
   const prevBtn = document.createElement("button");
   prevBtn.className = "sliderBtn";
   prevBtn.type = "button";
-  prevBtn.textContent = "← Predchádzajúci";
+  prevBtn.setAttribute("aria-label", "Predchádzajúci obrázok");
+  prevBtn.textContent = "❮";
 
   const dotsWrap = document.createElement("div");
   dotsWrap.className = "sliderDots";
@@ -1915,7 +1916,8 @@ function renderSlider(callout) {
   const nextBtn = document.createElement("button");
   nextBtn.className = "sliderBtn";
   nextBtn.type = "button";
-  nextBtn.textContent = "Ďalší →";
+  nextBtn.setAttribute("aria-label", "Ďalší obrázok");
+  nextBtn.textContent = "❯";
 
   nav.appendChild(prevBtn);
   nav.appendChild(dotsWrap);

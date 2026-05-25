@@ -51,6 +51,18 @@ const TARGETS = {
         text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu.",
         imgTitle: "Vodoznak na eurobankovke",
         imgSrc: "img/watermark.jpg",
+        gallery: [
+          {
+            title: "Vodoznak na eurobankovke",
+            src: "img/watermark.jpg",
+            text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?"
+          },
+          {
+            title: "Tvár Európy",
+            src: "img/vaza.jpg",
+            text: "Portrét vo vodoznaku nie je náhodný. Zobrazuje Európu, postavu z gréckej mytológie, podľa ktorej je pomenovaný náš kontinent.\n\nRovnakú tvár nájdeš aj v holograme a priehľadnom okienku bankoviek série Európa. Predlohou bol viac než 2000 rokov starý obraz z antickej vázy, ktorá sa dnes nachádza v Louvri.\n\nBankovka tak nesie nielen ochranný prvok, ale aj symbolický odkaz na spoločnú Európu."
+          }
+        ],
         imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?",
         revealPrompt: "Kto je na portréte?",
         revealAnswer: "Európa – postava z gréckej mytológie"
@@ -76,14 +88,19 @@ const TARGETS = {
         cardOffset: { x: 22, y: -118 },
         title: "Architektúra a detaily",
         short: "Každá bankovka nesie iný architektonický štýl.",
-        text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. 20-eurová bankovka bankovka predstavuje gotiku.",
+        text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. 20-eurová bankovka predstavuje gotiku.",
 
   
                   gallery: [ 
         {
             title: "Architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
-            src: "img/architecture-styles.jpg",
+            src: "img/bankovkykreative.jpg",
             text: "Každá bankovka ukazuje iný architektonický štýl od najstarších až po moderné. Je to taký rýchly „timeline Európy“ cez stavby, ktoré formovali jej vývoj. \n\n Fun fact: Na bankovkách nie sú reálne budovy, sú to zámerne vymyslené návrhy, aby nepatrili žiadnej konkrétnej krajine."
+          },
+            {
+            title: "Od klasicizmu po modernu.",
+            src: "img/architecture-styles.jpg",
+            text: "Každá hodnota ukazuje inú epochu európskej architektúry:\n\n5 € – klasicizmus\n10 € – románsky sloh\n20 € – gotika\n50 € – renesancia\n100 € – barok a rokoko\n200 € – vek železa a skla 19. storočia\n\nSpolu vytvárajú krátku cestu európskymi dejinami, od starších štýlov až po modernejšiu architektúru."
           },
           {
             title: "Mikrotlač",
@@ -205,11 +222,23 @@ const TARGETS = {
         tag: "③",
         pos: { x: -0.24, y: 0.02, z: 0.03 },
         cardOffset: { x: 26, y: -82 },
-        title: "UV prvky",
+        title: "UV a IR prvky",
         short: "Pod UV svetlom sa objavia skryté ochranné prvky.",
         text: "Pod ultrafialovým svetlom sa na bankovke zvýraznia farebné vlákna a ďalšie ochranné prvky.",
         imgTitle: "UV ochranné prvky",
         imgSrc: "img/uva.jpg",
+        gallery: [
+          {
+            title: "UV ochranné prvky",
+            src: "img/uva.jpg",
+            text: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
+          },
+          {
+            title: "Bankovka pod infračerveným svetlom",
+            src: "img/50-es2-lic.jpg",
+            text: "Pod infračerveným svetlom sa ukáže ďalšia vrstva ochrany. Niektoré farby na pravej bankovke reagujú tak, že sú pod IR lampou tmavé až čierne. Zvyšok bankovky na infračervené svetlo nereaguje.\n\nToto už nie je bežný domáci test, ale ukazuje, že bankovka má viac vrstiev ochrany, než vidíme voľným okom."
+          }
+        ],
         imgText: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
       }
     ]

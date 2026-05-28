@@ -1173,7 +1173,7 @@ body.resume-paused .changeBanknoteBtn {
   z-index: 110;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.28s ease, backdrop-filter 0.28s ease;
 }
 
 #modal {
@@ -1186,6 +1186,7 @@ body.resume-paused .changeBanknoteBtn {
   padding: 18px;
   pointer-events: none;
   opacity: 0;
+  perspective: 1200px;
   transition: opacity 0.22s ease;
 }
 
@@ -1199,11 +1200,13 @@ body.resume-paused .changeBanknoteBtn {
   padding: 20px;
   color: var(--brand-white);
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.48);
-  transform: scale(0.96);
+  transform: translate3d(0, 18px, 0) scale(0.96) rotateX(2deg);
+  transform-origin: center 62%;
   opacity: 0;
-  transition: transform 0.22s ease, opacity 0.22s ease;
+  transition: transform 0.24s cubic-bezier(0.2, 0.9, 0.24, 1), opacity 0.18s ease;
   pointer-events: auto;
   -webkit-overflow-scrolling: touch;
+  will-change: transform, opacity;
 }
 
 #modalHead {
@@ -1319,12 +1322,40 @@ body.modal-open #modal {
 }
 
 body.modal-open #modalCard {
-  transform: scale(1);
+  transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
   opacity: 1;
+  animation: modalCardSettle 0.34s cubic-bezier(0.2, 0.9, 0.24, 1) both;
 }
 
 body.modal-open #calloutsLayer {
   pointer-events: none;
+}
+
+@keyframes modalCardSettle {
+  0% {
+    transform: translate3d(0, 20px, 0) scale(0.96) rotateX(2deg);
+    opacity: 0;
+  }
+  70% {
+    transform: translate3d(0, -2px, 0) scale(1.012) rotateX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #modalOverlay,
+  #modal,
+  #modalCard {
+    transition: opacity 0.12s ease;
+  }
+
+  body.modal-open #modalCard {
+    animation: none;
+  }
 }
 
 body.progress-hint-open .calloutCard,

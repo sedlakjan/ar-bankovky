@@ -14,17 +14,17 @@ const TARGETS = {
         tag: "①",
         pos: { x: -0.36, y: 0.18, z: 0.03 },
         cardOffset: { x: 22, y: -118 },
-        title: "Podpis na Eurách",
+        title: "Podpis prezidenta ECB",
           gallery: [
           {
             title: "Prezidentka ECB",
             src: "img/lagarde.png",
-            text: "Na eurobankovkách nájdeš podpis prezidenta alebo prezidentky Európskej centrálnej banky. \n\n Podpis sa môže líšiť podľa toho, kedy bola bankovka vydaná do obehu. Na novších bankovkách nájdeš podpis Christine Lagardovej."
+            text: "Na eurobankovkách nájdeš podpis prezidenta alebo prezidentky Európskej centrálnej banky.\n\nNa novších bankovkách je podpis Christine Lagardovej, ktorá je súčasnou prezidentkou ECB. Podpis sa mení podľa toho, kto v danom období ECB vedie."
           },
           {
             title: "História podpisov",
             src: "img/podpisy.jpg",
-            text: "Ak nájdeš bankovku s iným podpisom, nemusí ísť o problém. V obehu sú aj staršie bankovky s podpismi predchádzajúcich prezidentov ECB."
+            text: "Podpis na bankovke nie je len ozdoba. Historicky potvrdzoval, že za hodnotu peňazí ručí autorita, ktorá ich vydala, napríklad panovník, pokladník alebo banka.\n\nDnes podpis prezidenta ECB pripomína, že euro je spoločná mena vydávaná v rámci Eurosystému. Ak nájdeš bankovku s iným podpisom, nemusí ísť o problém. V obehu sú aj staršie bankovky s podpismi predchádzajúcich prezidentov ECB."
           },
         ],
       },
@@ -55,12 +55,15 @@ const TARGETS = {
           {
             title: "Vodoznak na eurobankovke",
             src: "img/watermark.jpg",
-            text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?"
+            text: "Vodoznak je súčasťou bankovkového papiera. Vzniká už pri jeho výrobe, rozdielna hrúbka papiera vytvára svetlejšie a tmavšie plochy. Keď bankovku podržíte proti svetlu, tieto plochy spolu vytvoria obraz. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?"
           },
           {
             title: "Tvár Európy",
             src: "img/vaza.jpg",
-            text: "Portrét vo vodoznaku nie je náhodný. Zobrazuje Európu, postavu z gréckej mytológie, podľa ktorej je pomenovaný náš kontinent.\n\nRovnakú tvár nájdeš aj v holograme a priehľadnom okienku bankoviek série Európa. Predlohou bol viac než 2000 rokov starý obraz z antickej vázy, ktorá sa dnes nachádza v Louvri.\n\nBankovka tak nesie nielen ochranný prvok, ale aj symbolický odkaz na spoločnú Európu."
+            text: "Portrét vo vodoznaku zobrazuje Európu, postavu z gréckej mytológie, podľa ktorej je pomenovaný náš kontinent.\n\nRovnakú tvár nájdeš aj v holograme a pri pohľade proti svetlu aj v priehľadnom okienku na pravej strane bankovky.\n\nPredlohou bol viac než 2000 rokov starý obraz z antickej vázy, ktorá sa dnes nachádza v Louvri.",
+            inlineImageSrc: "img/okienko.jpg",
+            inlineImageAlt: "Priehľadné okienko s portrétom Európy",
+            inlineImageAfterParagraph: 2
           }
         ],
         imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?",
@@ -105,7 +108,7 @@ const TARGETS = {
           {
             title: "Mikrotlač",
             src: "img/detaily.jpg",
-            text: "Aj tieto architektonické prvky ukrývajú drobné detaily. Niektoré línie obsahujú mikrotlač, miniatúrne texty a číslice, ktoré ostávajú čitateľné a pri zväčšení napr pod lupou. \n\n V týchto detailoch sa ukrývajú aj ochranné prvky"
+            text: "Niektoré architektonické motívy ukrývajú nenápadné ochranné prvky. Jedným z nich je mikrotext, drobné písmo, ktoré pri bežnom pohľade môže vyzerať ako čiara alebo ornament. \n\nPod lupou však vidno, že ide o ostrý a čitateľný text. Pri falzifikátoch býva mikrotext často rozmazaný alebo nečitateľný."
           },
   ],
       },
@@ -164,8 +167,8 @@ const TARGETS = {
         accent: "#4479FF",
         tag: "①",
         pos: { x: 0.36, y: 0.21, z: 0.03 },
-        cardOffset: { x: -270, y: -115 },
-        title: "Sériové čísla",
+        cardOffset: { x: -238, y: -84 },
+        title: "Sériové číslo",
         imgTitle: "Sériové číslo",
         short: "Každá bankovka má vlastnú identitu.",
         imgSrc: "img/seriovecislo.jpg",
@@ -175,18 +178,18 @@ const TARGETS = {
         id: "material",
         accent: "#DED38F",
         tag: "②",
-        pos: { x: -0.08, y: 0.06, z: 0.03 },
-        cardOffset: { x: 24, y: -108 },
-        title: "Materiál bankovky",
+        pos: { x: -0.08, y: 0.15, z: 0.03 },
+        cardOffset: { x: 34, y: -96 },
+        title: "Bankovkový papier",
         short: "Eurobankovky nie sú z bežného kancelárskeho papiera.",
         text: "Eurobankovky sú vyrobené z bavlny. Vďaka tomu sú odolnejšie, lepšie držia tlač a vydržia veľa ohybov.",
         imgTitle: "Materiál eurobankoviek",
         imgSrc: "img/bavlna.webp",
         gallery: [
           {
-            title: "Eurobankovky začínajú ako rastlina",
+            title: "Bankovky sa vyrábajú z bavlny",
             src: "img/material.jpg",
-            text: "Bankovky sa vyrábajú z bavlny, nie z obyčajného kancelárskeho papiera. Vďaka tomu majú pevný, pružný a typický hmatový povrch."
+            text: "Eurobankovky sa nevyrábajú z bežného kancelárskeho papiera. Ich papier je vyrobený z bavlnených vlákien, vďaka čomu je pevný, pružný a má špecifický pocit na dotyk. Aj preto sa pravá bankovka dá často rozoznať už hmatom."
           },
           {
             title: "Balíky bavlny → namáčanie a rozklad vlákien",
@@ -220,8 +223,8 @@ const TARGETS = {
         id: "uv",
         accent: "#01FF76",
         tag: "③",
-        pos: { x: -0.24, y: 0.02, z: 0.03 },
-        cardOffset: { x: 26, y: -82 },
+        pos: { x: -0.32, y: -0.05, z: 0.03 },
+        cardOffset: { x: 42, y: -70 },
         title: "UV a IR prvky",
         short: "Pod UV svetlom sa objavia skryté ochranné prvky.",
         text: "Pod ultrafialovým svetlom sa na bankovke zvýraznia farebné vlákna a ďalšie ochranné prvky.",
@@ -240,6 +243,22 @@ const TARGETS = {
           }
         ],
         imgText: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
+      },
+      {
+        id: "securityStrip",
+        accent: "#092B50",
+        tag: "",
+        markerType: "strip",
+        hideBadge: true,
+        markerLabel: "€",
+        pos: { x: 0.06, y: -0.02, z: 0.03 },
+        cardOffset: { x: -250, y: 94 },
+        title: "Ochranný prúžok",
+        imgTitle: "Ochranný prúžok",
+        short: "Tmavý prúžok ukrytý priamo v papieri.",
+        text: "Vyzerá ako obyčajná čiara, ale je priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku oproti svetlu a nájdi tmavú čiaru ukrytú v papieri.",
+        imgSrc: "img/pasik.png",
+        imgText: "Vyzerá ako obyčajná čiara, ale je priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku oproti svetlu a nájdi tmavú čiaru ukrytú v papieri."
       }
     ]
   }
@@ -258,11 +277,15 @@ const CALLOUT_COLORS = {
   security: "#092B50",
   story: "#DED38F"
 };
+const CALLOUT_ACCENTS = {
+  serial: "#DED38F"
+};
 const STORY_CALLOUT_IDS = new Set(["arch", "sig", "material", "langs"]);
 const CALLOUT_LEGEND_TIP = "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu";
 const CALLOUT_LEGEND_TIP_HTML = 'Tip: <span class="bottomHintBlue">modré</span> bubliny predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
 
 function getCalloutAccent(calloutId) {
+  if (CALLOUT_ACCENTS[calloutId]) return CALLOUT_ACCENTS[calloutId];
   return STORY_CALLOUT_IDS.has(calloutId) ? CALLOUT_COLORS.story : CALLOUT_COLORS.security;
 }
 
@@ -306,69 +329,74 @@ const SHARED_CALLOUT_CONTENT = {
 
 const BANKNOTE_LAYOUTS = {
   "5-front": {
-    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 48, y: -86 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -72 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: -260, y: -96 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 48, y: -74 } },
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 44, y: -86 } }
   },
   "5-back": {
-    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
-    material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -238, y: -84 } },
+    material: { pos: { x: -0.08, y: 0.15, z: 0.03 }, cardOffset: { x: 34, y: -96 } },
+    uv: { pos: { x: -0.32, y: -0.05, z: 0.03 }, cardOffset: { x: 42, y: -70 } },
+    securityStrip: { pos: { x: 0.06, y: -0.02, z: 0.03 }, cardOffset: { x: -230, y: 88 } },
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -74 } }
   },
   "10-front": {
-    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 48, y: -86 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -72 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: -260, y: -96 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 48, y: -74 } },
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 44, y: -86 } }
   },
   "10-back": {
-    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
-    material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -238, y: -84 } },
+    material: { pos: { x: -0.08, y: 0.15, z: 0.03 }, cardOffset: { x: 34, y: -96 } },
+    uv: { pos: { x: -0.32, y: -0.05, z: 0.03 }, cardOffset: { x: 42, y: -70 } },
+    securityStrip: { pos: { x: 0.06, y: -0.02, z: 0.03 }, cardOffset: { x: -230, y: 88 } },
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -74 } }
   },
   "20-front": {
-    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 48, y: -86 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -72 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: -260, y: -96 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 48, y: -74 } },
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 44, y: -86 } }
   },
   "20-back": {
-    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
-    material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -238, y: -84 } },
+    material: { pos: { x: -0.08, y: 0.15, z: 0.03 }, cardOffset: { x: 34, y: -96 } },
+    uv: { pos: { x: -0.32, y: -0.05, z: 0.03 }, cardOffset: { x: 42, y: -70 } },
+    securityStrip: { pos: { x: 0.06, y: -0.02, z: 0.03 }, cardOffset: { x: -230, y: 88 } },
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -74 } }
   },
   "50-front": {
-    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 48, y: -86 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -72 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: -260, y: -96 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 48, y: -74 } },
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 44, y: -86 } }
   },
   "50-back": {
-    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
-    material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -238, y: -84 } },
+    material: { pos: { x: -0.08, y: 0.15, z: 0.03 }, cardOffset: { x: 34, y: -96 } },
+    uv: { pos: { x: -0.32, y: -0.05, z: 0.03 }, cardOffset: { x: 42, y: -70 } },
+    securityStrip: { pos: { x: 0.06, y: -0.02, z: 0.03 }, cardOffset: { x: -230, y: 88 } },
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -74 } }
   },
   "100-front": {
-    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 22, y: -118 } },
-    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: 22, y: -95 } },
-    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: 26, y: -108 } },
-    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 26, y: -95 } },
-    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 22, y: -118 } }
+    sig: { pos: { x: -0.36, y: 0.17, z: 0.03 }, cardOffset: { x: 48, y: -86 } },
+    tactile: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -72 } },
+    watermark: { pos: { x: -0.31, y: -0.02, z: 0.03 }, cardOffset: { x: -260, y: -96 } },
+    shine: { pos: { x: -0.24, y: -0.22, z: 0.03 }, cardOffset: { x: 48, y: -74 } },
+    arch: { pos: { x: 0.27, y: 0.15, z: 0.03 }, cardOffset: { x: 44, y: -86 } }
   },
   "100-back": {
-    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -270, y: -115 } },
-    material: { pos: { x: -0.08, y: 0.06, z: 0.03 }, cardOffset: { x: 24, y: -108 } },
-    uv: { pos: { x: -0.24, y: -0.05, z: 0.03 }, cardOffset: { x: 26, y: -82 } },
-    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -270, y: -95 } }
+    serial: { pos: { x: 0.36, y: 0.21, z: 0.03 }, cardOffset: { x: -238, y: -84 } },
+    material: { pos: { x: -0.08, y: 0.15, z: 0.03 }, cardOffset: { x: 34, y: -96 } },
+    uv: { pos: { x: -0.32, y: -0.05, z: 0.03 }, cardOffset: { x: 42, y: -70 } },
+    securityStrip: { pos: { x: 0.06, y: -0.02, z: 0.03 }, cardOffset: { x: -230, y: 88 } },
+    langs: { pos: { x: 0.42, y: -0.16, z: 0.03 }, cardOffset: { x: -238, y: -74 } }
   }
 };
 
@@ -407,16 +435,16 @@ const introStartBtn = document.getElementById("introStartBtn");
 const banknotePickerEls = [...document.querySelectorAll(".js-banknote-picker")];
 
 const SMOOTH = 0.24;
-const CARD_SMOOTH = 0.16;
+const CARD_SMOOTH = 0.1;
 const MAX_VISIBLE_CARDS = 2;
 const VIEWPORT_MARGIN = 12;
 const COLLISION_GAP = 6;
 const TARGET_STALE_MS = 180;
 const DOT_DEADZONE_PX = 3;
-const CARD_DEADZONE_PX = 6;
+const CARD_DEADZONE_PX = 13;
 const DOT_SAFE_RADIUS = 34;
 const ACTIVE_DOT_SAFE_RADIUS = 44;
-const ACTIVE_STICKY_BONUS = 90;
+const ACTIVE_STICKY_BONUS = 170;
 const CARD_SCALE_MIN = 0.96;
 const CARD_SCALE_MAX = 1.02;
 
@@ -455,6 +483,7 @@ let selectedBanknoteId = initialBanknoteId;
 let banknoteButtons = [];
 let pendingBanknoteId = selectedBanknoteId;
 let loadingHideTimer = null;
+const preloadedAssets = new Set();
 
 const hintEl = document.getElementById("hint");
 const bottomHintEl = document.getElementById("bottomHint");
@@ -516,6 +545,62 @@ function hideLoadingOverlay() {
 function beginLoadingTransition() {
   sessionStorage.setItem(LOADING_STARTED_AT_KEY, String(Date.now()));
   document.body.classList.add("is-transitioning-banknote");
+}
+
+function isPreloadableImage(src) {
+  return /\.(png|jpe?g|webp|gif)(?:[?#].*)?$/i.test(src || "");
+}
+
+function collectCalloutImageSources() {
+  const sources = new Set();
+
+  Object.values(TARGETS).forEach(target => {
+    (target.callouts || []).forEach(callout => {
+      [callout.markerSrc, callout.inlineImageSrc, callout.imgSrc].forEach(src => {
+        if (isPreloadableImage(src)) sources.add(src);
+      });
+
+      (callout.gallery || []).forEach(item => {
+        [item.src, item.inlineImageSrc].forEach(src => {
+          if (isPreloadableImage(src)) sources.add(src);
+        });
+      });
+    });
+  });
+
+  return [...sources];
+}
+
+function preloadImage(src) {
+  if (!src || preloadedAssets.has(src)) return Promise.resolve();
+  preloadedAssets.add(src);
+
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = img.onerror = () => resolve();
+    img.src = src;
+    if (typeof img.decode === "function") {
+      img.decode().catch(() => {});
+    }
+  });
+}
+
+function preloadCalloutMedia({ concurrency = 3 } = {}) {
+  const sources = collectCalloutImageSources().filter(src => !preloadedAssets.has(src));
+  if (!sources.length) return;
+
+  let index = 0;
+  const runNext = () => {
+    const src = sources[index];
+    index += 1;
+    if (!src) return Promise.resolve();
+    return preloadImage(src).then(runNext);
+  };
+
+  const workerCount = Math.min(concurrency, sources.length);
+  for (let i = 0; i < workerCount; i += 1) {
+    runNext();
+  }
 }
 
 function getSelectedBanknote() {
@@ -1250,6 +1335,7 @@ function setCardActiveState(item, isActive) {
   item.el.style.zIndex = isActive ? "82" : "1";
   item.el.setAttribute("aria-hidden", isActive ? "false" : "true");
 
+  item.cardEl.style.display = isActive ? "block" : "none";
   item.cardEl.style.opacity = isActive ? "1" : "0";
   item.cardEl.style.visibility = isActive ? "visible" : "hidden";
   item.cardEl.style.pointerEvents = isActive ? "auto" : "none";
@@ -1289,15 +1375,29 @@ function makeCalloutNode(callout, targetId) {
   wrap.className = "callout";
   const calloutAccent = getCalloutAccent(callout.id);
   const calloutTextColor = calloutAccent.toUpperCase() === CALLOUT_COLORS.story ? CALLOUT_COLORS.security : "#FFFFFF";
+  const isWatermarkMarker = Boolean(callout.markerSrc);
+  const isStripMarker = callout.markerType === "strip";
+  const dotClasses = [
+    "calloutDot",
+    isWatermarkMarker ? "is-watermark" : "",
+    isStripMarker ? "is-strip" : ""
+  ].filter(Boolean).join(" ");
+  const markerStyle = isWatermarkMarker ? ` style="--marker-image:url('${callout.markerSrc}')"` : "";
+  const markerContent = isWatermarkMarker
+    ? ""
+    : isStripMarker
+      ? `<span class="stripMarkerLabel">${callout.markerLabel || "€"}</span>`
+      : `<span>${callout.dotNumber || callout.tag || ""}</span>`;
+  const badgeContent = callout.hideBadge ? "" : (callout.dotNumber || callout.tag || "");
   wrap.style.setProperty("--accent", calloutAccent);
   wrap.style.setProperty("--callout-text", calloutTextColor);
 
   wrap.innerHTML = `
-    <div class="calloutDot${callout.markerSrc ? " is-watermark" : ""}"${callout.markerSrc ? ` style="--marker-image:url('${callout.markerSrc}')"` : ""}>${callout.markerSrc ? "" : `<span>${callout.dotNumber || callout.tag || ""}</span>`}</div>
+    <div class="${dotClasses}"${markerStyle}>${markerContent}</div>
     <div class="calloutStem"></div>
     <button type="button" class="calloutCard ${callout.mode === "toggle" ? "is-toggle" : "is-openable"}">
       <div class="calloutHead">
-        <div class="calloutBadge">${callout.dotNumber || callout.tag || ""}</div>
+        ${callout.hideBadge ? "" : `<div class="calloutBadge">${badgeContent}</div>`}
         <div class="calloutTitle">${callout.title || "Info"}</div>
       </div>
       ${
@@ -1330,7 +1430,7 @@ function makeCalloutNode(callout, targetId) {
     event?.stopPropagation?.();
 
     lockedCalloutId = callout.id;
-    lockedCalloutUntil = performance.now() + 1400;
+    lockedCalloutUntil = performance.now() + 2200;
     lastActiveCalloutIds = new Set([callout.id, ...lastActiveCalloutIds]);
     layoutFreezeUntil = 0;
 
@@ -1361,7 +1461,7 @@ function makeCalloutNode(callout, targetId) {
     activeDotPointerId = null;
     dot.classList.remove("is-pressed");
 
-    if (moved <= 14) {
+    if (moved <= 32) {
       suppressSyntheticClickUntil = performance.now() + 700;
       activateDotOnly(event);
     }
@@ -1407,7 +1507,7 @@ function makeCalloutNode(callout, targetId) {
 
     if (event.pointerType !== "mouse") {
       suppressSyntheticClickUntil = performance.now() + 700;
-      if (moved <= 14) {
+      if (moved <= 32) {
         activateCallout(event);
         return;
       }
@@ -1638,40 +1738,17 @@ function isInteractiveTapTarget(target) {
   ));
 }
 
-function findExpandedCardHit(x, y) {
-  const HIT_PAD = 22;
-
-  return currentCalloutNodes
-    .filter(item => item.cardEl?.getAttribute("aria-hidden") !== "true")
-    .map(item => {
-      const rect = item.cardEl.getBoundingClientRect();
-      const inside =
-        x >= rect.left - HIT_PAD &&
-        x <= rect.right + HIT_PAD &&
-        y >= rect.top - HIT_PAD &&
-        y <= rect.bottom + HIT_PAD;
-
-      if (!inside) return null;
-
-      const zIndex = Number.parseInt(item.cardEl.style.zIndex || item.el?.style.zIndex || "0", 10) || 0;
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      return {
-        item,
-        zIndex,
-        distance: Math.hypot(x - centerX, y - centerY)
-      };
-    })
-    .filter(Boolean)
-    .sort((a, b) => b.zIndex - a.zIndex || a.distance - b.distance)[0]?.item || null;
+function isNonCalloutInteractiveTapTarget(target) {
+  if (!(target instanceof Element)) return false;
+  if (target.closest(".calloutCard, .calloutDot")) return false;
+  return isInteractiveTapTarget(target);
 }
 
 function findExpandedDotHit(x, y) {
-  const DOT_HIT_PAD = 18;
+  const DOT_HIT_PAD = 28;
 
   return currentCalloutNodes
-    .filter(item => item.dotEl && item.el?.getAttribute("aria-hidden") !== "true")
+    .filter(item => item.dotEl && item.dotEl.style.display !== "none")
     .map(item => {
       const rect = item.dotEl.getBoundingClientRect();
       const inside =
@@ -1701,7 +1778,7 @@ function activateCalloutFromDot(item, event) {
   event?.stopPropagation?.();
 
   lockedCalloutId = item.data.id;
-  lockedCalloutUntil = performance.now() + 1400;
+  lockedCalloutUntil = performance.now() + 2200;
   lastActiveCalloutIds = new Set([item.data.id, ...lastActiveCalloutIds]);
   layoutFreezeUntil = 0;
 
@@ -1719,7 +1796,7 @@ function handleFallbackCardTap(event) {
       x: event.clientX ?? 0,
       y: event.clientY ?? 0,
       at: performance.now(),
-      blocked: isInteractiveTapTarget(event.target)
+      blocked: isNonCalloutInteractiveTapTarget(event.target)
     };
     return;
   }
@@ -1730,28 +1807,22 @@ function handleFallbackCardTap(event) {
   const start = fallbackTapStart;
   fallbackTapStart = null;
 
-  if (start.blocked || isInteractiveTapTarget(event.target)) return;
+  if (start.blocked || isNonCalloutInteractiveTapTarget(event.target)) return;
 
   const x = event.clientX ?? 0;
   const y = event.clientY ?? 0;
   const moved = Math.hypot(x - start.x, y - start.y);
   const elapsed = performance.now() - start.at;
-  if (moved > 18 || elapsed > 850) return;
+  if (moved > 32 || elapsed > 950) return;
 
   const dotItem = findExpandedDotHit(x, y);
   if (dotItem) {
     activateCalloutFromDot(dotItem, event);
-    return;
   }
-
-  const hitItem = findExpandedCardHit(x, y);
-  if (!hitItem) return;
-
-  openCalloutDetail(hitItem.data, hitItem.targetId, event);
 }
 
 function closeModal(force = false) {
-  if (!force && performance.now() - modalOpenedAt < 260) return;
+  if (!force && performance.now() - modalOpenedAt < 650) return;
 
   const closedCallout = activeModalCallout;
   activeModalCallout = null;
@@ -1776,19 +1847,37 @@ function closeModal(force = false) {
   }
 }
 
+function getModalTitle(callout, title) {
+  const rawTitle = title || callout.imgTitle || callout.title || "Detail";
+  const number = callout.dotNumber || callout.tag;
+
+  if (!number) return rawTitle;
+  return `${number}. ${rawTitle}`;
+}
+
 function buildModalShell(callout) {
-  modalTitle.textContent = callout.imgTitle || callout.title || "Detail";
+  modalTitle.textContent = getModalTitle(callout);
   modalMedia.innerHTML = "";
   modalText.textContent = "";
 }
 
 function renderTextModal(callout) {
   buildModalShell(callout);
-  modalText.textContent = callout.text || "";
+  setModalTextContent(
+    callout.text || "",
+    callout.inlineImageSrc,
+    callout.inlineImageAlt || callout.title || "",
+    callout.inlineImageAfterParagraph
+  );
 }
 
 function renderModalText(callout, text) {
-  modalText.textContent = text || "";
+  setModalTextContent(
+    text || "",
+    callout.inlineImageSrc,
+    callout.inlineImageAlt || callout.title || "",
+    callout.inlineImageAfterParagraph
+  );
 
   if (!callout.revealPrompt || !callout.revealAnswer) return;
 
@@ -1821,6 +1910,37 @@ function renderModalText(callout, text) {
 
   revealWrap.append(prompt, answer);
   modalText.append(document.createTextNode("\n\n"), revealWrap);
+}
+
+function setModalTextContent(text, inlineImageSrc, inlineImageAlt = "", inlineImageAfterParagraph = null) {
+  modalText.textContent = "";
+  const contentText = text || "";
+
+  if (!inlineImageSrc) {
+    modalText.textContent = contentText;
+    return;
+  }
+
+  const img = document.createElement("img");
+  img.className = "modalInlineImage";
+  img.src = inlineImageSrc;
+  img.alt = inlineImageAlt;
+
+  if (!inlineImageAfterParagraph) {
+    modalText.append(document.createTextNode(contentText), document.createTextNode("\n\n"), img);
+    return;
+  }
+
+  const paragraphs = contentText.split(/\n{2,}/);
+  const insertIndex = Math.min(Math.max(1, inlineImageAfterParagraph), paragraphs.length);
+
+  paragraphs.forEach((paragraph, index) => {
+    if (index > 0) modalText.append(document.createTextNode("\n\n"));
+    modalText.append(document.createTextNode(paragraph));
+    if (index + 1 === insertIndex) {
+      modalText.append(document.createTextNode("\n\n"), img);
+    }
+  });
 }
 
 function renderImageModal(callout) {
@@ -1981,8 +2101,14 @@ function renderSlider(callout) {
     const previous = current;
     current = (index + gallery.length) % gallery.length;
     track.style.transform = `translateX(-${current * 100}%)`;
-    modalTitle.textContent = gallery[current]?.title || callout.imgTitle || callout.title || "Detail";
-    modalText.textContent = gallery[current]?.text || "";
+    const currentItem = gallery[current] || {};
+    modalTitle.textContent = getModalTitle(callout, currentItem.title);
+    setModalTextContent(
+      currentItem.text || "",
+      currentItem.inlineImageSrc,
+      currentItem.inlineImageAlt || currentItem.title || callout.title || "",
+      currentItem.inlineImageAfterParagraph
+    );
     dotBtns.forEach((btn, i) => btn.classList.toggle("active", i === current));
     if (current !== previous) vibrateSliderTick();
     requestAnimationFrame(updateStageHeight);
@@ -2281,6 +2407,7 @@ sceneEl.addEventListener("arReady", () => {
   ensureMindarVideo(40);
   hideLoadingOverlay();
   setTimeout(forceARRefresh, 400);
+  setTimeout(() => preloadCalloutMedia(), 900);
 });
 
 sceneEl.addEventListener("arError", event => {

@@ -265,11 +265,11 @@ const TARGETS = {
 };
 
 const BANKNOTE_OPTIONS = [
-  { id: "5", label: "5 EUR", mindSrc: "targets5.mind" },
-  { id: "10", label: "10 EUR", mindSrc: "targets10.mind" },
-  { id: "20", label: "20 EUR", mindSrc: "targets20.mind" },
-  { id: "50", label: "50 EUR", mindSrc: "targets50.mind" },
-  { id: "100", label: "100 EUR", mindSrc: "targets100.mind" }
+  { id: "5", label: "5 EUR", mindSrc: "targets%20nove/target5.mind" },
+  { id: "10", label: "10 EUR", mindSrc: "targets%20nove/targets10.mind" },
+  { id: "20", label: "20 EUR", mindSrc: "targets%20nove/targets20.mind" },
+  { id: "50", label: "50 EUR", mindSrc: "targets%20nove/targets50.mind" },
+  { id: "100", label: "100 EUR", mindSrc: "targets%20nove/targets100.mind" }
 ];
 
 const BANKNOTE_BY_ID = Object.fromEntries(BANKNOTE_OPTIONS.map(option => [option.id, option]));
@@ -509,6 +509,8 @@ const modalTitle = document.getElementById("modalTitle");
 const modalMedia = document.getElementById("modalMedia");
 const modalText = document.getElementById("modalText");
 const modalClose = document.getElementById("modalClose");
+const arErrorOverlayEl = document.getElementById("arErrorOverlay");
+const arErrorReloadBtn = document.getElementById("arErrorReload");
 
 const sceneEl = document.getElementById("scene");
 const anchors = ["front", "back"].map(id => document.getElementById(id));
@@ -654,7 +656,9 @@ function setBottomHint(message) {
 
 function syncBanknotePickerButtons() {
   banknoteButtons.forEach(({ button, banknoteId }) => {
-    button.classList.toggle("is-active", banknoteId === pendingBanknoteId);
+    const isActive = banknoteId === pendingBanknoteId;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
   });
 }
 
@@ -711,6 +715,7 @@ function renderBanknotePicker() {
       button.className = "banknoteOption";
       button.textContent = option.label;
       button.dataset.banknote = option.id;
+      button.setAttribute("aria-label", `Vybrať bankovku ${option.label}`);
       button.addEventListener("click", () => {
         pendingBanknoteId = option.id;
         syncBanknotePickerButtons();
@@ -1297,9 +1302,10 @@ function resolveDotCoverage(items, dots) {
 
 function updateCalloutStem(item, dotX, dotY) {
   const stemEl = item.stemEl;
-  const cardRect = item.cardEl.getBoundingClientRect();
+  if (!stemEl || stemEl.offsetParent === null) return;
 
-  if (!stemEl || !cardRect.width || !cardRect.height) return;
+  const cardRect = item.cardEl.getBoundingClientRect();
+  if (!cardRect.width || !cardRect.height) return;
 
   const cardCenterX = clamp(dotX, cardRect.left + 18, cardRect.right - 18);
   const cardCenterY = clamp(dotY, cardRect.top + 18, cardRect.bottom - 18);
@@ -2248,7 +2254,7 @@ function initAnchorEvents() {
 }
 
 function tick() {
-  if (running && activeAnchorId && !modalOpen) {
+  if (!document.hidden && running && activeAnchorId && !modalOpen) {
     layoutActiveCallouts();
   }
   requestAnimationFrame(tick);
@@ -2369,6 +2375,13 @@ resumeBtn?.addEventListener("click", () => {
 resetArBtn?.addEventListener("click", () => {
   resetARExperience();
 });
+arErrorReloadBtn?.addEventListener("click", () => {
+  window.location.reload();
+});
+
+if (window.__AR_DEPENDENCY_FAILED) {
+  arErrorOverlayEl?.setAttribute("aria-hidden", "false");
+}
 
 window.addEventListener("resize", handleResize);
 window.addEventListener("orientationchange", () => {

@@ -86,6 +86,47 @@ video:not(.modalVideo),
   height: calc(var(--vh) * 100) !important;
 }
 
+.arErrorOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  place-items: center;
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+  padding: 22px;
+  background: rgba(3, 19, 38, 0.94);
+}
+
+.ar-dependency-error .arErrorOverlay {
+  display: grid;
+}
+
+.arErrorCard {
+  width: min(100%, 390px);
+  padding: 26px 22px;
+  border: 1px solid var(--brand-line);
+  border-radius: 22px;
+  color: var(--brand-white);
+  text-align: center;
+  background: var(--brand-surface);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.46);
+}
+
+.arErrorTitle {
+  margin-bottom: 10px;
+  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.arErrorText {
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 body {
   position: fixed;
   inset: 0;
@@ -1347,6 +1388,15 @@ body.modal-open #calloutsLayer {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   #modalOverlay,
   #modal,
   #modalCard {

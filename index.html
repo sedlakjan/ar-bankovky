@@ -7,8 +7,15 @@
 
   <link rel="stylesheet" href="style.css" />
 
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script>
+    window.__AR_DEPENDENCY_FAILED = false;
+    window.handleArDependencyError = function () {
+      window.__AR_DEPENDENCY_FAILED = true;
+      document.documentElement.classList.add("ar-dependency-error");
+    };
+  </script>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js" onerror="handleArDependencyError()"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js" onerror="handleArDependencyError()"></script>
 </head>
 <body>
   <script>
@@ -32,6 +39,14 @@
       <div class="loadingSpinner"></div>
       <div class="loadingTitle">Načítavam rozšírenú realitu</div>
       <div class="loadingText">Chvíľku strpenia :) </div>
+    </div>
+  </div>
+
+  <div id="arErrorOverlay" class="arErrorOverlay" role="alert" aria-live="assertive" aria-hidden="true">
+    <div class="arErrorCard">
+      <div class="arErrorTitle">AR sa nepodarilo načítať</div>
+      <div class="arErrorText">Skontroluj internetové pripojenie a skús stránku obnoviť.</div>
+      <button id="arErrorReload" class="resumeBtn" type="button">Obnoviť stránku</button>
     </div>
   </div>
 
@@ -172,11 +187,11 @@
       const selected = params.get("banknote") || localStorage.getItem(BANKNOTE_STORAGE_KEY) || "20";
       const normalized = ["5", "10", "20", "50", "100"].includes(selected) ? selected : "20";
       const mindSrcMap = {
-        "5": "targets5.mind",
-        "10": "targets10.mind",
-        "20": "targets20.mind",
-        "50": "targets50.mind",
-        "100": "targets100.mind"
+        "5": "targets%20nove/target5.mind",
+        "10": "targets%20nove/targets10.mind",
+        "20": "targets%20nove/targets20.mind",
+        "50": "targets%20nove/targets50.mind",
+        "100": "targets%20nove/targets100.mind"
       };
 
       window.__INITIAL_BANKNOTE_ID = normalized;

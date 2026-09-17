@@ -6,7 +6,7 @@ function syncViewportSize() {
 const TARGETS = {
   a4: {
     hint: "20€ – Predná strana: objav bezpečnostné a vizuálne prvky",
-    bottomHint: "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
+    bottomHint: "Modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
     callouts: [
       {
         id: "sig",
@@ -17,12 +17,12 @@ const TARGETS = {
         title: "Podpis prezidenta ECB",
           gallery: [
           {
-            title: "Prezidentka ECB",
+            title: "prezidentka ECB",
             src: "img/lagarde.png",
             text: "Na eurobankovkách nájdeš podpis prezidenta alebo prezidentky Európskej centrálnej banky.\n\nNa novších bankovkách je podpis Christine Lagardovej, ktorá je súčasnou prezidentkou ECB. Podpis sa mení podľa toho, kto v danom období ECB vedie."
           },
           {
-            title: "História podpisov",
+            title: "história podpisov",
             src: "img/podpisy.jpg",
             text: "Podpis na bankovke nie je len ozdoba. Historicky potvrdzoval, že za hodnotu peňazí ručí autorita, ktorá ich vydala, napríklad panovník, pokladník alebo banka.\n\nDnes podpis prezidenta ECB pripomína, že euro je spoločná mena vydávaná v rámci Eurosystému. Ak nájdeš bankovku s iným podpisom, nemusí ísť o problém. V obehu sú aj staršie bankovky s podpismi predchádzajúcich prezidentov ECB."
           },
@@ -34,7 +34,7 @@ const TARGETS = {
         tag: "②",
         pos: { x: 0.30, y: -0.16, z: 0.03 },
         cardOffset: { x: 22, y: -95 },
-        title: "Hmatové značky",
+        title: "hmatové značky",
         short: "Reliéfne čiary pomáhajú rozpoznať bankovku dotykom.",
         imgSrc: "img/hmatoveciary.jpg",
         imgText: "Na lícnej strane eurobankovky sú pri okrajoch krátke vystupujúce čiary. Sú vytlačené tak, aby sa dali cítiť prstami. Pomáhajú najmä ľuďom so zrakovým znevýhodnením rozlíšiť bankovku aj dotykom.\n\nSkús dotykom: Prejdi prstami po okraji bankovky a nájdi vystupujúce čiary."
@@ -49,16 +49,16 @@ const TARGETS = {
         markerSrc: "img/vodoznak.png",
         short: "Proti svetlu uvidíš obraz, ktorý nie je vytlačený.",
         text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu.",
-        imgTitle: "Vodoznak na eurobankovke",
+        imgTitle: "vodoznak na eurobankovke",
         imgSrc: "img/watermark.jpg",
         gallery: [
           {
-            title: "Vodoznak na eurobankovke",
+            title: "vodoznak na eurobankovke",
             src: "img/watermark.jpg",
             text: "Vodoznak je súčasťou bankovkového papiera. Vzniká už pri jeho výrobe, rozdielna hrúbka papiera vytvára svetlejšie a tmavšie plochy. Keď bankovku podržíte proti svetlu, tieto plochy spolu vytvoria obraz. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?"
           },
           {
-            title: "Tvár Európy",
+            title: "tvár Európy",
             src: "img/vaza.jpg",
             text: "Portrét vo vodoznaku zobrazuje Európu, postavu z gréckej mytológie, podľa ktorej je pomenovaný náš kontinent.\n\nRovnakú tvár nájdeš aj v holograme a pri pohľade proti svetlu aj v priehľadnom okienku na pravej strane bankovky.\n\nPredlohou bol viac než 2000 rokov starý obraz z antickej vázy, ktorá sa dnes nachádza v Louvri.",
             inlineImageSrc: "img/okienko.jpg",
@@ -76,10 +76,10 @@ const TARGETS = {
         tag: "④",
         pos: { x: -0.22, y: -0.22, z: 0.03 },
         cardOffset: { x: 26, y: -95 },
-        title: "Smaragdové číslo",
+        title: "smaragdové číslo",
         short: "Pri naklonení sa cez číslo pohybuje svetelný efekt.",
         text: "Tento ochranný prvok sa volá smaragdové číslo. Pri nakláňaní bankovky mení farbu a vytvára svetelný efekt, ktorý sa pohybuje cez číslo.",
-        imgTitle: "Smaragdové číslo",
+        imgTitle: "smaragdové číslo",
         imgSrc: "img/ziara.mp4",
         imgText: "Smaragdové číslo je veľké číslo hodnoty bankovky. Pri naklonení sa mení zo smaragdovozelenej na tmavomodrú a svetelný efekt sa pohybuje nahor a nadol. \n\n 👀 Vyskúšaj: Pomaly nakláňaj bankovku a sleduj, ako sa cez číslo presúva žiara."
       },
@@ -89,24 +89,24 @@ const TARGETS = {
         tag: "⑤",
         pos: { x: 0.27, y: 0.15, z: 0.03 },
         cardOffset: { x: 22, y: -118 },
-        title: "Architektúra a detaily",
+        title: "architektúra a detaily",
         short: "Každá bankovka nesie iný architektonický štýl.",
         text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. 20-eurová bankovka predstavuje gotiku.",
 
   
                   gallery: [ 
         {
-            title: "Architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
+            title: "architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
             src: "img/bankovkykreative.jpg",
             text: "Každá bankovka ukazuje iný architektonický štýl od najstarších až po moderné. Je to taký rýchly „timeline Európy“ cez stavby, ktoré formovali jej vývoj. \n\n Fun fact: Na bankovkách nie sú reálne budovy, sú to zámerne vymyslené návrhy, aby nepatrili žiadnej konkrétnej krajine."
           },
             {
-            title: "Od klasicizmu po modernu.",
+            title: "od klasicizmu po modernu.",
             src: "img/architecture-styles.jpg",
             text: "Každá hodnota ukazuje inú epochu európskej architektúry:\n\n5 € – klasicizmus\n10 € – románsky sloh\n20 € – gotika\n50 € – renesancia\n100 € – barok a rokoko\n200 € – vek železa a skla 19. storočia\n\nSpolu vytvárajú krátku cestu európskymi dejinami, od starších štýlov až po modernejšiu architektúru."
           },
           {
-            title: "Mikrotlač",
+            title: "mikrotlač",
             src: "img/detaily.jpg",
             text: "Niektoré architektonické motívy ukrývajú nenápadné ochranné prvky. Jedným z nich je mikrotext, drobné písmo, ktoré pri bežnom pohľade môže vyzerať ako čiara alebo ornament. \n\nPod lupou však vidno, že ide o ostrý a čitateľný text. Pri falzifikátoch býva mikrotext často rozmazaný alebo nečitateľný."
           },
@@ -119,36 +119,36 @@ const TARGETS = {
         pos: { x: -0.44, y: 0.00, z: 0.03 },
         cardOffset: { x: 24, y: -78 },
         title: "Príbeh Eura",
-        imgTitle: "Príbeh Eura",
+        imgTitle: "príbeh Eura",
         short: "Spoločná mena je aj príbeh spolupráce v Európe.",
         gallery: [
           {
-            title: "Európa po vojne",
+            title: "európa po vojne",
             src: "img/euro-story-europa-vojna.png",
             text: "Po druhej svetovej vojne bola Európa rozdelená, zničená a plná nedôvery. Milióny ľudí prišli o domovy aj životy. Preto európske krajiny začali hľadať spôsob, ako zabrániť ďalším veľkým konfliktom."
           },
           {
-            title: "Spolupráca namiesto konfliktu",
+            title: "spolupráca namiesto konfliktu",
             src: "img/euro-story-esuo.webp",
             text: "Spolupráca po rokoch vojen sa nevytvára ľahko. Preto jedným z prvých krokov bolo prepojenie priemyslu, najmä uhlia a ocele. Myšlienka bola jednoduchá: krajiny, ktoré spolu obchodujú a spolupracujú, majú menšiu šancu bojovať proti sebe."
           },
           {
-            title: "Zrod spoločnej Európy",
+            title: "zrod spoločnej Európy",
             src: "img/euro-story-eu-map.gif",
             text: "Spolupráca sa postupne rozširovala. Po prvých dohodách vzniklo Európske hospodárske spoločenstvo (EHS), ktoré malo podporiť obchod, ekonomiku a užšie prepojenie medzi krajinami.\n\nPostupne pribúdali ďalšie štáty, spoločné pravidlá aj otvorenejšie hranice. Z týchto krokov sa časom vyvinula dnešná Európska únia."
           },
           {
-            title: "Jedna mena pre milióny ľudí",
+            title: "jedna mena pre milióny ľudí",
             src: "img/euro-story-berlin-euro.png",
             text: "Euro vzniklo ako spoločná mena európskych krajín. Uľahčilo cestovanie, obchod aj porovnávanie cien. Dnes eurom platia stovky miliónov ľudí v rôznych častiach Európy."
           },
           {
-            title: "Rozdielne krajiny, spoločné symboly",
+            title: "rozdielne krajiny, spoločné symboly",
             src: "img/nazvy.jpg",
             text: "Na eurobankovkách nájdeš prvky, ktoré symbolizujú spoluprácu a rozmanitosť Európy. Rôzne jazyky, architektúra či mapy pripomínajú, že Európa pozostáva z mnohých kultúr, ktoré sú navzájom prepojené."
           },
           {
-            title: "Euro ako spojenie",
+            title: "euro ako spojenie",
             src: "img/euro-story-spojenie.png",
             text: "Euro nie je len spôsob platenia.\nJe aj jedným z výsledkov snahy európskych krajín viac spolupracovať po období vojen a rozdelenia.\n\nPo tragédiách 20. storočia začali štáty hľadať spôsoby, ako byť navzájom viac prepojené ekonomicky, politicky aj spoločensky.\n\nEuro sa časom stalo jedným zo symbolov tejto spolupráce. Bankovka, ktorú dnes držíš v ruke, tak nie je len platidlo, ale aj pripomienka spoločného európskeho príbehu. Euro ako naša spoločná mena."
           }
@@ -160,7 +160,7 @@ const TARGETS = {
 
   a5: {
     hint: "20€ – Zadná strana: technické detaily a život bankovky",
-    bottomHint: "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
+    bottomHint: "Modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
     callouts: [
       {
         id: "serial",
@@ -169,7 +169,7 @@ const TARGETS = {
         pos: { x: 0.36, y: 0.21, z: 0.03 },
         cardOffset: { x: -238, y: -84 },
         title: "Sériové číslo",
-        imgTitle: "Sériové číslo",
+        imgTitle: "sériové číslo",
         short: "Každá bankovka má vlastnú identitu.",
         imgSrc: "img/seriovecislo.jpg",
         imgText: "Sériové číslo je jedinečný identifikátor bankovky. Na bankovkách série Európa nájdeš jedno celé sériové číslo vodorovne a kratšie číslo zvislo. Zvislé číslo tvorí posledných šesť číslic hlavného sériového čísla.\n\nMimochodom: Prvé písmeno v sériovom čísle označuje tlačiareň, v ktorej bola bankovka vytlačená."
@@ -187,32 +187,32 @@ const TARGETS = {
         imgSrc: "img/bavlna.webp",
         gallery: [
           {
-            title: "Bankovky sa vyrábajú z bavlny",
+            title: "bankovky sa vyrábajú z bavlny",
             src: "img/material.jpg",
             text: "Eurobankovky sa nevyrábajú z bežného kancelárskeho papiera. Ich papier je vyrobený z bavlnených vlákien, vďaka čomu je pevný, pružný a má špecifický pocit na dotyk. Aj preto sa pravá bankovka dá často rozoznať už hmatom."
           },
           {
-            title: "Balíky bavlny → namáčanie a rozklad vlákien",
+            title: "balíky bavlny → namáčanie a rozklad vlákien",
             src: "img/material1.png",
             text: "Vlákna sa lisujú do balíkov a putujú do spracovania. Neskôr sa rozdrvia, premiešajú s vodou a vytvoria hmotu pre špeciálny papier."
           },
           {
-            title: "Odvodnenie, lisovanie a sušenie vlákien",
+            title: "odvodnenie, lisovanie a sušenie vlákien",
             src: "img/material2.png",
             text: "Z mokrej hmoty sa postupne stáva papier. Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera."
           },
           {
-            title: "Navíjanie hotového papiera",
+            title: "navíjanie hotového papiera",
             src: "img/material3.png",
             text: "Hotový bankovkový papier sa navíja do obrovských roliek. Po vysušení sa papier navinie na veľké kotúče pripravené na ďalšie spracovanie. Jedna rolka môže obsahovať kilometre špeciálneho papiera."
           },
           {
-            title: "Ochranné prvky a príprava pred tlačou",
+            title: "ochranné prvky a príprava pred tlačou",
             src: "img/material4.png",
             text: "Niektoré ochranné prvky vznikajú ešte pred finálnou tlačou. Do papiera alebo na jeho povrch sa pridávajú prvky, ktoré pomáhajú rozpoznať pravú bankovku."
           },
           {
-            title: "Tlač bankoviek na veľké hárky",
+            title: "tlač bankoviek na veľké hárky",
             src: "img/material5.jpg",
             text: "Bankovky sa tlačia vo veľkých hárkoch, nie po jednej. Každý hárok obsahuje viacero bankoviek naraz. Až neskôr sa rozrežú na jednotlivé kusy. Používajú sa rôzne techniky tlače vrátane reliéfnej tlače, ktorú možno cítiť prstami."
           },
@@ -237,7 +237,7 @@ const TARGETS = {
             text: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
           },
           {
-            title: "Bankovka pod infračerveným svetlom",
+            title: "bankovka pod infračerveným svetlom",
             src: "img/50-es2-lic.jpg",
             text: "Pod infračerveným svetlom sa ukáže ďalšia vrstva ochrany. Niektoré farby na pravej bankovke reagujú tak, že sú pod IR lampou tmavé až čierne. Zvyšok bankovky na infračervené svetlo nereaguje.\n\nToto už nie je bežný domáci test, ale ukazuje, že bankovka má viac vrstiev ochrany, než vidíme voľným okom."
           }
@@ -254,7 +254,7 @@ const TARGETS = {
         pos: { x: 0.06, y: -0.02, z: 0.03 },
         cardOffset: { x: -250, y: 94 },
         title: "Ochranný prúžok",
-        imgTitle: "Ochranný prúžok",
+        imgTitle: "ochranný prúžok",
         short: "Tmavý prúžok ukrytý priamo v papieri.",
         text: "Vyzerá ako obyčajná čiara, ale je priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku oproti svetlu a nájdi tmavú čiaru ukrytú v papieri.",
         imgSrc: "img/pasik.png",
@@ -281,8 +281,8 @@ const CALLOUT_ACCENTS = {
   serial: "#DED38F"
 };
 const STORY_CALLOUT_IDS = new Set(["arch", "sig", "material", "langs"]);
-const CALLOUT_LEGEND_TIP = "Tip: modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu";
-const CALLOUT_LEGEND_TIP_HTML = 'Tip: <span class="bottomHintBlue">modré</span> bubliny predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
+const CALLOUT_LEGEND_TIP = "Modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu";
+const CALLOUT_LEGEND_TIP_HTML = '<span class="bottomHintBlue">modré</span> bubliny predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
 
 function getCalloutAccent(calloutId) {
   if (CALLOUT_ACCENTS[calloutId]) return CALLOUT_ACCENTS[calloutId];
@@ -940,6 +940,12 @@ function trackCalloutDiscovered(callout) {
 
   if (sideSet.size === before) return;
 
+  currentCalloutNodes.forEach(item => {
+    if (item.targetId !== callout.targetId || item.data.id !== callout.id) return;
+    item.el.classList.add("is-discovered");
+    item.cardEl.setAttribute("aria-label", `${item.data.dotNumber}. ${item.data.title} – prečítané`);
+  });
+
   const total = getTargetCalloutCount(side);
   if (!total || sideSet.size < total) return;
 
@@ -985,7 +991,7 @@ function showScanState() {
   }
 
   const banknote = getSelectedBanknote();
-  setBottomHint(lastVisibleTargetId ? "Bankovka sa stratila z dohladu." : CALLOUT_LEGEND_TIP);
+  setBottomHint(lastVisibleTargetId ? "Bankovka sa stratila z dohľadu." : CALLOUT_LEGEND_TIP);
 }
 
 function clamp(value, min, max) {
@@ -1079,7 +1085,7 @@ function placeDotProjected(dotEl, anchorEl, local) {
   };
 }
 
-function applyCardPositionNearDot(card, callout, dotX, dotY, index, allDots, clusterCenter, projectedDistance = 1) {
+function applyCardPositionNearDot(card, callout, dotX, dotY, index, allDots, clusterCenter, projectedDistance = 1, occupied = []) {
   const offset = callout.cardOffset || { x: 22, y: -110 };
 
   const cardWidth = card.offsetWidth || 250;
@@ -1107,7 +1113,8 @@ function applyCardPositionNearDot(card, callout, dotX, dotY, index, allDots, clu
     return { left: clampedLeft, top: clampedTop };
   });
 
-  const scorePlacement = placement => {
+  const previous = cardState.get(card);
+  const scorePlacement = (placement, candidateIndex) => {
     const rect = {
       left: placement.left,
       top: placement.top,
@@ -1116,6 +1123,13 @@ function applyCardPositionNearDot(card, callout, dotX, dotY, index, allDots, clu
     };
 
     let score = 0;
+    if (previous?.candidateIndex !== undefined && previous.candidateIndex !== candidateIndex) score += 300;
+    occupied.forEach(({ card: other }) => {
+      const left = parseFloat(other.style.left);
+      const top = parseFloat(other.style.top);
+      if (rect.left < left + other.offsetWidth + COLLISION_GAP && rect.right > left - COLLISION_GAP &&
+          rect.top < top + other.offsetHeight + COLLISION_GAP && rect.bottom > top - COLLISION_GAP) score += 4000;
+    });
 
     if (
       dotX > rect.left - DOT_SAFE_RADIUS &&
@@ -1152,10 +1166,10 @@ function applyCardPositionNearDot(card, callout, dotX, dotY, index, allDots, clu
     return score;
   };
 
-  const bestPlacement = candidates.reduce((best, candidate) => {
-    const score = scorePlacement(candidate);
+  const bestPlacement = candidates.reduce((best, candidate, candidateIndex) => {
+    const score = scorePlacement(candidate, candidateIndex);
     if (!best || score < best.score) {
-      return { ...candidate, score };
+      return { ...candidate, score, candidateIndex };
     }
     return best;
   }, null);
@@ -1173,6 +1187,7 @@ function applyCardPositionNearDot(card, callout, dotX, dotY, index, allDots, clu
     cardState.set(card, state);
   }
 
+  state.candidateIndex = bestPlacement?.candidateIndex;
   const leftDelta = targetLeft - state.left;
   const topDelta = targetTop - state.top;
   const nearFactor = clamp((0.58 - projectedDistance) / 0.28, 0, 1);
@@ -1229,6 +1244,7 @@ function resolveCardCollisions(items) {
 
   for (let i = 0; i < sorted.length; i++) {
     const current = sorted[i];
+    if (current.locked) continue;
     const currentRect = current.card.getBoundingClientRect();
 
     for (let j = 0; j < i; j++) {
@@ -1255,6 +1271,7 @@ function resolveCardCollisions(items) {
 
 function resolveDotCoverage(items, dots) {
   items.forEach(item => {
+    if (item.locked) return;
     let iterations = 0;
 
     while (iterations < 3) {
@@ -1311,7 +1328,7 @@ function updateCalloutStem(item, dotX, dotY) {
   const cardCenterY = clamp(dotY, cardRect.top + 18, cardRect.bottom - 18);
   const dx = cardCenterX - dotX;
   const dy = cardCenterY - dotY;
-  const length = Math.max(0, Math.hypot(dx, dy) - 12);
+  const length = Math.max(0, Math.hypot(dx, dy) + 8);
   const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
   stemEl.style.width = `${Math.round(length)}px`;
@@ -1336,14 +1353,14 @@ function freezeCalloutLayout(duration = 850) {
 
 function setCardActiveState(item, isActive) {
   if (!item?.cardEl) return;
+  if (item.isActive === isActive) return;
+  item.isActive = isActive;
 
   item.el.classList.toggle("callout-inactive", !isActive);
   item.el.style.zIndex = isActive ? "82" : "1";
   item.el.setAttribute("aria-hidden", isActive ? "false" : "true");
 
-  item.cardEl.style.display = isActive ? "block" : "none";
-  item.cardEl.style.opacity = isActive ? "1" : "0";
-  item.cardEl.style.visibility = isActive ? "visible" : "hidden";
+  item.cardEl.classList.toggle("is-visible", isActive);
   item.cardEl.style.pointerEvents = isActive ? "auto" : "none";
   item.cardEl.setAttribute("aria-hidden", isActive ? "false" : "true");
   item.cardEl.tabIndex = isActive ? 0 : -1;
@@ -1394,7 +1411,8 @@ function makeCalloutNode(callout, targetId) {
     : isStripMarker
       ? `<span class="stripMarkerLabel">${callout.markerLabel || "€"}</span>`
       : `<span>${callout.dotNumber || callout.tag || ""}</span>`;
-  const badgeContent = callout.hideBadge ? "" : (callout.dotNumber || callout.tag || "");
+  const badgeContent = callout.dotNumber || callout.tag || "";
+  const cardTitle = (callout.title || "Info").toLocaleLowerCase("sk-SK");
   wrap.style.setProperty("--accent", calloutAccent);
   wrap.style.setProperty("--callout-text", calloutTextColor);
 
@@ -1403,8 +1421,8 @@ function makeCalloutNode(callout, targetId) {
     <div class="calloutStem"></div>
     <button type="button" class="calloutCard ${callout.mode === "toggle" ? "is-toggle" : "is-openable"}">
       <div class="calloutHead">
-        ${callout.hideBadge ? "" : `<div class="calloutBadge">${badgeContent}</div>`}
-        <div class="calloutTitle">${callout.title || "Info"}</div>
+        <div class="calloutBadge">${badgeContent}</div>
+        <div class="calloutTitle">${cardTitle}</div>
       </div>
       ${
         (callout.imgSrc || callout.gallery || callout.text || callout.mode === "toggle")
@@ -1416,6 +1434,12 @@ function makeCalloutNode(callout, targetId) {
 
   const dot = wrap.querySelector(".calloutDot");
   const card = wrap.querySelector(".calloutCard");
+  // Prevent Chrome's long-press selection/search and native image dragging.
+  ["contextmenu", "selectstart", "dragstart"].forEach(type => {
+    wrap.addEventListener(type, event => event.preventDefault());
+  });
+  wrap.classList.toggle("is-discovered", Boolean(discoveredCallouts[getTargetSide(targetId)]?.has(callout.id)));
+  card.setAttribute("aria-label", `${badgeContent}. ${callout.title}${wrap.classList.contains("is-discovered") ? " – prečítané" : ""}`);
   wrap.setAttribute("aria-hidden", "true");
   card.setAttribute("aria-hidden", "true");
   card.tabIndex = -1;
@@ -1446,6 +1470,8 @@ function makeCalloutNode(callout, targetId) {
 
   dot?.addEventListener("pointerdown", event => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    event.preventDefault();
+    event.stopPropagation();
     activeDotPointerId = event.pointerId;
     dotStartX = event.clientX ?? 0;
     dotStartY = event.clientY ?? 0;
@@ -1490,10 +1516,13 @@ function makeCalloutNode(callout, targetId) {
 
   card.addEventListener("pointerdown", event => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    event.preventDefault();
+    event.stopPropagation();
     activePointerId = event.pointerId;
     startX = event.clientX ?? 0;
     startY = event.clientY ?? 0;
     card.classList.add("is-pressed");
+    lockCalloutInteraction(callout.id, 1400);
     freezeCalloutLayout();
     card.setPointerCapture?.(event.pointerId);
   });
@@ -1511,7 +1540,7 @@ function makeCalloutNode(callout, targetId) {
     const moved = Math.hypot((event.clientX ?? 0) - startX, (event.clientY ?? 0) - startY);
     activePointerId = null;
 
-    if (event.pointerType !== "mouse") {
+    if (window.PointerEvent) {
       suppressSyntheticClickUntil = performance.now() + 700;
       if (moved <= 32) {
         activateCallout(event);
@@ -1529,6 +1558,11 @@ function makeCalloutNode(callout, targetId) {
   });
 
   card.addEventListener("click", event => {
+    // Keyboard activation must not be suppressed by a preceding touch.
+    if (event.detail === 0) {
+      activateCallout(event);
+      return;
+    }
     if (performance.now() < suppressSyntheticClickUntil) {
       event.preventDefault();
       event.stopPropagation();
@@ -1563,12 +1597,13 @@ function buildUIFor(targetId) {
   lastVisibleTargetId = targetId;
 
   hintEl.textContent = target.hint || `Namier kameru na ${getSelectedBanknote().label} bankovku...`;
-  setBottomHint(target.bottomHint || `Tip: priprav si ${getSelectedBanknote().label} bankovku`);
+  setBottomHint(target.bottomHint || `Priprav si ${getSelectedBanknote().label} bankovku`);
 
   clearCallouts();
 
-  currentCalloutNodes = (target.callouts || []).map(callout => {
+  currentCalloutNodes = (target.callouts || []).map((callout, index) => {
     const el = makeCalloutNode(callout, targetId);
+    el.style.setProperty("--reveal-delay", `${index * 45}ms`);
     return {
       data: callout,
       targetId,
@@ -1694,7 +1729,7 @@ function layoutActiveCallouts() {
 
   const visibleCards = [];
 
-  candidates.forEach(({ item, index, screenPos }) => {
+  candidates.sort((a, b) => a.index - b.index).forEach(({ item, index, screenPos }) => {
     const isActive = activeIds.has(item.data.id);
     const isLocked = lockedCalloutId === item.data.id && performance.now() <= lockedCalloutUntil;
 
@@ -1715,9 +1750,9 @@ function layoutActiveCallouts() {
     item.el.style.zIndex = item.cardEl.style.zIndex;
 
     if (!isLocked) {
-      applyCardPositionNearDot(item.cardEl, item.data, screenPos.x, screenPos.y, index, allDots, clusterCenter, screenPos.distance);
+      applyCardPositionNearDot(item.cardEl, item.data, screenPos.x, screenPos.y, index, allDots, clusterCenter, screenPos.distance, visibleCards);
     }
-    item.cardEl.style.transform = `scale(${screenPos.scale ?? 1})`;
+    item.cardEl.style.transform = "none";
     item.cardEl.style.transformOrigin = "top left";
 
     constrainCardToViewport(item.cardEl);
@@ -1725,12 +1760,12 @@ function layoutActiveCallouts() {
     visibleCards.push({
       card: item.cardEl,
       dot: screenPos,
-      data: item.data
+      data: item.data,
+      locked: isLocked
     });
   });
 
-  resolveCardCollisions(visibleCards);
-  resolveDotCoverage(visibleCards, allDots);
+  // Resolve placement once, before smoothing, without a competing push pass.
   visibleCards.forEach(({ data, dot }) => {
     const node = currentCalloutNodes.find(item => item.data.id === data.id);
     if (node) updateCalloutStem(node, dot.x, dot.y);
@@ -1802,7 +1837,7 @@ function handleFallbackCardTap(event) {
       x: event.clientX ?? 0,
       y: event.clientY ?? 0,
       at: performance.now(),
-      blocked: isNonCalloutInteractiveTapTarget(event.target)
+      blocked: isInteractiveTapTarget(event.target)
     };
     return;
   }
@@ -1828,7 +1863,9 @@ function handleFallbackCardTap(event) {
 }
 
 function closeModal(force = false) {
-  if (!force && performance.now() - modalOpenedAt < 650) return;
+  if (!modalOpen) return;
+  // Only an explicit user dismissal counts; lifecycle cleanup never completes a point.
+  const markRead = force !== true && !document.hidden && !arPaused;
 
   const closedCallout = activeModalCallout;
   activeModalCallout = null;
@@ -1842,7 +1879,7 @@ function closeModal(force = false) {
     if (activeAnchorId) layoutActiveCallouts();
   });
 
-  if (closedCallout) {
+  if (closedCallout && markRead) {
     trackCalloutDiscovered(closedCallout);
   }
 
@@ -2231,6 +2268,11 @@ function initAnchorEvents() {
       }
 
       lastSeenAt = performance.now();
+      // A brief tracking interruption must not recreate the UI or replay entrances.
+      if (activeAnchorId === anchorEl.id && renderedTargetId === anchorEl.id && currentCalloutNodes.length) {
+        showARState();
+        return;
+      }
       buildUIFor(anchorEl.id);
 
       requestAnimationFrame(() => {
@@ -2248,7 +2290,7 @@ function initAnchorEvents() {
         activeAnchorId = null;
         renderedTargetId = null;
         showScanState();
-      }, 140);
+      }, 350);
     });
   });
 }
@@ -2337,20 +2379,22 @@ async function resumeARExperience() {
 }
 
 async function resetARExperience() {
-  activeAnchorId = null;
-  renderedTargetId = null;
-  lockedCalloutId = null;
-  lockedCalloutUntil = 0;
-  layoutFreezeUntil = 0;
-  clearCallouts();
-  showScanState();
-  await resumeARExperience();
+  if (resetArBtn?.disabled) return;
+  if (resetArBtn) {
+    resetArBtn.disabled = true;
+    resetArBtn.textContent = "Obnovujem AR…";
+  }
+  closeModal(true);
+  beginLoadingTransition();
+  reloadForBanknoteChange(true);
 }
 
-modalClose.addEventListener("click", closeModal);
-modalOverlay.addEventListener("click", closeModal);
+modalClose.addEventListener("click", () => closeModal());
+modalOverlay.addEventListener("click", () => {
+  if (performance.now() - modalOpenedAt >= 400) closeModal();
+});
 modal.addEventListener("click", event => {
-  if (event.target === modal) closeModal();
+  if (event.target === modal && performance.now() - modalOpenedAt >= 400) closeModal();
 });
 document.addEventListener("pointerdown", handleFallbackCardTap, true);
 document.addEventListener("pointerup", handleFallbackCardTap, true);

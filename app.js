@@ -1427,7 +1427,6 @@ function makeCalloutNode(callout, targetId) {
     <svg class="calloutStem" aria-hidden="true"><path /></svg>
     <button type="button" class="calloutCard ${callout.mode === "toggle" ? "is-toggle" : "is-openable"}">
       <div class="calloutHead">
-        <div class="calloutBadge">${badgeContent}</div>
         <div class="calloutTitle">${cardTitle}</div>
       </div>
       ${

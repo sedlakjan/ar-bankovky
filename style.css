@@ -1112,15 +1112,18 @@ body.resume-paused .changeBanknoteBtn {
 
 .calloutCard {
   position: fixed;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   box-sizing: border-box;
   z-index: 81;
   width: min(220px, calc(100vw - 24px));
   min-height: 72px;
   border: 0;
   border-radius: 28px;
-  padding: 21px 53px 21px 25px;
-  text-align: left;
+  padding: 20px 27px;
+  text-align: center;
   background: transparent;
   outline: 0;
   backdrop-filter: none;
@@ -1154,12 +1157,23 @@ body.resume-paused .changeBanknoteBtn {
   animation: none;
 }
 
-.callout.is-discovered .calloutBadge::after {
+.callout.is-discovered .calloutTapIcon {
+  display: none;
+}
+
+.callout.is-discovered .calloutCard::after {
   content: "✓";
-  display: block;
-  margin-top: 4px;
+  flex: 0 0 20px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: var(--callout-text);
   font-family: "Azo Sans", sans-serif;
-  font-size: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
   animation: discoveredCheck 0.45s ease both;
 }
 
@@ -1234,45 +1248,33 @@ body.resume-paused .changeBanknoteBtn {
 }
 
 .calloutHead {
-  display: flex;
+  display: grid;
   align-items: center;
-  gap: 9px;
+  min-width: 0;
   min-height: 38px;
-}
-
-.calloutBadge {
-  display: block;
-  min-width: 16px;
-  color: var(--callout-text);
-  font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
-  font-weight: 900;
-  font-size: 18px;
-  line-height: 1;
-  flex: 0 0 auto;
 }
 
 .calloutTitle {
   font-family: "HW Animo", "Azo Sans", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 1.18;
+  font-size: 22px;
+  line-height: 1.12;
   color: var(--callout-text);
-  max-width: 132px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: center;
+  text-wrap: balance;
   text-transform: none;
 }
 
 .calloutTapIcon {
-  position: absolute;
-  right: 27px;
-  top: 50%;
-  bottom: auto;
+  flex: 0 0 20px;
   width: 20px;
   height: 20px;
   object-fit: contain;
   opacity: 0.92;
   pointer-events: none;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.24));
-  transform: translateY(-50%);
 }
 
 #modalOverlay {

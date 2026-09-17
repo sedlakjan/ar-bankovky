@@ -6,7 +6,7 @@ function syncViewportSize() {
 const TARGETS = {
   a4: {
     hint: "20€ – Predná strana: objav bezpečnostné a vizuálne prvky",
-    bottomHint: "Modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
+    bottomHint: "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu",
     callouts: [
       {
         id: "sig",
@@ -160,7 +160,7 @@ const TARGETS = {
 
   a5: {
     hint: "20€ – Zadná strana: technické detaily a život bankovky",
-    bottomHint: "Modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu",
+    bottomHint: "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu",
     callouts: [
       {
         id: "serial",
@@ -281,8 +281,8 @@ const CALLOUT_ACCENTS = {
   serial: "#DED38F"
 };
 const STORY_CALLOUT_IDS = new Set(["arch", "sig", "material", "langs"]);
-const CALLOUT_LEGEND_TIP = "Modré bubliny predstavujú ochranné prvky, zlaté zas dizajn a históriu";
-const CALLOUT_LEGEND_TIP_HTML = '<span class="bottomHintBlue">modré</span> bubliny predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
+const CALLOUT_LEGEND_TIP = "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu";
+const CALLOUT_LEGEND_TIP_HTML = '<span class="bottomHintBlue">modré</span> obláčiky predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
 
 function getCalloutAccent(calloutId) {
   if (CALLOUT_ACCENTS[calloutId]) return CALLOUT_ACCENTS[calloutId];
@@ -1319,21 +1319,27 @@ function resolveDotCoverage(items, dots) {
 
 function updateCalloutStem(item, dotX, dotY) {
   const stemEl = item.stemEl;
-  if (!stemEl || stemEl.offsetParent === null) return;
+  if (!stemEl || !item.cardEl.classList.contains("is-visible")) return;
 
   const cardRect = item.cardEl.getBoundingClientRect();
   if (!cardRect.width || !cardRect.height) return;
 
-  const cardCenterX = clamp(dotX, cardRect.left + 18, cardRect.right - 18);
-  const cardCenterY = clamp(dotY, cardRect.top + 18, cardRect.bottom - 18);
-  const dx = cardCenterX - dotX;
-  const dy = cardCenterY - dotY;
-  const length = Math.max(0, Math.hypot(dx, dy) + 8);
-  const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+  const endX = clamp(dotX, cardRect.left + 22, cardRect.right - 22) - dotX;
+  const endY = clamp(dotY, cardRect.top + 20, cardRect.bottom - 20) - dotY;
+  const length = Math.hypot(endX, endY);
+  if (length < 25) {
+    stemEl.style.opacity = "0";
+    return;
+  }
 
-  stemEl.style.width = `${Math.round(length)}px`;
-  stemEl.style.transform = `translateY(-50%) rotate(${angle}deg)`;
-  stemEl.style.opacity = length > 18 ? "0.95" : "0";
+  // A gentle S-shaped trail leaves the numbered marker and slips under the cloud.
+  const ux = endX / length;
+  const uy = endY / length;
+  const bend = Math.min(22, length * 0.18);
+  const start = item.data.markerSrc || item.data.markerType === "strip" ? 5 : 17;
+  const path = `M ${ux * start} ${uy * start} C ${endX * 0.32 - uy * bend} ${endY * 0.32 + ux * bend}, ${endX * 0.7 + uy * bend} ${endY * 0.7 - ux * bend}, ${endX} ${endY}`;
+  stemEl.firstElementChild.setAttribute("d", path);
+  stemEl.style.opacity = "0.72";
 }
 
 function lockCalloutInteraction(calloutId, duration = 420) {
@@ -1418,7 +1424,7 @@ function makeCalloutNode(callout, targetId) {
 
   wrap.innerHTML = `
     <div class="${dotClasses}"${markerStyle}>${markerContent}</div>
-    <div class="calloutStem"></div>
+    <svg class="calloutStem" aria-hidden="true"><path /></svg>
     <button type="button" class="calloutCard ${callout.mode === "toggle" ? "is-toggle" : "is-openable"}">
       <div class="calloutHead">
         <div class="calloutBadge">${badgeContent}</div>

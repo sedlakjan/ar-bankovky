@@ -982,16 +982,21 @@ body.resume-paused .changeBanknoteBtn {
   position: absolute;
   left: 0;
   top: 0;
-  display: block;
-  height: 18px;
-  background: var(--accent);
-  clip-path: polygon(0 50%, 88% 5%, 100% 0, 100% 100%, 88% 95%);
-  transform-origin: 0 50%;
+  width: 1px;
+  height: 1px;
+  overflow: visible;
   pointer-events: none;
   opacity: 0;
-  z-index: 0;
-  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.16));
+  z-index: -1;
   transition: opacity 0.18s ease;
+}
+
+.calloutStem path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-dasharray: 4 6;
 }
 
 .calloutDot::after {
@@ -1113,13 +1118,14 @@ body.resume-paused .changeBanknoteBtn {
   width: min(220px, calc(100vw - 24px));
   min-height: 72px;
   border: 0;
-  border-radius: 20px;
-  padding: 17px 42px 17px 17px;
+  border-radius: 28px;
+  padding: 21px 53px 21px 25px;
   text-align: left;
-  background: var(--accent);
+  background: transparent;
   outline: 0;
   backdrop-filter: none;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.34);
+  box-shadow: none;
+  filter: drop-shadow(0 8px 14px rgba(3, 19, 38, 0.22));
   isolation: isolate;
   cursor: pointer;
   user-select: none;
@@ -1186,7 +1192,9 @@ body.resume-paused .changeBanknoteBtn {
   content: "";
   position: absolute;
   inset: 0;
-  background: transparent;
+  background: var(--accent);
+  -webkit-mask: url("img/callout-cloud.svg") center / 100% 100% no-repeat;
+  mask: url("img/callout-cloud.svg") center / 100% 100% no-repeat;
   z-index: -1;
   pointer-events: none;
 }
@@ -1255,7 +1263,7 @@ body.resume-paused .changeBanknoteBtn {
 
 .calloutTapIcon {
   position: absolute;
-  right: 10px;
+  right: 27px;
   top: 50%;
   bottom: auto;
   width: 20px;
@@ -1683,7 +1691,7 @@ body.progress-hint-open .calloutStem {
   width: min(100%, 420px);
   min-height: calc(var(--vh) * 100);
   margin: 0 auto;
-  padding: max(22px, env(safe-area-inset-top)) 0 max(28px, env(safe-area-inset-bottom));
+  padding: max(22px, env(safe-area-inset-top)) 0 max(72px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1704,13 +1712,31 @@ body.progress-hint-open .calloutStem {
   margin: 0;
   color: var(--brand-white);
   text-align: left;
-  background: rgba(0, 32, 65, 0.58);
+  background: #06213b;
   border: 1px solid rgba(222, 211, 143, 0.22);
   border-radius: 24px;
   padding: 32px 22px 22px;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.34);
+  box-shadow: none;
+}
+
+.introTail {
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  width: 108px;
+  height: 44px;
+  transform: translateX(-50%);
+  overflow: visible;
+  pointer-events: none;
+  fill: #06213b;
+}
+
+.introTailOutline {
+  fill: none;
+  stroke: rgba(222, 211, 143, 0.22);
+  stroke-width: 1px;
 }
 
 .introEyebrow {
@@ -1862,13 +1888,13 @@ body.progress-hint-open .calloutStem {
   letter-spacing: 0.09em;
   text-transform: none;
   cursor: pointer;
-  box-shadow: 0 18px 32px rgba(222, 211, 143, 0.18);
+  box-shadow: none;
   transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
 }
 
 .introStartBtn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 22px 44px rgba(0,0,0,0.25);
+  box-shadow: none;
 }
 
 .introStartBtn:active {
@@ -1891,7 +1917,7 @@ body.progress-hint-open .calloutStem {
 
   .introShell {
     padding-top: max(14px, env(safe-area-inset-top));
-    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding-bottom: max(64px, env(safe-area-inset-bottom));
   }
 
   .introCard {

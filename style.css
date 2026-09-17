@@ -1193,8 +1193,8 @@ body.resume-paused .changeBanknoteBtn {
   position: absolute;
   inset: 0;
   background: var(--accent);
-  -webkit-mask: url("img/callout-cloud.svg") center / 100% 100% no-repeat;
-  mask: url("img/callout-cloud.svg") center / 100% 100% no-repeat;
+  -webkit-mask: url("img/callout-cloud.svg?v=cloud4") center / 100% 100% no-repeat;
+  mask: url("img/callout-cloud.svg?v=cloud4") center / 100% 100% no-repeat;
   z-index: -1;
   pointer-events: none;
 }

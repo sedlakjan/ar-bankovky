@@ -2234,6 +2234,7 @@ function renderSlider(callout) {
 }
 
 function openModal(callout) {
+  modal.classList.toggle("is-story", getCalloutAccent(callout.id).toUpperCase() === CALLOUT_COLORS.story);
   modalOpenedAt = performance.now();
   activeModalCallout = callout;
   modalOpen = true;

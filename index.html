@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <title>AR Bankovky - Euro</title>
 
-  <link rel="stylesheet" href="style.css?v=cloud6" />
+  <link rel="stylesheet" href="style.css?v=cloud9" />
 
   <script>
     window.__AR_DEPENDENCY_FAILED = false;
@@ -173,13 +173,18 @@
 
     <div id="modalOverlay"></div>
     <div id="modal">
-      <div id="modalCard">
-        <div id="modalHead">
-          <div id="modalTitle">Nadpis</div>
-          <button id="modalClose" type="button">Zavrieť ×</button>
+      <div class="modalShell">
+        <img class="modalLogo" src="img/5_penazi_tag_white.svg" alt="5 peňazí – Národnej banky Slovenska" />
+        <div class="modalBubble">
+          <div id="modalCard">
+            <div id="modalHead">
+              <div id="modalTitle">Nadpis</div>
+              <button id="modalClose" type="button">Zavrieť ×</button>
+            </div>
+            <div id="modalMedia"></div>
+            <div id="modalText"></div>
+          </div>
         </div>
-        <div id="modalMedia"></div>
-        <div id="modalText"></div>
       </div>
     </div>
   </div>
@@ -219,6 +224,7 @@
     })();
   </script>
 
-  <script src="app.js?v=cloud6"></script>
+  <script src="modal-cloud.js?v=cloud9"></script>
+  <script src="app.js?v=cloud9"></script>
 </body>
 </html>

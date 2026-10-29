@@ -5,8 +5,8 @@ function syncViewportSize() {
 
 const TARGETS = {
   a4: {
-    hint: "20€ – Predná strana: objav bezpečnostné a vizuálne prvky",
-    bottomHint: "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu",
+    hint: "20 € – Predná strana: objav bezpečnostné a vizuálne prvky",
+    bottomHint: "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu.",
     callouts: [
       {
         id: "sig",
@@ -17,12 +17,12 @@ const TARGETS = {
         title: "Podpis prezidenta ECB",
           gallery: [
           {
-            title: "prezidentka ECB",
+            title: "Prezidentka ECB",
             src: "img/lagarde.png",
             text: "Na eurobankovkách nájdeš podpis prezidenta alebo prezidentky Európskej centrálnej banky.\n\nNa novších bankovkách je podpis Christine Lagardovej, ktorá je súčasnou prezidentkou ECB. Podpis sa mení podľa toho, kto v danom období ECB vedie."
           },
           {
-            title: "história podpisov",
+            title: "História podpisov",
             src: "img/podpisy.jpg",
             text: "Podpis na bankovke nie je len ozdoba. Historicky potvrdzoval, že za hodnotu peňazí ručí autorita, ktorá ich vydala, napríklad panovník, pokladník alebo banka.\n\nDnes podpis prezidenta ECB pripomína, že euro je spoločná mena vydávaná v rámci Eurosystému. Ak nájdeš bankovku s iným podpisom, nemusí ísť o problém. V obehu sú aj staršie bankovky s podpismi predchádzajúcich prezidentov ECB."
           },
@@ -34,10 +34,10 @@ const TARGETS = {
         tag: "②",
         pos: { x: 0.30, y: -0.16, z: 0.03 },
         cardOffset: { x: 22, y: -95 },
-        title: "hmatové značky",
+        title: "Hmatové značky",
         short: "Reliéfne čiary pomáhajú rozpoznať bankovku dotykom.",
         imgSrc: "img/hmatoveciary.jpg",
-        imgText: "Na lícnej strane eurobankovky sú pri okrajoch krátke vystupujúce čiary. Sú vytlačené tak, aby sa dali cítiť prstami. Pomáhajú najmä ľuďom so zrakovým znevýhodnením rozlíšiť bankovku aj dotykom.\n\nSkús dotykom: Prejdi prstami po okraji bankovky a nájdi vystupujúce čiary."
+        imgText: "Na lícnej strane eurobankovky sú pri okrajoch krátke vystupujúce čiary. Sú vytlačené tak, aby sa dali cítiť prstami. Pomáhajú najmä ľuďom so zrakovým znevýhodnením rozlíšiť bankovku aj dotykom.\n\nSkús hmatom: Prejdi prstami po okraji bankovky a nájdi vystupujúce čiary."
       },
       {
         id: "watermark",
@@ -47,26 +47,26 @@ const TARGETS = {
         cardOffset: { x: 26, y: -108 },
         title: "Vodoznak",
         markerSrc: "img/vodoznak.png",
-        short: "Proti svetlu uvidíš obraz, ktorý nie je vytlačený.",
+        short: "Oproti svetlu uvidíš obraz, ktorý nie je vytlačený.",
         text: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu.",
-        imgTitle: "vodoznak na eurobankovke",
+        imgTitle: "Vodoznak na eurobankovke",
         imgSrc: "img/watermark.jpg",
         gallery: [
           {
-            title: "vodoznak na eurobankovke",
+            title: "Vodoznak na eurobankovke",
             src: "img/watermark.jpg",
-            text: "Vodoznak je súčasťou bankovkového papiera. Vzniká už pri jeho výrobe, rozdielna hrúbka papiera vytvára svetlejšie a tmavšie plochy. Keď bankovku podržíte proti svetlu, tieto plochy spolu vytvoria obraz. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?"
+            text: "Vodoznak je súčasťou bankovkového papiera. Vzniká už pri jeho výrobe. Rozdielna hrúbka papiera vytvára svetlejšie a tmavšie plochy. Keď bankovku podržíš proti svetlu, tieto plochy spolu vytvoria obraz.\n\n👀 Vyskúšaj: Daj bankovku proti svetlu a sleduj, čo sa objaví vo svetlej časti papiera."
           },
           {
-            title: "tvár Európy",
+            title: "Tvár Európy",
             src: "img/vaza.jpg",
-            text: "Portrét vo vodoznaku zobrazuje Európu, postavu z gréckej mytológie, podľa ktorej je pomenovaný náš kontinent.\n\nRovnakú tvár nájdeš aj v holograme a pri pohľade proti svetlu aj v priehľadnom okienku na pravej strane bankovky.\n\nPredlohou bol viac než 2000 rokov starý obraz z antickej vázy, ktorá sa dnes nachádza v Louvri.",
+            text: "Portrét vo vodoznaku zobrazuje Európu, postavu z gréckej mytológie, podľa ktorej je pomenovaný náš kontinent.\n\nRovnakú tvár nájdeš aj v holograme a pri pohľade proti svetlu aj v priehľadnom okienku na pravej strane bankovky.\n\nPredlohou bol viac než 2 000 rokov starý obraz z antickej vázy, ktorá sa dnes nachádza v Louvri.",
             inlineImageSrc: "img/okienko.jpg",
             inlineImageAlt: "Priehľadné okienko s portrétom Európy",
             inlineImageAfterParagraph: 2
           }
         ],
-        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n 👀 Vyskúšaj: Daj bankovku oproti svetlu a sleduj, čo sa objaví v svetlej časti papiera?",
+        imgText: "Vodoznak nie je obyčajná tlač. Je to obraz vytvorený priamo v papieri, ktorý sa ukáže proti svetlu. Vzniká tým, že papier má na rôznych miestach inú hrúbku. \n\n👀 Vyskúšaj: Daj bankovku proti svetlu a sleduj, čo sa objaví vo svetlej časti papiera.",
         revealPrompt: "Kto je na portréte?",
         revealAnswer: "Európa – postava z gréckej mytológie"
       },
@@ -76,12 +76,12 @@ const TARGETS = {
         tag: "④",
         pos: { x: -0.22, y: -0.22, z: 0.03 },
         cardOffset: { x: 26, y: -95 },
-        title: "smaragdové číslo",
-        short: "Pri naklonení sa cez číslo pohybuje svetelný efekt.",
-        text: "Tento ochranný prvok sa volá smaragdové číslo. Pri nakláňaní bankovky mení farbu a vytvára svetelný efekt, ktorý sa pohybuje cez číslo.",
-        imgTitle: "smaragdové číslo",
+        title: "Smaragdové číslo",
+        short: "Pri naklonení sa po čísle pohybuje svetelný efekt.",
+        text: "Tento ochranný prvok sa volá smaragdové číslo. Pri nakláňaní bankovky mení farbu a vytvára svetelný efekt, ktorý sa pohybuje po čísle.",
+        imgTitle: "Smaragdové číslo",
         imgSrc: "img/ziara.mp4",
-        imgText: "Smaragdové číslo je veľké číslo hodnoty bankovky. Pri naklonení sa mení zo smaragdovozelenej na tmavomodrú a svetelný efekt sa pohybuje nahor a nadol. \n\n 👀 Vyskúšaj: Pomaly nakláňaj bankovku a sleduj, ako sa cez číslo presúva žiara."
+        imgText: "Smaragdové číslo je veľké číslo hodnoty bankovky. Pri naklonení sa mení zo smaragdovozelenej na tmavomodrú a svetelný efekt sa pohybuje nahor a nadol. \n\n👀 Vyskúšaj: Pomaly nakláňaj bankovku a sleduj, ako sa po čísle presúva žiara."
       },
       {
         id: "arch",
@@ -89,26 +89,26 @@ const TARGETS = {
         tag: "⑤",
         pos: { x: 0.27, y: 0.15, z: 0.03 },
         cardOffset: { x: 22, y: -118 },
-        title: "architektúra a detaily",
-        short: "Každá bankovka nesie iný architektonický štýl.",
-        text: "Motívy na eurobankovkách zobrazujú architektonické štýly Európy. 20-eurová bankovka predstavuje gotiku.",
+        title: "Architektúra a detaily",
+        short: "Každá bankovka predstavuje iný architektonický štýl.",
+        text: "Motívy na eurobankovkách zobrazujú architektonické štýly z histórie Európy. Konkrétne 20-eurová bankovka predstavuje gotiku.",
 
   
                   gallery: [ 
         {
-            title: "architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
+            title: "Architektúra na bankovkách reprezentuje európske dejiny a kultúru.",
             src: "img/bankovkykreative.jpg",
-            text: "Každá bankovka ukazuje iný architektonický štýl od najstarších až po moderné. Je to taký rýchly „timeline Európy“ cez stavby, ktoré formovali jej vývoj. \n\n Fun fact: Na bankovkách nie sú reálne budovy, sú to zámerne vymyslené návrhy, aby nepatrili žiadnej konkrétnej krajine."
+            text: "Každá bankovka zobrazuje iný architektonický štýl od najstarších až po moderné. Je to taký rýchly „timeline Európy“ cez stavby, ktoré formovali jej vývoj.\n\nFun fact: Na bankovkách nie sú reálne budovy, sú to zámerne vymyslené návrhy, aby nepatrili žiadnej konkrétnej krajine."
           },
             {
-            title: "od klasicizmu po modernu.",
+            title: "Od klasicizmu po modernu",
             src: "img/architecture-styles.jpg",
-            text: "Každá hodnota ukazuje inú epochu európskej architektúry:\n\n5 € – klasicizmus\n10 € – románsky sloh\n20 € – gotika\n50 € – renesancia\n100 € – barok a rokoko\n200 € – vek železa a skla 19. storočia\n\nSpolu vytvárajú krátku cestu európskymi dejinami, od starších štýlov až po modernejšiu architektúru."
+            text: "Každá hodnota ukazuje inú epochu európskej architektúry:\n\n5 € – Klasika (antika)\n10 € – Románsky sloh\n20 € – Gotika\n50 € – Renesancia\n100 € – Barok a rokoko\n200 € – Vek železa a skla 19. storočia\n\nSpolu vytvárajú krátku cestu európskymi dejinami, od starších štýlov až po modernejšiu architektúru."
           },
           {
-            title: "mikrotlač",
+            title: "Mikrotlač",
             src: "img/detaily.jpg",
-            text: "Niektoré architektonické motívy ukrývajú nenápadné ochranné prvky. Jedným z nich je mikrotext, drobné písmo, ktoré pri bežnom pohľade môže vyzerať ako čiara alebo ornament. \n\nPod lupou však vidno, že ide o ostrý a čitateľný text. Pri falzifikátoch býva mikrotext často rozmazaný alebo nečitateľný."
+            text: "Niektoré architektonické motívy ukrývajú nenápadné ochranné prvky vytvorené mikrotlačou. Jedným z nich je mikrotext, drobné písmo, ktoré pri bežnom pohľade môže vyzerať ako tenká čiara alebo ornament.\n\nPod lupou je jasne vidieť, že ide o ostrý a čitateľný text. Pri falzifikátoch býva mikrotext často rozmazaný alebo nečitateľný."
           },
   ],
       },
@@ -118,49 +118,49 @@ const TARGETS = {
         tag: "④",
         pos: { x: -0.44, y: 0.00, z: 0.03 },
         cardOffset: { x: 24, y: -78 },
-        title: "Príbeh Eura",
-        imgTitle: "príbeh Eura",
+        title: "Príbeh eura",
+        imgTitle: "Príbeh eura",
         short: "Spoločná mena je aj príbeh spolupráce v Európe.",
         gallery: [
           {
-            title: "európa po vojne",
+            title: "Európa po vojne",
             src: "img/euro-story-europa-vojna.png",
             text: "Po druhej svetovej vojne bola Európa rozdelená, zničená a plná nedôvery. Milióny ľudí prišli o domovy aj životy. Preto európske krajiny začali hľadať spôsob, ako zabrániť ďalším veľkým konfliktom."
           },
           {
-            title: "spolupráca namiesto konfliktu",
+            title: "Spolupráca namiesto konfliktu",
             src: "img/euro-story-esuo.webp",
-            text: "Spolupráca po rokoch vojen sa nevytvára ľahko. Preto jedným z prvých krokov bolo prepojenie priemyslu, najmä uhlia a ocele. Myšlienka bola jednoduchá: krajiny, ktoré spolu obchodujú a spolupracujú, majú menšiu šancu bojovať proti sebe."
+            text: "Spolupráca po rokoch vojen sa nebuduje ľahko. Preto jedným z prvých krokov bolo prepojenie priemyslu, najmä uhlia a ocele. Myšlienka bola jednoduchá: krajiny, ktoré spolu obchodujú a spolupracujú, majú menšiu šancu bojovať proti sebe."
           },
           {
-            title: "zrod spoločnej Európy",
+            title: "Zrod spoločnej Európy",
             src: "img/euro-story-eu-map.gif",
             text: "Spolupráca sa postupne rozširovala. Po prvých dohodách vzniklo Európske hospodárske spoločenstvo (EHS), ktoré malo podporiť obchod, ekonomiku a užšie prepojenie medzi krajinami.\n\nPostupne pribúdali ďalšie štáty, spoločné pravidlá aj otvorenejšie hranice. Z týchto krokov sa časom vyvinula dnešná Európska únia."
           },
           {
-            title: "jedna mena pre milióny ľudí",
+            title: "Jedna mena pre milióny ľudí",
             src: "img/euro-story-berlin-euro.png",
             text: "Euro vzniklo ako spoločná mena európskych krajín. Uľahčilo cestovanie, obchod aj porovnávanie cien. Dnes eurom platia stovky miliónov ľudí v rôznych častiach Európy."
           },
           {
-            title: "rozdielne krajiny, spoločné symboly",
+            title: "Rozdielne krajiny, spoločné symboly",
             src: "img/nazvy.jpg",
             text: "Na eurobankovkách nájdeš prvky, ktoré symbolizujú spoluprácu a rozmanitosť Európy. Rôzne jazyky, architektúra či mapy pripomínajú, že Európa pozostáva z mnohých kultúr, ktoré sú navzájom prepojené."
           },
           {
-            title: "euro ako spojenie",
+            title: "Euro ako spojenie",
             src: "img/euro-story-spojenie.png",
             text: "Euro nie je len spôsob platenia.\nJe aj jedným z výsledkov snahy európskych krajín viac spolupracovať po období vojen a rozdelenia.\n\nPo tragédiách 20. storočia začali štáty hľadať spôsoby, ako byť navzájom viac prepojené ekonomicky, politicky aj spoločensky.\n\nEuro sa časom stalo jedným zo symbolov tejto spolupráce. Bankovka, ktorú dnes držíš v ruke, tak nie je len platidlo, ale aj pripomienka spoločného európskeho príbehu. Euro ako naša spoločná mena."
           }
         ],
-        imgText: "Euro nie je len spôsob platenia. Je aj jedným zo symbolov spolupráce európskych krajín."
+        imgText: "Euro nie je len spôsob platenia. Je aj jedným zo symbolov spolupráce a jednoty európskych krajín."
       }
     ]
   },
 
   a5: {
-    hint: "20€ – Zadná strana: technické detaily a život bankovky",
-    bottomHint: "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu",
+    hint: "20 € – Zadná strana: technické detaily a život bankovky",
+    bottomHint: "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu.",
     callouts: [
       {
         id: "serial",
@@ -169,7 +169,7 @@ const TARGETS = {
         pos: { x: 0.36, y: 0.21, z: 0.03 },
         cardOffset: { x: -238, y: -84 },
         title: "Sériové číslo",
-        imgTitle: "sériové číslo",
+        imgTitle: "Sériové číslo",
         short: "Každá bankovka má vlastnú identitu.",
         imgSrc: "img/seriovecislo.jpg",
         imgText: "Sériové číslo je jedinečný identifikátor bankovky. Na bankovkách série Európa nájdeš jedno celé sériové číslo vodorovne a kratšie číslo zvislo. Zvislé číslo tvorí posledných šesť číslic hlavného sériového čísla.\n\nMimochodom: Prvé písmeno v sériovom čísle označuje tlačiareň, v ktorej bola bankovka vytlačená."
@@ -187,32 +187,32 @@ const TARGETS = {
         imgSrc: "img/bavlna.webp",
         gallery: [
           {
-            title: "bankovky sa vyrábajú z bavlny",
+            title: "Bankovky sa vyrábajú z bavlny",
             src: "img/material.jpg",
-            text: "Eurobankovky sa nevyrábajú z bežného kancelárskeho papiera. Ich papier je vyrobený z bavlnených vlákien, vďaka čomu je pevný, pružný a má špecifický pocit na dotyk. Aj preto sa pravá bankovka dá často rozoznať už hmatom."
+            text: "Eurobankovky sa nevyrábajú z bežného kancelárskeho papiera. Ich papier je vyrobený z bavlnených vlákien, vďaka čomu je pevný, pružný a špecifický na dotyk. Aj preto sa pravá bankovka dá často rozoznať už hmatom."
           },
           {
-            title: "balíky bavlny → namáčanie a rozklad vlákien",
+            title: "Balíky bavlny → namáčanie a rozklad vlákien",
             src: "img/material1.png",
-            text: "Vlákna sa lisujú do balíkov a putujú do spracovania. Neskôr sa rozdrvia, premiešajú s vodou a vytvoria hmotu pre špeciálny papier."
+            text: "Vlákna sa lisujú do balíkov a putujú na spracovanie. Neskôr sa rozdrvia, premiešajú s vodou a vytvoria hmotu pre špeciálny papier."
           },
           {
-            title: "odvodnenie, lisovanie a sušenie vlákien",
+            title: "Odvodnenie, lisovanie a sušenie vlákien",
             src: "img/material2.png",
             text: "Z mokrej hmoty sa postupne stáva papier. Veľké stroje odstraňujú vodu, lisujú vlákna a sušia materiál. Vzniká pevný pás špeciálneho papiera."
           },
           {
-            title: "navíjanie hotového papiera",
+            title: "Navíjanie hotového papiera",
             src: "img/material3.png",
             text: "Hotový bankovkový papier sa navíja do obrovských roliek. Po vysušení sa papier navinie na veľké kotúče pripravené na ďalšie spracovanie. Jedna rolka môže obsahovať kilometre špeciálneho papiera."
           },
           {
-            title: "ochranné prvky a príprava pred tlačou",
+            title: "Ochranné prvky a príprava pred tlačou",
             src: "img/material4.png",
             text: "Niektoré ochranné prvky vznikajú ešte pred finálnou tlačou. Do papiera alebo na jeho povrch sa pridávajú prvky, ktoré pomáhajú rozpoznať pravú bankovku."
           },
           {
-            title: "tlač bankoviek na veľké hárky",
+            title: "Tlač bankoviek na veľké hárky",
             src: "img/material5.jpg",
             text: "Bankovky sa tlačia vo veľkých hárkoch, nie po jednej. Každý hárok obsahuje viacero bankoviek naraz. Až neskôr sa rozrežú na jednotlivé kusy. Používajú sa rôzne techniky tlače vrátane reliéfnej tlače, ktorú možno cítiť prstami."
           },
@@ -228,21 +228,21 @@ const TARGETS = {
         title: "UV a IR prvky",
         short: "Pod UV svetlom sa objavia skryté ochranné prvky.",
         text: "Pod ultrafialovým svetlom sa na bankovke zvýraznia farebné vlákna a ďalšie ochranné prvky.",
-        imgTitle: "UV ochranné prvky",
+        imgTitle: "ochranné prvky pod UV svetlom",
         imgSrc: "img/uva.jpg",
         gallery: [
           {
-            title: "UV ochranné prvky",
+            title: "ochranné prvky pod UV svetlom",
             src: "img/uva.jpg",
-            text: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
+            text: "Pod ultrafialovým (UV) svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý. Rozsvietia sa len vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
           },
           {
-            title: "bankovka pod infračerveným svetlom",
+            title: "Bankovka pod infračerveným svetlom",
             src: "img/50-es2-lic.jpg",
-            text: "Pod infračerveným svetlom sa ukáže ďalšia vrstva ochrany. Niektoré farby na pravej bankovke reagujú tak, že sú pod IR lampou tmavé až čierne. Zvyšok bankovky na infračervené svetlo nereaguje.\n\nToto už nie je bežný domáci test, ale ukazuje, že bankovka má viac vrstiev ochrany, než vidíme voľným okom."
+            text: "Pod infračerveným (IR) svetlom sa ukáže ďalšia vrstva ochrany. Niektoré farby na pravej bankovke reagujú tak, že sú pod IR lampou tmavé až čierne. Zvyšok bankovky na infračervené svetlo nereaguje.\n\nToto už nie je bežný domáci test, ale ukážka toho, že bankovka má viac vrstiev ochrany, než vidíme voľným okom."
           }
         ],
-        imgText: "Pod UV svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý, ale rozsvietia sa vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
+        imgText: "Pod ultrafialovým (UV) svetlom sa pravá bankovka nespráva ako bežný kancelársky papier. Samotný bankovkový papier zostáva tmavý. Rozsvietia sa len vybrané ochranné prvky, motívy a drobné vlákna.\n\nMimochodom: Pri mnohých falzifikátoch môže pod UV svetlom svietiť väčšia plocha papiera, čo je podozrivé."
       },
       {
         id: "securityStrip",
@@ -254,11 +254,11 @@ const TARGETS = {
         pos: { x: 0.06, y: -0.02, z: 0.03 },
         cardOffset: { x: -250, y: 94 },
         title: "Ochranný prúžok",
-        imgTitle: "ochranný prúžok",
+        imgTitle: "Ochranný prúžok",
         short: "Tmavý prúžok ukrytý priamo v papieri.",
-        text: "Vyzerá ako obyčajná čiara, ale je priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku oproti svetlu a nájdi tmavú čiaru ukrytú v papieri.",
+        text: "Vyzerá ako obyčajná čiara, ale je zapustený priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku proti svetlu a nájdi tmavú čiaru ukrytú v papieri.",
         imgSrc: "img/pasik.png",
-        imgText: "Vyzerá ako obyčajná čiara, ale je priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku oproti svetlu a nájdi tmavú čiaru ukrytú v papieri."
+        imgText: "Vyzerá ako obyčajná čiara, ale je zapustený priamo v papieri. Keď bankovku podržíš proti svetlu, uvidíš tmavý prúžok so symbolom € a hodnotou bankovky.\n\n👀 Vyskúšaj: Podrž bankovku proti svetlu a nájdi tmavú čiaru ukrytú v papieri."
       }
     ]
   }
@@ -281,8 +281,8 @@ const CALLOUT_ACCENTS = {
   serial: "#DED38F"
 };
 const STORY_CALLOUT_IDS = new Set(["arch", "sig", "material", "langs"]);
-const CALLOUT_LEGEND_TIP = "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu";
-const CALLOUT_LEGEND_TIP_HTML = '<span class="bottomHintBlue">modré</span> obláčiky predstavujú ochranné prvky, <span class="bottomHintGold">zlaté</span> zas dizajn a históriu';
+const CALLOUT_LEGEND_TIP = "Modré obláčiky predstavujú ochranné prvky, zlaté zas dizajn a históriu.";
+const CALLOUT_LEGEND_TIP_HTML = '<span class="bottomHintBlue">Modré</span> obláčiky predstavujú ochranné prvky,<br><span class="bottomHintGold">Zlaté</span> zas dizajn a históriu.';
 
 function getCalloutAccent(calloutId) {
   if (CALLOUT_ACCENTS[calloutId]) return CALLOUT_ACCENTS[calloutId];
@@ -411,8 +411,8 @@ function createTargetForBanknote(banknoteId, side) {
 
   return {
     hint: side === "front"
-      ? `${banknoteId} EUR - Objav bezpečnostné a vizuálne prvky`
-      : `${banknoteId} EUR - Technické detaily a život bankovky`,
+      ? `${banknoteId} EUR – Objav bezpečnostné a vizuálne prvky`
+      : `${banknoteId} EUR – Technické detaily a život bankovky`,
     bottomHint: CALLOUT_LEGEND_TIP,
     callouts: buildCalloutsFromLayout(
       SHARED_CALLOUT_CONTENT[contentKey],
@@ -632,7 +632,7 @@ function updateMindarSourceForSelection() {
 function updateScanCopy() {
   const banknote = getSelectedBanknote();
   if (scanTextEl) {
-    scanTextEl.textContent = `NAMIER KAMEROU NA ${banknote.label.toUpperCase()} BANKOVKU`;
+    scanTextEl.textContent = `Namier kameru na bankovku v hodnote ${banknote.label}`;
   }
 
   if (!activeAnchorId) {
@@ -715,7 +715,7 @@ function renderBanknotePicker() {
       button.className = "banknoteOption";
       button.textContent = option.label;
       button.dataset.banknote = option.id;
-      button.setAttribute("aria-label", `Vybrať bankovku ${option.label}`);
+      button.setAttribute("aria-label", `Vybrať bankovku v hodnote ${option.label}`);
       button.addEventListener("click", () => {
         pendingBanknoteId = option.id;
         syncBanknotePickerButtons();
@@ -943,7 +943,7 @@ function trackCalloutDiscovered(callout) {
   currentCalloutNodes.forEach(item => {
     if (item.targetId !== callout.targetId || item.data.id !== callout.id) return;
     item.el.classList.add("is-discovered");
-    item.cardEl.setAttribute("aria-label", `${item.data.dotNumber}. ${item.data.title} – prečítané`);
+    item.cardEl.setAttribute("aria-label", `${item.data.dotNumber}. ${item.data.title} – Prečítané`);
   });
 
   const total = getTargetCalloutCount(side);
@@ -991,7 +991,7 @@ function showScanState() {
   }
 
   const banknote = getSelectedBanknote();
-  setBottomHint(lastVisibleTargetId ? "Bankovka sa stratila z dohľadu." : CALLOUT_LEGEND_TIP);
+  setBottomHint(lastVisibleTargetId ? "Bankovka sa stratila z dohľadu" : CALLOUT_LEGEND_TIP);
 }
 
 function clamp(value, min, max) {
@@ -1444,7 +1444,7 @@ function makeCalloutNode(callout, targetId) {
     wrap.addEventListener(type, event => event.preventDefault());
   });
   wrap.classList.toggle("is-discovered", Boolean(discoveredCallouts[getTargetSide(targetId)]?.has(callout.id)));
-  card.setAttribute("aria-label", `${badgeContent}. ${callout.title}${wrap.classList.contains("is-discovered") ? " – prečítané" : ""}`);
+  card.setAttribute("aria-label", `${badgeContent}. ${callout.title}${wrap.classList.contains("is-discovered") ? " – Prečítané" : ""}`);
   wrap.setAttribute("aria-hidden", "true");
   card.setAttribute("aria-hidden", "true");
   card.tabIndex = -1;
@@ -1601,7 +1601,7 @@ function buildUIFor(targetId) {
   renderedTargetId = targetId;
   lastVisibleTargetId = targetId;
 
-  hintEl.textContent = target.hint || `Namier kameru na ${getSelectedBanknote().label} bankovku...`;
+  hintEl.textContent = target.hint || `Namier kameru na bankovku v hodnote ${getSelectedBanknote().label}`;
   setBottomHint(target.bottomHint || `Priprav si ${getSelectedBanknote().label} bankovku`);
 
   clearCallouts();
@@ -1897,10 +1897,12 @@ function closeModal(force = false) {
 
 function getModalTitle(callout, title) {
   const rawTitle = title || callout.imgTitle || callout.title || "Detail";
+  // Animo headings start with a lowercase letter; keep the rest of the title intact.
+  const displayTitle = rawTitle.replace(/^\p{L}/u, letter => letter.toLocaleLowerCase("sk"));
   const number = callout.dotNumber || callout.tag;
 
-  if (!number) return rawTitle;
-  return `${number}. ${rawTitle}`;
+  if (!number) return displayTitle;
+  return `${number}. ${displayTitle}`;
 }
 
 function buildModalShell(callout) {
@@ -2354,8 +2356,8 @@ async function pauseARExperience() {
   arPaused = true;
   closeModal(true);
   showScanState();
-  hintEl.textContent = "AR je pozastavené";
-  setBottomHint(`Po návrate klikni na Reset AR a znovu namier na ${banknote.label} bankovku.`);
+  hintEl.textContent = "AR je pozastavená";
+  setBottomHint(`Po návrate klikni na Resetovať AR a znovu namier kameru na bankovku v hodnote ${banknote.label}`);
   showResumeOverlay();
 
   try {
@@ -2369,7 +2371,7 @@ async function pauseARExperience() {
 async function resumeARExperience() {
   const banknote = getSelectedBanknote();
   hideResumeOverlay();
-  hintEl.textContent = `Namier kameru na ${banknote.label} bankovku...`;
+  hintEl.textContent = `Namier kameru na bankovku v hodnote ${banknote.label}`;
   showLegendBottomHint();
 
   try {
@@ -2388,7 +2390,7 @@ async function resetARExperience() {
   if (resetArBtn?.disabled) return;
   if (resetArBtn) {
     resetArBtn.disabled = true;
-    resetArBtn.textContent = "Obnovujem AR…";
+    resetArBtn.textContent = "Obnovujem AR";
   }
   closeModal(true);
   beginLoadingTransition();
